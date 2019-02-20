@@ -19,6 +19,7 @@ import {
   justifyContent,
   maxWidth,
   minHeight,
+  maxHeight,
   textAlign,
   textStyle,
   fontSize,
@@ -179,6 +180,7 @@ const Box = styled.div`
   ${justifyContent}
   ${maxWidth}
   ${minHeight}
+  ${maxHeight}
   ${color}
 `;
 
@@ -246,9 +248,6 @@ function InfoStripe({ author, date }) {
   );
 }
 
-const ImgLink = styled.a`
-  text-decoration: none;
-`
 
 function BlogPostLayout({ meta = {}, theme, children }) {
   const titleText = meta.title || '';
@@ -266,6 +265,7 @@ function BlogPostLayout({ meta = {}, theme, children }) {
           justifyContent='center'
           mb={[2, 1]}
           mt={[2]}
+          maxHeight={'80px'}
           width={'100%'}>
             <Link prefetch href='/'>
               <a>

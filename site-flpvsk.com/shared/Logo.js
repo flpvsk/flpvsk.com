@@ -1,12 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import tag from 'clean-tag';
-import { width, height } from 'styled-system'
-
-const Svg = styled(tag.svg)(
-  width,
-  height,
-);
+import Svg from './Svg';
 
 const TITLE = 'Website logo';
 
@@ -21,18 +15,17 @@ function Logo({
   innerColor,
   size,
 }) {
-
   return (
-    <Svg width={size} height={size} viewBox="0 0 800 800">
+    <Svg width={size} height={size} viewBox="0 0 80 80">
       <title>{TITLE}</title>
       <description>{DESCRIPTION}</description>
       <polygon
         className="logo__outer"
         fill={outerColor}
-        points="0 800 800 800 400 0"></polygon>
+        points="0 80 80 80 40 0"></polygon>
       <polygon className="logo__inner"
         fill={innerColor}
-        points="200 800 600 800 400 400"></polygon>
+        points="20 80 60 80 40 40"></polygon>
     </Svg>
   );
 }

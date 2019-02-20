@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import {
+  display,
   space,
   width,
   textAlign,
@@ -9,6 +10,7 @@ import {
 } from 'styled-system'
 
 const Caption = styled.div`
+  ${display}
   ${space}
   ${width}
   ${textAlign}

@@ -50,6 +50,10 @@ class SiteDocument extends Document {
       ::-moz-selection {
         background: ${theme.colors.secondary}
       }
+
+      input, button, a {
+        outline-color: ${theme.colors.secondary};
+      }
     `;
 
     return (

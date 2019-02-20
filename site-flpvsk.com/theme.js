@@ -15,6 +15,7 @@ export default {
   },
 
   colors: {
+    white: '#fff',
     black: '#050505',
     primary: '#F6E452',
     secondary: '#FF9F9F',
@@ -25,6 +26,10 @@ export default {
       '#999',
       '#eee',
     ],
+  },
+
+  shadows: {
+    button: '6px 6px #999'
   },
 
   fontSizes: [
