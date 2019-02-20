@@ -28,6 +28,7 @@ export default {
   },
 
   fontSizes: [
+    '1em',
     '1.062em',
     '1.188em',
     '1.312em',
@@ -91,14 +92,6 @@ export default {
     caption: {
       fontFamily: sansSerif,
       // fontSize: 16,
-      lineHeight: 'normal',
-      letterSpacing: 'normal',
-      fontWeight: 'normal',
-    },
-
-    captionLarge: {
-      fontFamily: sansSerif,
-      // fontSize: 24,
       lineHeight: 'normal',
       letterSpacing: 'normal',
       fontWeight: 'normal',

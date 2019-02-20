@@ -1,7 +1,12 @@
 import Head from 'next/head';
 import { MDXProvider } from '@mdx-js/tag'
 import Link from 'next/link'
+
 import Logo from '../shared/Logo';
+import Footer from '../shared/Footer';
+
+import Caption from '../shared/Caption';
+
 import styled, { withTheme } from 'styled-components';
 import {
   space,
@@ -109,7 +114,7 @@ const components = {
   },
   h2: (props) => (
     <H2
-      fontSize={[3, 4, 5]}
+      fontSize={[4, 5, 6]}
       textStyle='h4'
       color='blacks.0'
       mt={6}
@@ -118,7 +123,7 @@ const components = {
   p: (props) => (
     <Body
       {...props}
-      fontSize={[0, 1, 2]}
+      fontSize={[1, 2, 3]}
       textStyle='body'
       color='blacks.0'
       mt={0}
@@ -140,7 +145,7 @@ const components = {
   li: (props) => (
     <ListItem
       {...props}
-      fontSize={[0, 1, 2]}
+      fontSize={[1, 2, 3]}
       textStyle='body'
       pb={2}
       color='blacks.0' />
@@ -195,14 +200,6 @@ Article.propTypes = {
   ...maxWidth.propTypes,
 };
 
-const Caption = styled.div`
-  ${space}
-  ${width}
-  ${textAlign}
-  ${textStyle}
-  ${fontSize}
-`;
-
 
 function dateToText(date) {
   const d = new Date(date);
@@ -228,17 +225,16 @@ function InfoStripe({ author, date }) {
       display='flex'
       alignItems='center'
       p={1}
-      ml={[-3, -4, -5]}
-      mr={[-3, -4, -5]}
+      ml={[-2, -3, -4]}
+      mr={[-2, -3, -4]}
       mb={4}
     >
       <Caption
-        pl={[3, 4, 5]}
-        pr={[3, 4, 5]}
+        pl={[2, 3, 4]}
+        pr={[2, 3, 4]}
         width='100%'
-        fontSize={[1, 2]}
-        textAlign='center'
-        textStyle='captionLarge'>
+        fontSize={[2, 3]}
+        textAlign='center'>
           {`${author} ${dateString}`}
     </Caption>
     </Box>
@@ -275,10 +271,10 @@ function BlogPostLayout({ meta = {}, theme, children }) {
               </a>
             </Link>
         </Box>
-        <Article ml={[3, 4, 5]} mr={[3, 4, 5]} pb={5}>
+        <Article ml={[2, 3, 4]} mr={[2, 3, 4]} pb={5}>
           <Box maxWidth={'45em'} ml='auto' mr='auto'>
             <H1
-              fontSize={[5, 6, 7]}
+              fontSize={[6, 7, 8]}
               textStyle='h2'
               textAlign='center'
               mt={0}
@@ -292,6 +288,7 @@ function BlogPostLayout({ meta = {}, theme, children }) {
             {children}
           </Box>
         </Article>
+        <Footer />
       </>
     </MDXProvider>
   );
