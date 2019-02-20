@@ -1,4 +1,4 @@
 export default {
   siteName: 'Andrey Salomatin',
-  blogName: `@flpvsk blog`,
+  blogName: `Living Structure – Blog by @flpvsk`,
 };

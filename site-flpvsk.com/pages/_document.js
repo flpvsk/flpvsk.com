@@ -2,9 +2,17 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import {
   ServerStyleSheet,
   createGlobalStyle,
+  ThemeProvider,
 } from 'styled-components';
 
+import theme from '../theme';
+
+
 const GlobalStyle = createGlobalStyle`
+  html {
+    font-size: 100%;
+  }
+
   html, body {
     margin: 0;
     max-width: 100%;
@@ -29,32 +37,44 @@ const GlobalStyle = createGlobalStyle`
   *, *:before, *:after {
     box-sizing: border-box;
   }
+
+  ::selection {
+    background: ${props => props.theme.colors.secondary}
+  }
+
+  ::-moz-selection {
+    background: ${props => props.theme.colors.secondary}
+  }
 `;
 
-export default class SiteDocument extends Document {
+class SiteDocument extends Document {
   render () {
     const sheet = new ServerStyleSheet();
     const main = sheet.collectStyles(<Main />);
     const styleTags = sheet.getStyleElement();
 
     return (
-      <html>
-        <Head>
-          <meta charSet="utf-8" />
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width" />
-          <GlobalStyle />
-          {styleTags}
-        </Head>
+      <ThemeProvider theme={theme}>
+        <html>
+          <Head>
+            <meta charSet="utf-8" />
+            <meta
+              name="viewport"
+              content="initial-scale=1.0, width=device-width" />
+            <GlobalStyle />
+            {styleTags}
+          </Head>
 
-        <body>
-          <div className="root">
-            {main}
-          </div>
-          <NextScript />
-        </body>
-      </html>
+          <body>
+            <div className="root">
+              {main}
+            </div>
+            <NextScript />
+          </body>
+        </html>
+      </ThemeProvider>
     );
   }
 }
+
+export default SiteDocument;

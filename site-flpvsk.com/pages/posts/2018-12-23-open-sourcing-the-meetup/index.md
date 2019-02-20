@@ -1,10 +1,13 @@
 import { makeBlogPost } from '../../../layouts/BlogPostLayout';
 
-export default makeBlogPost({
+export const meta = {
   title: 'Open-sourcing the Meetup',
   date: '2018-12-23',
   author: 'Andrey Salomatin',
-});
+};
+
+export default makeBlogPost(meta);
+
 
 # Open-sourcing the Meetup
 
