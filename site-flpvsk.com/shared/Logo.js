@@ -1,12 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import tag from 'clean-tag';
 import { width, height } from 'styled-system'
 
-const Svg = styled(tag.svg)`
-  ${width}
-  ${height}
-`;
+const Svg = styled(tag.svg)(
+  width,
+  height,
+);
 
 const TITLE = 'Website logo';
 

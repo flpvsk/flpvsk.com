@@ -7,7 +7,10 @@ import Footer from '../shared/Footer';
 
 import Caption from '../shared/Caption';
 
-import styled, { withTheme } from 'styled-components';
+import styled from '@emotion/styled';
+import { css } from '@emotion/core'
+import { withTheme } from 'emotion-theming';
+
 import {
   space,
   width,
@@ -24,81 +27,83 @@ import {
 
 import siteInfo from '../siteInfo';
 
-const H1 = styled.h1`
-  ${space}
-  ${textStyle}
-  ${fontSize}
-  ${color}
-  ${textAlign}
-`;
+const H1 = styled.h1(
+  space,
+  textStyle,
+  fontSize,
+  color,
+  textAlign,
+);
 
 
-const H2 = styled.h2`
-  ${space}
-  ${fontSize}
-  ${textStyle}
-  ${color}
-  ${textAlign}
-`;
+const H2 = styled.h2(
+  space,
+  fontSize,
+  textStyle,
+  color,
+  textAlign,
+);
 
-const Body = styled.p`
-  ${fontSize}
-  ${textStyle}
-  ${color}
-  ${space}
-`;
+const Body = styled.p(
+  fontSize,
+  textStyle,
+  color,
+  space,
+);
 
-const Code = styled.code`
-  ${fontSize}
-  ${textStyle}
-  ${color}
-`;
+const Code = styled.code(
+  fontSize,
+  textStyle,
+  color,
+);
 
-const ExternalLink = styled.a`
-  ${fontSize}
-  ${color}
+const ExternalLink = styled.a(
+  css`
+    text-decoration: none;
+    background-repeat: repeat-x;
+    background-image: linear-gradient(
+      to right,rgba(0,0,0,.84) 100%,
+      rgba(0,0,0,0) 0
+    );
+    background-image: linear-gradient(
+      to right,
+      currentColor 100%,
+      currentColor 0
+    );
+    background-image: url(
+      data:image/svg+xml;utf8,
+      <svg preserveAspectRatio="none" viewBox="0 0 1 1" x…2000/svg">
+        <line x1="0" y1="0" x2="1" y2="1" stroke="currentColor" />
+      </svg>
+    );
+    background-size: 1px 1px;
+    background-position: 0 1.05em;
+    background-position: 0 calc(1em + 1px);
+  `,
+  fontSize,
+  color,
+);
 
-  text-decoration: none;
-  background-repeat: repeat-x;
-  background-image: linear-gradient(
-    to right,rgba(0,0,0,.84) 100%,
-    rgba(0,0,0,0) 0
-  );
-  background-image: linear-gradient(
-    to right,
-    currentColor 100%,
-    currentColor 0
-  );
-  background-image: url(
-    data:image/svg+xml;utf8,
-    <svg preserveAspectRatio="none" viewBox="0 0 1 1" x…2000/svg">
-      <line x1="0" y1="0" x2="1" y2="1" stroke="currentColor" />
-    </svg>
-  );
-  background-size: 1px 1px;
-  background-position: 0 1.05em;
-  background-position: 0 calc(1em + 1px);
-`;
+const ListItem = styled.li(
+  css`
+    list-style: none;
+    list-style-image: none;
 
-const ListItem = styled.li`
-  ${fontSize}
-  ${textStyle}
-  ${color}
-  ${space}
+    ::before {
+      padding-right: 15px;
+      font-size: 18px;
+      content: '•';
+    }
+  `,
+  fontSize,
+  textStyle,
+  color,
+  space,
+);
 
-  list-style: none;
-  list-style-image: none;
-
-  ::before {
-    padding-right: 15px;
-    font-size: 18px;
-    content: '•';
-  }
-`;
-
-const UnorderedList = styled.ul`
-  ${space}
-`;
+const UnorderedList = styled.ul(
+  space
+);
 
 
 const components = {

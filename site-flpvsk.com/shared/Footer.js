@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
+import { css } from '@emotion/core'
 import {
   space,
   width,
@@ -55,18 +56,19 @@ function inlineSvgNoise(color) {
   )
 }
 
-const Box = styled.div`
-  ${space}
-  ${width}
-  ${display}
-  ${color}
-
-  background-color: ${props => props.theme.colors.primary};
-  background-image: ${props => (
-    `url(data:image/svg+xml;utf8,` +
-    `${inlineSvgNoise(props.theme.colors.primary)})`
-  )};
-`;
+const Box = styled.div(
+  props => css`
+    background-color: ${props.theme.colors.primary};
+    background-image: ${
+      `url(data:image/svg+xml;utf8,` +
+      `${inlineSvgNoise(props.theme.colors.primary)})`
+    };
+  `,
+  space,
+  width,
+  display,
+  color,
+);
 
 function SvgNoise({ color }) {
   return (
