@@ -20,6 +20,7 @@ import {
   gridAutoFlow,
   gridRowGap,
   gridColumnGap,
+  gridRow,
   flexDirection,
   flex,
   alignItems,
@@ -30,6 +31,7 @@ import Caption from './Caption';
 import IconLinkTwitter from './IconLinkTwitter';
 import IconLinkGithub from './IconLinkGithub';
 import IconLinkEmail from './IconLinkEmail';
+import LinkExternal from './LinkExternal';
 
 import siteInfo from '../siteInfo';
 
@@ -97,6 +99,7 @@ const FlexBox = styled.div(
   justifyContent,
   alignItems,
   flex,
+  gridRow,
 );
 
 FlexBox.defaultProps = {
@@ -106,8 +109,16 @@ FlexBox.defaultProps = {
 
 function TextLicense() {
   return (
-    "All text licensed under the Creative Commons" +
-    "Attribution-NonCommercial 4.0 International License."
+    <>
+      {`All text licensed under the `}
+      <LinkExternal
+        color={'black'}
+        href='https://creativecommons.org/licenses/by-nc/4.0/'>
+          Creative Commons
+          Attribution-NonCommercial 4.0 International License
+      </LinkExternal>
+      {`.`}
+    </>
   );
 }
 
@@ -126,6 +137,7 @@ const Input = styled.input(
   fontSize,
   border,
   borderColor,
+  flex,
 );
 
 Input.defaultProps = {
@@ -138,6 +150,8 @@ Input.defaultProps = {
   color: 'blacks.0',
   border: '1px solid',
   borderColor: 'blacks.2',
+  flex: 1,
+  maxWidth: '15em',
 };
 
 const Button = styled.button(
@@ -174,25 +188,26 @@ export default function Footer() {
       pr={[2, 3, 4]}
       pl={[2, 3, 4]}
       display='grid'
-      gridTemplateColumns={['1fr', '1fr', '1fr 1fr']}
+      gridTemplateColumns={['1fr', '1fr', '1fr 1fr', '2fr 1fr 1fr']}
       gridTemplateRows={['auto auto', 'auto auto', '1fr']}
       gridAutoFlow={['row', 'row', 'column']}
       gridRowGap={0}
-      gridColumnGap={2}
+      gridColumnGap={4}
     >
-        <div>
+        <FlexBox mt={[4, 4, 0]} flexDirection='column'>
           <Caption mb={2}>
             <TextLicense />
           </Caption>
           <Caption mb={[4, 4, 0]}>
             <SourceCodeLicense />
           </Caption>
-        </div>
+        </FlexBox>
         <FlexBox
+          gridRow={[1, 1, 1]}
           flexDirection='column'
-          alignItems={['flex-start', 'flex-start', 'flex-end']}
+          alignItems={['flex-start', 'flex-start', 'flex-start']}
         >
-          <form>
+          <form style={{width: '100%'}}>
             <Caption
               as='label'
               htmlFor='subscribe-input-footer'
@@ -208,16 +223,17 @@ export default function Footer() {
               <Button ml={1}>Subscribe</Button>
             </FlexBox>
           </form>
-          <FlexBox
-            mt={[4, 4, 4]}
-            flex={1}
-            alignItems={'flex-end'}
-            flexDirection='row'
-            justifyContent={['flex-end', 'flex-end', 'flex-end']}>
-              <IconLinkTwitter height={24} />
-              <IconLinkGithub height={24} ml={2} />
-              <IconLinkEmail height={24} ml={2} />
-          </FlexBox>
+        </FlexBox>
+        <FlexBox
+          gridRow={[2, 2, 1]}
+          mt={[4, 4, 0]}
+          flex={[0, 0, 1]}
+          alignItems={['flex-start']}
+          flexDirection='row'
+          justifyContent={['flex-start', 'flex-start', 'flex-end']}>
+            <IconLinkTwitter height={24} />
+            <IconLinkGithub height={24} ml={2} />
+            <IconLinkEmail height={24} ml={2} />
         </FlexBox>
     </FooterBox>
   );
