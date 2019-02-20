@@ -4,7 +4,7 @@ const sansSerif =
   '"Roboto Condensed", roboto, -apple-system, ubuntu, arial, sans-serif';
 
 export default {
-  breakpoints: ['26.25rem', '50rem', '62.5rem'],
+  breakpoints: ['26.25rem', '40rem', '62.5rem'],
   space: [0, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80],
   minHeights: [0, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80],
 
