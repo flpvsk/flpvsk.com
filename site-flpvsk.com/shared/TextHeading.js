@@ -19,6 +19,7 @@ const Heading = styled.h1(
 
 Heading.defaultProps = {
   color: 'black',
+  m: 0,
 };
 
 

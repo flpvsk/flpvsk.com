@@ -13,6 +13,8 @@ import {
   gridRowGap,
   gridColumnGap,
   gridRow,
+  borders,
+  borderColor,
 } from 'styled-system'
 
 const BoxGrid = styled.div(
@@ -20,6 +22,8 @@ const BoxGrid = styled.div(
   width,
   flex,
   color,
+  borders,
+  borderColor,
   display,
   gridTemplateColumns,
   gridTemplateRows,

@@ -23,7 +23,7 @@ function inlineSvgNoise(color) {
             <feColorMatrix
               in="noisy2"
               result="noisy3"
-              values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0"/>
+              values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.3 0"/>
             <feBlend
               in="SourceGraphic"
               in2="noisy3"
@@ -38,11 +38,11 @@ function inlineSvgNoise(color) {
 
 
 export default function noiseBackground(props) {
+    // background-image: ${
+    //   `url(data:image/svg+xml;utf8,` +
+    //   `${inlineSvgNoise(props.theme.colors.primary)})`
+    // };
   return css`
     background-color: ${props.theme.colors.primary};
-    background-image: ${
-      `url(data:image/svg+xml;utf8,` +
-      `${inlineSvgNoise(props.theme.colors.primary)})`
-    };
   `;
 }

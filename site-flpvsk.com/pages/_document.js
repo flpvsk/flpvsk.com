@@ -28,7 +28,7 @@ class SiteDocument extends Document {
         -webkit-font-smoothing: antialiased;
       }
 
-      html, body, .root {
+      html, body, .root, #__next {
         height: 100%;
       }
 

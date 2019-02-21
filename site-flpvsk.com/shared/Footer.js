@@ -175,6 +175,8 @@ export default function Footer() {
       pr={[2, 3, 4]}
       pl={[2, 3, 4]}
       display='grid'
+      borderTop='1px solid'
+      borderColor='blacks.1'
       gridTemplateColumns={['1fr', '1fr', '1fr 1fr', '2fr 1fr 1fr']}
       gridTemplateRows={['auto auto', 'auto auto', '1fr']}
       gridAutoFlow={['row', 'row', 'column']}
