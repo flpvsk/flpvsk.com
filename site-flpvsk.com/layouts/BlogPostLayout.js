@@ -124,7 +124,7 @@ function dateToText(date) {
 function InfoStripe({ author, publishDate }) {
   let dateString = '';
   try {
-    let d = dateToText(date);
+    let d = dateToText(publishDate);
     dateString = `/ ${d}`;
   } catch (e) {
     // no valid date

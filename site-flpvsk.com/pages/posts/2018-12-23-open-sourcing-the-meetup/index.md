@@ -2,7 +2,7 @@ import { makeBlogPost } from '../../../layouts/BlogPostLayout';
 
 export const meta = {
   title: 'Open-sourcing the Meetup',
-  date: '2018-12-23',
+  publishDate: '2018-12-23',
   author: 'Andrey Salomatin',
 };
 
