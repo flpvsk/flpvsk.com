@@ -124,7 +124,19 @@ function TextLicense() {
 
 function SourceCodeLicense() {
   return (
-    "Source code of the website licensed under the MIT License."
+    <>
+      <LinkExternal
+        color={'black'}
+        href='https://github.com/flpvsk/flpvsk.com'>
+          Source code of the website
+      </LinkExternal>
+      {` licensed under the `}
+      <LinkExternal
+        color={'black'}
+        href='https://tldrlegal.com/license/mit-license'>
+          {`MIT License.`}
+      </LinkExternal>
+    </>
   );
 }
 
@@ -232,8 +244,8 @@ export default function Footer() {
           flexDirection='row'
           justifyContent={['flex-start', 'flex-start', 'flex-end']}>
             <IconLinkTwitter height={24} />
-            <IconLinkGithub height={24} ml={2} />
-            <IconLinkEmail height={24} ml={2} />
+            <IconLinkGithub height={24} ml={3} />
+            <IconLinkEmail height={24} ml={3} />
         </FlexBox>
     </FooterBox>
   );
