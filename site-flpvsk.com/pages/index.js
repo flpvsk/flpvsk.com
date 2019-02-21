@@ -45,7 +45,7 @@ function HeroText() {
             <TextHeading
               as='h1'
               textStyle='h1'
-              fontSize={[7, 7, 8]}>
+              fontSize={[7, 7, 8, 8]}>
                 Andrey Salomatin
             </TextHeading>
 
@@ -158,6 +158,59 @@ const HeroSection = styled(BoxGrid)(
   noiseBackground
 );
 
+
+function PostPreview(props) {
+  const {
+    title,
+    description,
+  } = props;
+
+  return (
+    <Box as='article' mt={0} mb={7}>
+      <TextHeading
+        as='h3'
+        textStyle='h3'
+        fontSize={[4, 4, 5, 5]}
+        mb={2}>
+          {title}
+      </TextHeading>
+      <TextBody fontSize={[1, 1, 2, 2]}>
+        {description}
+      </TextBody>
+    </Box>
+  );
+}
+
+function RecentPosts() {
+  return (
+    <BoxGrid
+      gridTemplateColumns={['1fr', '1fr', '10fr 4fr']}
+      gridTemplateRows='1fr'
+      gridAutoFlow='column'
+      mt={10}
+      pl={[2, 3, 4]}
+      pr={[2, 3, 4]}>
+        <Box>
+          <TextHeading
+            as='h2'
+            textStyle='h2'
+            mb={5}
+            fontSize={[6, 6, 7, 7]}>
+              Recent posts
+          </TextHeading>
+          {
+            siteInfo.posts.slice(0, 3).map((post, i) => (
+              <PostPreview key={`post-${i}`} {...post} />
+            ))
+          }
+        </Box>
+        <BoxFlex display={['none', 'none', 'flex', 'flex']}>
+          Hi
+        </BoxFlex>
+    </BoxGrid>
+  );
+}
+
 const Home = () => {
   return (
     <BoxGrid
@@ -175,7 +228,7 @@ const Home = () => {
           borderColor='blacks.1'>
             <HeroText />
         </HeroSection>
-        <Box>Other section</Box>
+        <RecentPosts />
         <Footer />
     </BoxGrid>
   );

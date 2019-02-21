@@ -121,7 +121,7 @@ function dateToText(date) {
   });
 }
 
-function InfoStripe({ author, date }) {
+function InfoStripe({ author, publishDate }) {
   let dateString = '';
   try {
     let d = dateToText(date);
