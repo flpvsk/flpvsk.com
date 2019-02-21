@@ -7,6 +7,7 @@ import {
 
 const LinkExternal = styled.a(
   css`
+    cursor: pointer;
     text-decoration: none;
     background-repeat: repeat-x;
     background-image: linear-gradient(

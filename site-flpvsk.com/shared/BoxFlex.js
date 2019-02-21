@@ -13,6 +13,7 @@ import {
   flexDirection,
   color,
   background,
+  backgroundRepeat,
 } from 'styled-system'
 
 
@@ -28,6 +29,7 @@ const FlexBox = styled.div(
   gridColumn,
   color,
   background,
+  backgroundRepeat,
   position,
 );
 

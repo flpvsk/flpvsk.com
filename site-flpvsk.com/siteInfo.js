@@ -7,11 +7,30 @@ export default {
   posts: [
     {
       title: 'Open-sourcing the Meetup',
+      path: `/posts/2018-12-23-open-sourcing-the-meetup`,
       publishDate: '2018-12-23',
       author: 'Andrey Salomatin',
       description: `
-        Increasingly meetups are dependent on platforms like Meetup.com and Facebook. Network effects help with discovery and that's cool, that's how most participants find those meetups. But outside of the discovery use-case, experience with those networks for organizers is poor.
+        Increasingly meetups are dependent on platforms like Meetup.com and Facebook. Network effects help with discovery and that's cool, that's how most participants find those meetups.
+      `,
+    },
+    {
+      title: 'Making products under uncertainty',
+      path: `/posts/2018-12-23-open-sourcing-the-meetup`,
+      publishDate: '2017-08-23',
+      author: 'Andrey Salomatin',
+      description: `
+        Established companies build products according to specs. That’s turning words into mockups and code. It’s easy. Now that we have some text let’s make sure it’s in three lines.
       `
-    }
+    },
+    {
+      title: 'Theory of Constraints in Colour',
+      path: `/posts/2018-12-23-open-sourcing-the-meetup`,
+      publishDate: '2017-06-23',
+      author: 'Andrey Salomatin',
+      description: `
+        There are thousands of possible reasons for a piece of software to not perform well. Thousands. How many ways do we have of finding and fixing those issues? One. There’s one way we can do it.
+      `
+    },
   ],
 };

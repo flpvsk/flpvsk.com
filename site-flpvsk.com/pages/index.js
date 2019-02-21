@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link'
 import styled from '@emotion/styled';
 import { right, width, height, } from 'styled-system';
 
@@ -24,6 +25,28 @@ const ImgPortrait = styled.img({
   position: 'absolute',
   bottom: 0,
 }, right, width, height);
+
+
+function SvgArrow(props) {
+  return (
+    <svg fill='red' style={props} viewBox='0 0 200 90'>
+      <path d='M0 0 L100 90 L200 0 Z' />
+    </svg>
+  );
+}
+
+
+const svgRect = `
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="none"
+    viewBox="0 0 300 20"
+    width="300"
+    height="20">
+      <rect x='0' y='0' width='7.5rem' height='20' fill='red' />
+  </svg>
+`.replace(/\n/, '').replace(/\s+/, ' ');
+
 
 function HeroText() {
   return (
@@ -163,17 +186,22 @@ function PostPreview(props) {
   const {
     title,
     description,
+    path,
   } = props;
 
   return (
     <Box as='article' mt={0} mb={7}>
-      <TextHeading
-        as='h3'
-        textStyle='h3'
-        fontSize={[4, 4, 5, 5]}
-        mb={2}>
-          {title}
-      </TextHeading>
+      <Link href={path} passHref={true} prefetch>
+        <LinkText>
+          <TextHeading
+            as='h3'
+            textStyle='h3'
+            fontSize={[4, 4, 5, 5]}
+            mb={2}>
+              {title}
+          </TextHeading>
+        </LinkText>
+      </Link>
       <TextBody fontSize={[1, 1, 2, 2]}>
         {description}
       </TextBody>
@@ -184,13 +212,14 @@ function PostPreview(props) {
 function RecentPosts() {
   return (
     <BoxGrid
-      gridTemplateColumns={['1fr', '1fr', '10fr 4fr']}
-      gridTemplateRows='1fr'
+      gridTemplateColumns={['1fr', '1fr', '7fr 2fr', '7fr 4fr']}
+      gridColumnGap={[ 5, 5, 8, 8 ]}
+      gridTemplateRows='auto auto'
       gridAutoFlow='column'
       mt={10}
       pl={[2, 3, 4]}
       pr={[2, 3, 4]}>
-        <Box>
+        <Box gridColumn={1} gridRow={1}>
           <TextHeading
             as='h2'
             textStyle='h2'
@@ -198,14 +227,44 @@ function RecentPosts() {
             fontSize={[6, 6, 7, 7]}>
               Recent posts
           </TextHeading>
+        </Box>
+        <Box gridRow={2} gridColumn={1}>
           {
             siteInfo.posts.slice(0, 3).map((post, i) => (
               <PostPreview key={`post-${i}`} {...post} />
             ))
           }
         </Box>
-        <BoxFlex display={['none', 'none', 'flex', 'flex']}>
-          Hi
+        <BoxFlex
+          gridRow={2}
+          gridColumn={2}
+          mt={-2}
+          display={['none', 'none', 'flex', 'flex']}>
+            <form style={{margin: 0}}>
+              <Box
+                pt={2}
+                position='relative'
+                backgroundRepeat='no-repeat'
+                backgroundSize='19rem 94%'
+                backgroundPosition='top -20px'
+                background={
+                  `url(data:image/svg+xml;utf8,${escape(svgRect)})`
+                }>
+                  <TextHeading
+                    as='label'
+                    textStyle='h2'
+                    zIndex={2}
+                    fontSize={[6, 6, 7, 7]}>
+                      Get notified when I publish new posts
+                  </TextHeading>
+                  <SvgArrow
+                    position='absolute'
+                    left='-2.8rem'
+                    bottom='-4rem'
+                    height='6rem'
+                    zIndex={-1} />
+              </Box>
+            </form>
         </BoxFlex>
     </BoxGrid>
   );

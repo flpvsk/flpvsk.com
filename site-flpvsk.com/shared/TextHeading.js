@@ -4,7 +4,9 @@ import {
   textAlign,
   textStyle,
   fontSize,
-  color
+  color,
+  background,
+  zIndex,
 } from 'styled-system'
 
 
@@ -14,6 +16,8 @@ const Heading = styled.h1(
   fontSize,
   color,
   textAlign,
+  background,
+  zIndex,
 );
 
 
