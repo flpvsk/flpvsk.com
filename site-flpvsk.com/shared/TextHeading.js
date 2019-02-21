@@ -1,23 +1,27 @@
 import styled from '@emotion/styled';
 import {
   space,
+  display,
   textAlign,
   textStyle,
   fontSize,
   color,
   background,
   zIndex,
+  maxWidth,
 } from 'styled-system'
 
 
 const Heading = styled.h1(
   space,
+  display,
   textStyle,
   fontSize,
   color,
   textAlign,
   background,
   zIndex,
+  maxWidth,
 );
 
 

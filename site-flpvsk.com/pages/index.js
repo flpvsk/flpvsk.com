@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link'
 import styled from '@emotion/styled';
+import { withTheme } from 'emotion-theming';
 import { right, width, height, } from 'styled-system';
 
 import siteInfo from '../siteInfo';
@@ -29,23 +30,24 @@ const ImgPortrait = styled.img({
 
 function SvgArrow(props) {
   return (
-    <svg fill='red' style={props} viewBox='0 0 200 90'>
+    <svg style={props} viewBox='0 0 200 90'>
       <path d='M0 0 L100 90 L200 0 Z' />
     </svg>
   );
 }
 
 
-const svgRect = `
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    preserveAspectRatio="none"
-    viewBox="0 0 300 20"
-    width="300"
-    height="20">
-      <rect x='0' y='0' width='7.5rem' height='20' fill='red' />
-  </svg>
-`.replace(/\n/, '').replace(/\s+/, ' ');
+const svgRect = (color) => (
+  `<svg
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none"
+      viewBox="0 0 300 20"
+      width="300"
+      height="20">
+        <rect x='0' y='0' width='7.5rem' height='20' fill='${color}' />
+    </svg>
+  `.replace(/\n/, '').replace(/\s+/, ' ')
+);
 
 
 function HeroText() {
@@ -190,7 +192,7 @@ function PostPreview(props) {
   } = props;
 
   return (
-    <Box as='article' mt={0} mb={7}>
+    <Box as='article' maxWidth={'43rem'} mt={0} mb={7}>
       <Link href={path} passHref={true} prefetch>
         <LinkText>
           <TextHeading
@@ -209,7 +211,7 @@ function PostPreview(props) {
   );
 }
 
-function RecentPosts() {
+function RecentPosts({ theme }) {
   return (
     <BoxGrid
       gridTemplateColumns={['1fr', '1fr', '7fr 2fr', '7fr 4fr']}
@@ -239,6 +241,7 @@ function RecentPosts() {
           gridRow={2}
           gridColumn={2}
           mt={-2}
+          justifyContent={'center'}
           display={['none', 'none', 'flex', 'flex']}>
             <form style={{margin: 0}}>
               <Box
@@ -248,12 +251,15 @@ function RecentPosts() {
                 backgroundSize='19rem 94%'
                 backgroundPosition='top -20px'
                 background={
-                  `url(data:image/svg+xml;utf8,${escape(svgRect)})`
+                  `url(data:image/svg+xml;utf8,` +
+                  `${escape(svgRect(theme.colors.primary))})`
                 }>
                   <TextHeading
                     as='label'
                     textStyle='h2'
                     zIndex={2}
+                    display={'block'}
+                    maxWidth={'4em'}
                     fontSize={[6, 6, 7, 7]}>
                       Get notified when I publish new posts
                   </TextHeading>
@@ -262,7 +268,8 @@ function RecentPosts() {
                     left='-2.8rem'
                     bottom='-4rem'
                     height='6rem'
-                    zIndex={-1} />
+                    zIndex={-1}
+                    fill={theme.colors.primary} />
               </Box>
             </form>
         </BoxFlex>
@@ -270,7 +277,7 @@ function RecentPosts() {
   );
 }
 
-const Home = () => {
+const Home = withTheme(({ theme }) => {
   return (
     <BoxGrid
       gridTemplateRows={[
@@ -287,10 +294,10 @@ const Home = () => {
           borderColor='blacks.1'>
             <HeroText />
         </HeroSection>
-        <RecentPosts />
+        <RecentPosts theme={theme}/>
         <Footer />
     </BoxGrid>
   );
-}
+});
 
 export default Home;
