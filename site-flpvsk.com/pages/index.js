@@ -61,7 +61,7 @@ function HeroText() {
           '1fr'
         ]
       }>
-        <Box alignSelf='center'>
+        <Box maxWidth={'43rem'} alignSelf='center'>
           <BoxFlex
             mt={[2, 2, 0, 0]}
             mb={[3, 3, 5]}
@@ -166,7 +166,7 @@ function HeroText() {
                 <Caption
                   fontSize={[0, 0, 1, 1]}
                   color='white'>
-                    That’s me
+                    That’s me.
                 </Caption>
             </Box>
             <ImgPortrait
