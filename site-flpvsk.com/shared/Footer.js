@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core'
+
 import {
   space,
   width,
@@ -32,6 +32,10 @@ import IconLinkTwitter from './IconLinkTwitter';
 import IconLinkGithub from './IconLinkGithub';
 import IconLinkEmail from './IconLinkEmail';
 import LinkExternal from './LinkExternal';
+
+import BoxFlex from './BoxFlex';
+import BoxGrid from './BoxGrid';
+import noiseBackground from './noiseBackground';
 
 import siteInfo from '../siteInfo';
 
@@ -71,40 +75,7 @@ function inlineSvgNoise(color) {
   )
 }
 
-const FooterBox = styled.footer(
-  props => css`
-    background-color: ${props.theme.colors.primary};
-    background-image: ${
-      `url(data:image/svg+xml;utf8,` +
-      `${inlineSvgNoise(props.theme.colors.primary)})`
-    };
-  `,
-  space,
-  width,
-  display,
-  color,
-  display,
-  gridTemplateColumns,
-  gridTemplateRows,
-  gridAutoFlow,
-  gridRowGap,
-  gridColumnGap,
-);
 
-
-const FlexBox = styled.div(
-  space,
-  display,
-  flexDirection,
-  justifyContent,
-  alignItems,
-  flex,
-  gridRow,
-);
-
-FlexBox.defaultProps = {
-  display: 'flex',
-};
 
 
 function TextLicense() {
@@ -191,9 +162,13 @@ Button.defaultProps = {
 }
 
 
+const BoxFooter = styled(BoxGrid)(noiseBackground);
+
+
 export default function Footer() {
   return (
-    <FooterBox
+    <BoxFooter
+      as='footer'
       w={'100%'}
       pt={2}
       pb={2}
@@ -206,15 +181,15 @@ export default function Footer() {
       gridRowGap={0}
       gridColumnGap={4}
     >
-        <FlexBox mt={[4, 4, 0]} flexDirection='column'>
+        <BoxFlex mt={[4, 4, 0]} flexDirection='column'>
           <Caption mb={2}>
             <TextLicense />
           </Caption>
           <Caption mb={[4, 4, 0]}>
             <SourceCodeLicense />
           </Caption>
-        </FlexBox>
-        <FlexBox
+        </BoxFlex>
+        <BoxFlex
           gridRow={[1, 1, 1]}
           flexDirection='column'
           alignItems={['flex-start', 'flex-start', 'flex-start']}
@@ -227,16 +202,16 @@ export default function Footer() {
               mb={1}>
                 Get notified when I publish new posts
             </Caption>
-            <FlexBox>
+            <BoxFlex>
               <Input
                 id='subscribe-input-footer'
                 type='email'
                 placeholder='Email' />
               <Button ml={1}>Subscribe</Button>
-            </FlexBox>
+            </BoxFlex>
           </form>
-        </FlexBox>
-        <FlexBox
+        </BoxFlex>
+        <BoxFlex
           gridRow={[2, 2, 1]}
           mt={[4, 4, 0]}
           flex={[0, 0, 1]}
@@ -246,7 +221,7 @@ export default function Footer() {
             <IconLinkTwitter height={24} />
             <IconLinkGithub height={24} ml={3} />
             <IconLinkEmail height={24} ml={3} />
-        </FlexBox>
-    </FooterBox>
+        </BoxFlex>
+    </BoxFooter>
   );
 }

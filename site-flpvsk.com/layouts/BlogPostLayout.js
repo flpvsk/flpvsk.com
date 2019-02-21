@@ -2,10 +2,16 @@ import Head from 'next/head';
 import { MDXProvider } from '@mdx-js/tag'
 import Link from 'next/link'
 
+import Box from '../shared/Box';
+import BoxFlex from '../shared/BoxFlex';
+
 import Logo from '../shared/Logo';
 import Footer from '../shared/Footer';
 
 import Caption from '../shared/Caption';
+import LinkExternal from '../shared/LinkExternal';
+import TextBody from '../shared/TextBody';
+import TextHeading from '../shared/TextHeading';
 
 import styled from '@emotion/styled';
 import { css } from '@emotion/core'
@@ -13,14 +19,6 @@ import { withTheme } from 'emotion-theming';
 
 import {
   space,
-  width,
-  display,
-  alignItems,
-  justifyContent,
-  maxWidth,
-  minHeight,
-  maxHeight,
-  textAlign,
   textStyle,
   fontSize,
   color
@@ -28,62 +26,12 @@ import {
 
 import siteInfo from '../siteInfo';
 
-const H1 = styled.h1(
-  space,
-  textStyle,
-  fontSize,
-  color,
-  textAlign,
-);
-
-
-const H2 = styled.h2(
-  space,
-  fontSize,
-  textStyle,
-  color,
-  textAlign,
-);
-
-const Body = styled.p(
-  fontSize,
-  textStyle,
-  color,
-  space,
-);
-
 const Code = styled.code(
   fontSize,
   textStyle,
   color,
 );
 
-const ExternalLink = styled.a(
-  css`
-    text-decoration: none;
-    background-repeat: repeat-x;
-    background-image: linear-gradient(
-      to right,rgba(0,0,0,.84) 100%,
-      rgba(0,0,0,0) 0
-    );
-    background-image: linear-gradient(
-      to right,
-      currentColor 100%,
-      currentColor 0
-    );
-    background-image: url(
-      data:image/svg+xml;utf8,
-      <svg preserveAspectRatio="none" viewBox="0 0 1 1" x…2000/svg">
-        <line x1="0" y1="0" x2="1" y2="1" stroke="currentColor" />
-      </svg>
-    );
-    background-size: 1px 1px;
-    background-position: 0 1.05em;
-    background-position: 0 calc(1em + 1px);
-  `,
-  fontSize,
-  color,
-);
 
 const ListItem = styled.li(
   css`
@@ -109,34 +57,25 @@ const UnorderedList = styled.ul(
 
 const components = {
   h1: (props) => {
-    // <H1
-    //   textStyle='h2'
-    //   textAlign='center'
-    //   mt={0}
-    //   mb={4}
-    //   color='black'>{props.children}</H1>
-
     return null;
   },
   h2: (props) => (
-    <H2
+    <TextHeading
+      as='h2'
       fontSize={[4, 5, 6]}
       textStyle='h4'
       color='blacks.0'
       mt={6}
-      mb={1}>{props.children}</H2>
+      mb={1}>{props.children}</TextHeading>
   ),
   p: (props) => (
-    <Body
+    <TextBody
       {...props}
-      fontSize={[1, 2, 3]}
-      textStyle='body'
-      color='blacks.0'
       mt={0}
       mb={3} />
   ),
   a: (props) => (
-    <ExternalLink
+    <LinkExternal
       {...props}
       color={'secondaryDark'} />
   ),
@@ -172,41 +111,6 @@ const components = {
   ),
 };
 
-const Box = styled.div`
-  ${space}
-  ${width}
-  ${display}
-  ${alignItems}
-  ${justifyContent}
-  ${maxWidth}
-  ${minHeight}
-  ${maxHeight}
-  ${color}
-`;
-
-Box.propTypes = {
-  ...space.propTypes,
-  ...display.propTypes,
-  ...alignItems.propTypes,
-  ...justifyContent.propTypes,
-  ...width.propTypes,
-  ...maxWidth.propTypes,
-  ...minHeight.propTypes,
-  ...color.propTypes,
-};
-
-const Article = styled.article`
-  ${space}
-  ${width}
-  ${maxWidth}
-`;
-
-Article.propTypes = {
-  ...space.propTypes,
-  ...width.propTypes,
-  ...maxWidth.propTypes,
-};
-
 
 function dateToText(date) {
   const d = new Date(date);
@@ -227,9 +131,8 @@ function InfoStripe({ author, date }) {
   }
 
   return (
-    <Box
+    <BoxFlex
       bg='primary'
-      display='flex'
       alignItems='center'
       p={1}
       ml={[-2, -3, -4]}
@@ -243,8 +146,8 @@ function InfoStripe({ author, date }) {
         fontSize={[2, 3]}
         textAlign='center'>
           {`${author} ${dateString}`}
-    </Caption>
-    </Box>
+      </Caption>
+    </BoxFlex>
   );
 }
 
@@ -259,8 +162,7 @@ function BlogPostLayout({ meta = {}, theme, children }) {
         <Head>
           <title>{titleText}{` – ${siteInfo.blogName}`}</title>
         </Head>
-        <Box
-          display='flex'
+        <BoxFlex
           alignItems='center'
           justifyContent='center'
           mb={[2, 1]}
@@ -275,24 +177,27 @@ function BlogPostLayout({ meta = {}, theme, children }) {
                   size={[56, 60, 80]} />
               </a>
             </Link>
-        </Box>
-        <Article ml={[2, 3, 4]} mr={[2, 3, 4]} pb={5}>
-          <Box maxWidth={'45em'} ml='auto' mr='auto'>
-            <H1
-              fontSize={[6, 7, 8]}
-              textStyle='h2'
-              textAlign='center'
-              mt={0}
-              mb={4}
-              color='black'>{titleText}</H1>
-          </Box>
+        </BoxFlex>
+        <Box as='article' ml={[2, 3, 4]} mr={[2, 3, 4]} pb={5}>
+          <Box as='header' w='100%'>
+            <Box maxWidth={'45em'} ml='auto' mr='auto'>
+              <TextHeading
+                as='h1'
+                fontSize={[6, 7, 8]}
+                textStyle='h2'
+                textAlign='center'
+                mt={0}
+                mb={4}
+                color='black'>{titleText}</TextHeading>
+            </Box>
 
-          <InfoStripe {...meta} />
+            <InfoStripe {...meta} />
+          </Box>
 
           <Box maxWidth={'45em'} ml='auto' mr='auto'>
             {children}
           </Box>
-        </Article>
+        </Box>
         <Footer />
       </>
     </MDXProvider>
