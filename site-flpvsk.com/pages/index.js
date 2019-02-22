@@ -19,6 +19,9 @@ import TextHeading from '../shared/TextHeading';
 import LinkExternal from '../shared/LinkExternal';
 import LinkText from '../shared/LinkText';
 
+import IconLinkTwitter from '../shared/IconLinkTwitter';
+import IconLinkGithub from '../shared/IconLinkGithub';
+import IconLinkEmail from '../shared/IconLinkEmail';
 
 import Footer from '../shared/Footer';
 
@@ -53,7 +56,7 @@ const svgRect = (color) => (
 function HeroText() {
   return (
     <BoxGrid
-      gridTemplateColumns={['1fr', '1fr', '40fr 27fr']}
+      gridTemplateColumns={['1fr', '1fr', '1fr 240px', '40fr 320px']}
       gridTemplateRows={
         [
           'auto 160px',
@@ -98,7 +101,7 @@ function HeroText() {
             </LinkText>
             {` and `}
             <LinkText color='blacks.0' href='#Mindojo'>Mindojo</LinkText>
-            {` . `}
+            {`. `}
             {`Helped organize `}
             <LinkExternal color='blacks.0' href='https://moscowjs.ru'>
               MoscowJS
@@ -125,9 +128,15 @@ function HeroText() {
             </LinkExternal>
             {`.`}
           </TextBody>
-          <TextBody pb={3}>
+          <TextBody pb={5}>
             {`I write, speak and podcast about things I’m interested in.`}
           </TextBody>
+
+          <Box>
+            <IconLinkTwitter height={24} />
+            <IconLinkGithub height={24} ml={3} />
+            <IconLinkEmail height={24} ml={3} />
+          </Box>
         </Box>
         <BoxFlex
           alignSelf='stretch'
@@ -149,14 +158,14 @@ function HeroText() {
             bottom={0}
             right={[-16, -24, -32]}
             height={[151, 151, 227, 302]}
-            width={[160, 160, 240, 320]}
+            width={[160, 160, 200, 320]}
             m={0}
           >
             <Box
               as='figcaption'
               display='block'
               position='absolute'
-              left={[-48, -48, -24, -12]}
+              left={[-64, -64, -24, -12]}
               top={'64%'}
               pl={1}
               pr={1}
@@ -171,7 +180,7 @@ function HeroText() {
             </Box>
             <ImgPortrait
               src='/static/portrait.webp'
-              width={[160, 160, 240, 320]}
+              width={[160, 160, 200, 320]}
                />
           </Box>
       </BoxFlex>
