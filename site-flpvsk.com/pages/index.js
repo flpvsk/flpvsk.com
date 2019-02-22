@@ -34,6 +34,7 @@ import Footer from '../shared/Footer';
 
 import HeroText from '../texts/hero.md';
 import Matterway from '../texts/matterway.md';
+import InfluencesContent from '../texts/influences.md';
 
 const ImgPortrait = styled.img({
   position: 'absolute',
@@ -287,6 +288,21 @@ function Separator({ n = 1 }) {
   );
 }
 
+function Influences() {
+  return (
+    <BoxGrid
+      as='section'
+      pl={[2, 3, 4]}
+      pr={[2, 3, 4]}
+      mb={4}
+      gridTemplateColumns={'1fr'}
+      gridTemplateRows={'auto'}>
+        <TextSectionHeader>Influences</TextSectionHeader>
+        <InfluencesContent />
+    </BoxGrid>
+  );
+}
+
 const Home = withTheme(({ theme }) => {
   return (
     <BoxGrid
@@ -310,6 +326,8 @@ const Home = withTheme(({ theme }) => {
         <RecentPosts theme={theme}/>
         <Separator />
         <Work />
+        <Separator n={2} />
+        <Influences />
         <Footer />
     </BoxGrid>
   );
