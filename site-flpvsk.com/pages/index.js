@@ -187,6 +187,7 @@ function PostPreview(props) {
 function RecentPosts({ theme }) {
   return (
     <BoxGrid
+      as='section'
       gridTemplateColumns={['1fr', '1fr', '7fr 2fr', '7fr 4fr']}
       gridColumnGap={[ 5, 5, 8, 8 ]}
       gridTemplateRows='auto auto'
@@ -264,6 +265,7 @@ function RecentPosts({ theme }) {
 function Work() {
   return (
     <BoxGrid
+      as='section'
       pl={[2, 3, 4]}
       pr={[2, 3, 4]}
       gridTemplateColumns={'1fr'}
@@ -295,13 +297,16 @@ const Home = withTheme(({ theme }) => {
         <Head>
           <title>{siteInfo.siteName}</title>
         </Head>
+
         <HeroSection
+          as='section'
           pl={[2, 3, 4]}
           pr={[2, 3, 4]}
           borderBottom='1px solid'
           borderColor='blacks.1'>
             <Hero />
         </HeroSection>
+
         <RecentPosts theme={theme}/>
         <Separator />
         <Work />
