@@ -1,0 +1,141 @@
+import React from 'react';
+import { MDXProvider } from '@mdx-js/tag'
+
+import styled from '@emotion/styled';
+
+import LinkExternalNoDecoration from '../shared/LinkExternalNoDecoration';
+
+import Box from '../shared/Box';
+import BoxGrid from '../shared/BoxGrid';
+import BoxFlex from '../shared/BoxFlex';
+
+import Caption from '../shared/Caption';
+import TextBody from '../shared/TextBody';
+import TextHeading from '../shared/TextHeading';
+
+import SvgPlay from '../shared/SvgPlay';
+import SvgLink from '../shared/SvgLink';
+
+const Svgs = {
+  play: SvgPlay,
+  link: SvgLink,
+}
+
+const TextItemHeader = styled(TextHeading)();
+TextItemHeader.defaultProps = {
+  as: 'h3',
+  textStyle: 'h3',
+  fontSize: [4, 4, 5, 5],
+  mb: 2,
+  mt: 0,
+};
+
+const TextItemBody = styled(TextBody)();
+TextItemBody.defaultProps = {
+  fontSize: [1, 1, 2, 2],
+  mb: 3,
+};
+
+const CompanyLogoImg = styled.img({
+  width: '100%',
+  maxWidth: '200px',
+  maxHeight: '80px',
+});
+
+const components = {
+  p: TextItemBody
+};
+
+function WorkItem({ title, logo, links, children, mb }) {
+  const linksMapped = links.map((link, i) => {
+    const SvgIcon = Svgs[link.svgName];
+    return (
+      <LinkExternalNoDecoration
+        key={i}
+        mr={[4, 4, 0]}
+        href={link.href}>
+          <BoxFlex
+            minHeight={'2rem'}
+            alignItems={'center'}>
+              <SvgIcon
+                height={'1.8rem'}
+                width={'1.8rem'}
+                color='blacks.1'
+                pt='2px'
+                mr={1} />
+              <Caption as='span' color='blacks.0'>
+                {link.text}
+              </Caption>
+          </BoxFlex>
+      </LinkExternalNoDecoration>
+    );
+  });
+
+  return (
+    <MDXProvider components={components}>
+      <BoxGrid
+        id='Matterway'
+        mb={mb}
+        gridTemplateColumns={[
+          '1fr',
+          '1fr',
+          '7fr minmax(11rem, 2fr)',
+          '7fr 4fr'
+        ]}
+        gridColumnGap={[ 5, 5, 8, 8 ]}
+        gridTemplateRows={'auto'}>
+
+          <Box
+            gridColumn={'1'}
+            gridRow={[2, 2, 1, 1]}>
+
+              <TextItemHeader display={['none', 'none', 'block']} >
+                {title}
+              </TextItemHeader>
+
+              {children}
+          </Box>
+
+          <BoxFlex
+            mb={[2, 2, 0, 0]}
+            flexDirection={'column'}
+            gridColumn={[1, 1, 2, 2]}
+            gridRow={[1, 1, 1, 1]} >
+              <CompanyLogoImg
+                src='/static/logo-matterway.svg'
+                alt='Matterway logo' />
+
+              <BoxFlex
+                mt={[1, 1, 4]}
+                alignItems={['center', 'center', 'flex-start']}
+                flexDirection={['row', 'row', 'column']}>
+
+                  {linksMapped}
+
+              </BoxFlex>
+          </BoxFlex>
+      </BoxGrid>
+    </MDXProvider>
+  );
+}
+
+export default WorkItem;
+
+export function makeWorkItem({
+  title,
+  logo,
+  links,
+  ...otherMeta
+}) {
+  return function WorkItemWithData(props) {
+    return (
+      <WorkItem
+        title={title}
+        logo={logo}
+        links={links}
+        {...otherMeta}
+        {...props} />
+    );
+  };
+}
+
