@@ -23,6 +23,9 @@ import IconLinkTwitter from '../shared/IconLinkTwitter';
 import IconLinkGithub from '../shared/IconLinkGithub';
 import IconLinkEmail from '../shared/IconLinkEmail';
 
+import Input from '../shared/Input';
+import Button from '../shared/Button';
+
 import Footer from '../shared/Footer';
 
 const ImgPortrait = styled.img({
@@ -250,11 +253,12 @@ function RecentPosts({ theme }) {
           gridRow={2}
           gridColumn={2}
           mt={-2}
-          justifyContent={'center'}
+          justifyContent='center'
           display={['none', 'none', 'flex', 'flex']}>
-            <form style={{margin: 0}}>
+            <Box as='form' m={0}>
               <Box
                 pt={2}
+                mb={10}
                 position='relative'
                 backgroundRepeat='no-repeat'
                 backgroundSize='19rem 94%'
@@ -265,7 +269,9 @@ function RecentPosts({ theme }) {
                 }>
                   <TextHeading
                     as='label'
-                    textStyle='h2'
+                    htmlFor={'subscribe-email-input'}
+                    textStyle='h3'
+                    lineHeight={'1em'}
                     zIndex={2}
                     display={'block'}
                     maxWidth={'4em'}
@@ -275,12 +281,21 @@ function RecentPosts({ theme }) {
                   <SvgArrow
                     position='absolute'
                     left='-2.8rem'
-                    bottom='-4rem'
+                    bottom='-4.4rem'
                     height='6rem'
                     zIndex={-1}
                     fill={theme.colors.primary} />
               </Box>
-            </form>
+              <BoxFlex flexDirection='column'>
+                <Input
+                  id='subscribe-email-input'
+                  mb={1}
+                  width={`100%`}
+                  placeholder='Email'
+                  type='email' />
+                <Button alignSelf='flex-end'>Subscribe</Button>
+              </BoxFlex>
+            </Box>
         </BoxFlex>
     </BoxGrid>
   );

@@ -1,81 +1,19 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {
-  space,
-  width,
-  display,
-  background,
-  maxWidth,
-  minHeight,
-  textAlign,
-  textStyle,
-  fontSize,
-  color,
-  border,
-  borderColor,
-  boxShadow,
-  gridTemplateColumns,
-  gridTemplateRows,
-  gridAutoFlow,
-  gridRowGap,
-  gridColumnGap,
-  gridRow,
-  flexDirection,
-  flex,
-  alignItems,
-  justifyContent,
-} from 'styled-system'
-
 import Caption from './Caption';
 import IconLinkTwitter from './IconLinkTwitter';
 import IconLinkGithub from './IconLinkGithub';
 import IconLinkEmail from './IconLinkEmail';
 import LinkExternal from './LinkExternal';
+import Input from './Input';
+import Button from './Button';
 
 import BoxFlex from './BoxFlex';
 import BoxGrid from './BoxGrid';
 import noiseBackground from './noiseBackground';
 
 import siteInfo from '../siteInfo';
-
-function inlineSvgNoise(color) {
-  return escape(`
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="none"
-      viewBox="0 0 300 300"
-      width="300"
-      height="300">
-        <defs>
-          <filter id="a">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.4"
-              stitchTiles="stitch"
-              result="noisy"/>
-            <feColorMatrix
-              in="noisy"
-              result="noisy2"
-              type="saturate"
-              values="0"/>
-            <feColorMatrix
-              in="noisy2"
-              result="noisy3"
-              values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0"/>
-            <feBlend
-              in="SourceGraphic"
-              in2="noisy3"
-              mode="darken"/>
-          </filter>
-        </defs>
-      <path filter="url(#a)" fill="${color}" d="M0 0h300v300H0z"/>
-    </svg>
-  `.replace(/\n/g, '').replace(/\s+/g, ' ')
-  )
-}
-
-
 
 
 function TextLicense() {
@@ -109,56 +47,6 @@ function SourceCodeLicense() {
       </LinkExternal>
     </>
   );
-}
-
-const Input = styled.input(
-  space,
-  width,
-  maxWidth,
-  textStyle,
-  color,
-  fontSize,
-  border,
-  borderColor,
-  flex,
-);
-
-Input.defaultProps = {
-  pr: 1,
-  pl: 1,
-  pb: '4px',
-  pt: '4px',
-  textStyle: 'caption',
-  fontSize: [0, 1],
-  color: 'blacks.0',
-  border: '1px solid',
-  borderColor: 'blacks.2',
-  flex: 1,
-  maxWidth: '15em',
-};
-
-const Button = styled.button(
-  space,
-  width,
-  textStyle,
-  fontSize,
-  color,
-  border,
-  background,
-  boxShadow,
-);
-
-Button.defaultProps = {
-  pr: 1,
-  pl: 1,
-  pb: '4px',
-  pt: '4px',
-  textStyle: 'caption',
-  fontSize: [0, 1],
-  border: 'none',
-  background: 'black',
-  color: 'white',
-  boxShadow: 'button',
 }
 
 
