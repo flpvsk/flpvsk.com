@@ -5,7 +5,7 @@ import {
   color
 } from 'styled-system'
 
-const LinkExternal = styled.a(
+const LinkText = styled.a(
   css`
     cursor: pointer;
     text-decoration: none;
@@ -33,4 +33,9 @@ const LinkExternal = styled.a(
   color,
 );
 
-export default LinkExternal;
+
+LinkText.defaultProps = {
+  color: 'blacks.0'
+};
+
+export default LinkText;

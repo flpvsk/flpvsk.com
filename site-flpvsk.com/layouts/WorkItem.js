@@ -10,8 +10,8 @@ import BoxGrid from '../shared/BoxGrid';
 import BoxFlex from '../shared/BoxFlex';
 
 import Caption from '../shared/Caption';
-import TextBody from '../shared/TextBody';
-import TextHeading from '../shared/TextHeading';
+import TextItemBody from '../shared/TextItemBody';
+import TextItemHeading from '../shared/TextItemHeading';
 
 import SvgPlay from '../shared/SvgPlay';
 import SvgLink from '../shared/SvgLink';
@@ -20,21 +20,6 @@ const Svgs = {
   play: SvgPlay,
   link: SvgLink,
 }
-
-const TextItemHeader = styled(TextHeading)();
-TextItemHeader.defaultProps = {
-  as: 'h3',
-  textStyle: 'h3',
-  fontSize: [4, 4, 5, 5],
-  mb: 2,
-  mt: 0,
-};
-
-const TextItemBody = styled(TextBody)();
-TextItemBody.defaultProps = {
-  fontSize: [1, 1, 2, 2],
-  mb: 3,
-};
 
 const CompanyLogoImg = styled.img({
   width: '100%',
@@ -89,9 +74,9 @@ function WorkItem({ title, logo, links, children, mb }) {
             gridColumn={'1'}
             gridRow={[2, 2, 1, 1]}>
 
-              <TextItemHeader display={['none', 'none', 'block']} >
+              <TextItemHeading display={['none', 'none', 'block']} >
                 {title}
-              </TextItemHeader>
+              </TextItemHeading>
 
               {children}
           </Box>

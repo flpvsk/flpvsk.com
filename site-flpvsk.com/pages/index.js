@@ -32,6 +32,7 @@ import Button from '../shared/Button';
 
 import Footer from '../shared/Footer';
 
+import HeroText from '../texts/hero.md';
 import Matterway from '../texts/matterway.md';
 
 const ImgPortrait = styled.img({
@@ -62,7 +63,7 @@ const svgRect = (color) => (
 );
 
 
-function HeroText() {
+function Hero() {
   return (
     <BoxGrid
       gridTemplateColumns={['1fr', '1fr', '1fr 240px', '40fr 320px']}
@@ -83,52 +84,7 @@ function HeroText() {
               Andrey Salomatin
           </TextHeading>
 
-          <Box maxWidth={'43rem'}>
-            <TextBody pb={3}>
-              {`Programmer, product manager, founder, hobbyist musician.`}
-            </TextBody>
-            <TextBody pb={3}>
-              {`I helped build products like `}
-              <LinkText color='blacks.0' href='#Matterway'>
-                Matterway
-              </LinkText>
-              {`, `}
-              <LinkText color='blacks.0' href='#Polychops'>
-              Polychops
-              </LinkText>
-              {` and `}
-              <LinkText color='blacks.0' href='#Mindojo'>Mindojo</LinkText>
-              {`. `}
-              {`Helped organize `}
-              <LinkExternal color='blacks.0' href='https://moscowjs.ru'>
-                MoscowJS
-              </LinkExternal>
-              {`, `}
-              <LinkExternal
-                  color='blacks.0'
-                  href='http://frontend-union-conf.github.io/func2016/'>
-                    Frontend Union Conf
-              </LinkExternal>
-              {` and `}
-              <LinkExternal
-                color='blacks.0'
-                href='https://www.meetup.com/Kaizen-Berlin/'>
-                  Kaizen Berlin
-              </LinkExternal>
-              {`.`}
-            </TextBody>
-            <TextBody pb={3}>
-              {`Currently I’m in the process of starting a `}
-              {`product research and development agency called `}
-              <LinkExternal color='blacks.0' href='https://mean.computer'>
-                Mean Computer
-              </LinkExternal>
-              {`.`}
-            </TextBody>
-            <TextBody pb={5}>
-              {`I write, speak and podcast about things I’m interested in.`}
-            </TextBody>
-          </Box>
+          <HeroText mb={5} />
 
           <Box>
             <IconLinkTwitter height={24} />
@@ -318,6 +274,17 @@ function Work() {
   );
 }
 
+function Separator({ n = 1 }) {
+  return (
+    <BoxFlex mt={[4, 4, 4, 6]}>
+      <img
+        width='100%'
+        height='60px'
+        src={`/static/separator-${n}.svg`} alt='Separator' />
+    </BoxFlex>
+  );
+}
+
 const Home = withTheme(({ theme }) => {
   return (
     <BoxGrid
@@ -333,19 +300,16 @@ const Home = withTheme(({ theme }) => {
           pr={[2, 3, 4]}
           borderBottom='1px solid'
           borderColor='blacks.1'>
-            <HeroText />
+            <Hero />
         </HeroSection>
         <RecentPosts theme={theme}/>
-        <BoxFlex mt={[4, 4, 4, 6]}>
-          <img
-            width='100%'
-            height='60px'
-            src='/static/separator-1.svg' alt='Separator' />
-        </BoxFlex>
+        <Separator />
         <Work />
         <Footer />
     </BoxGrid>
   );
 });
 
+
 export default Home;
+
