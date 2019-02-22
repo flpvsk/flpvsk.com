@@ -1,6 +1,7 @@
 import { makeWorkItem } from '../layouts/WorkItem';
 
 export default makeWorkItem({
+  id: 'Matterway',
   title: 'Matterway / B2B SaaS',
   logo: '/static/matterway.svg',
   links: [

@@ -31,7 +31,7 @@ const components = {
   p: TextItemBody
 };
 
-function WorkItem({ title, logo, links, children, mb }) {
+function WorkItem({ id, title, logo, links, children, mb }) {
   const linksMapped = links.map((link, i) => {
     const SvgIcon = Svgs[link.svgName];
     return (
@@ -59,7 +59,7 @@ function WorkItem({ title, logo, links, children, mb }) {
   return (
     <MDXProvider components={components}>
       <BoxGrid
-        id='Matterway'
+        id={id}
         mb={mb}
         gridTemplateColumns={[
           '1fr',
