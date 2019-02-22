@@ -3,6 +3,7 @@ import {
   space,
   width,
   height,
+  display,
   flex,
   alignSelf,
   maxWidth,
@@ -25,6 +26,7 @@ import {
 const Box = styled.div(
   space,
   width,
+  display,
   height,
   left,
   gridRow,
