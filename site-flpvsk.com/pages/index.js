@@ -81,15 +81,15 @@ function Hero() {
           <TextHeading
             as='h1'
             textStyle='h1'
-            mt={[2, 2, 0, 0]}
-            mb={[3, 3, 5]}
+            mt={[1, 1, 0, 0]}
+            mb={[2, 2, 2, 2]}
             fontSize={[7, 7, 8, 8]}>
-              Andrey Salomatin
+              {siteInfo.siteName}
           </TextHeading>
 
           <HeroText mb={5} />
 
-          <Box>
+          <Box mb={3}>
             <IconLinkTwitter height={24} />
             <IconLinkGithub height={24} ml={3} />
             <IconLinkEmail height={24} ml={3} />
@@ -132,7 +132,7 @@ function Hero() {
                 <Caption
                   fontSize={[0, 0, 1, 1]}
                   color='white'>
-                    That’s me.
+                    {`Hello =)`}
                 </Caption>
             </Box>
             <ImgPortrait
