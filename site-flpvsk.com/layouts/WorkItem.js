@@ -92,7 +92,7 @@ function WorkItem({ id, title, logo, links, children, mb }) {
                 alt={`Logo of ${title}`} />
 
               <BoxFlex
-                mt={[1, 1, 4]}
+                mt={[1, 1, 3]}
                 flexWrap={'wrap'}
                 alignItems={['center', 'center', 'flex-start']}
                 flexDirection={['row', 'row', 'column']}>

@@ -33,8 +33,9 @@ import Button from '../shared/Button';
 import Footer from '../shared/Footer';
 
 import HeroText from '../texts/hero.md';
-import Matterway from '../texts/matterway.md';
 import Polychops from '../texts/polychops.md';
+import Matterway from '../texts/matterway.md';
+import Mindojo from '../texts/mindojo.md';
 import InfluencesContent from '../texts/influences.md';
 
 const ImgPortrait = styled.img({
@@ -275,6 +276,7 @@ function Work() {
         <TextSectionHeader>Work</TextSectionHeader>
         <Polychops mb={4} />
         <Matterway mb={4} />
+        <Mindojo mb={4} />
     </BoxGrid>
   );
 }
