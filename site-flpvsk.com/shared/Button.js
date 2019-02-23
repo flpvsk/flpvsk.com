@@ -12,7 +12,9 @@ import {
   justifySelf,
 } from 'styled-system'
 
-const Button = styled.button(
+const Button = styled.button({
+    cursor: 'pointer',
+  },
   space,
   width,
   textStyle,

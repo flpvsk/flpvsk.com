@@ -168,17 +168,17 @@ function PostPreview(props) {
 
   return (
     <Box as='article' maxWidth={'43rem'} mt={0} mb={[5, 5, 7]}>
-      <Link href={path} passHref={true} prefetch>
-        <LinkText>
-          <TextHeading
-            as='h3'
-            textStyle='h3'
-            fontSize={[4, 4, 5, 5]}
-            mb={2}>
+      <TextHeading
+        as='h3'
+        textStyle='h3'
+        fontSize={[4, 4, 5, 5]}
+        mb={2}>
+          <Link href={path} passHref={true} prefetch>
+            <LinkText>
               {title}
-          </TextHeading>
-        </LinkText>
-      </Link>
+            </LinkText>
+          </Link>
+      </TextHeading>
       <TextBody fontSize={[1, 1, 2, 2]}>
         {description}
       </TextBody>
@@ -189,6 +189,7 @@ function PostPreview(props) {
 function RecentPosts({ theme }) {
   return (
     <BoxGrid
+      id='RecentPosts'
       as='section'
       gridTemplateColumns={['1fr', '1fr', '7fr 2fr', '7fr 4fr']}
       gridColumnGap={[ 5, 5, 8, 8 ]}
