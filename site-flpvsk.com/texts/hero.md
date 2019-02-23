@@ -16,8 +16,7 @@ Helped organize
 [MoscowJS](https://moscowjs.ru),
 [Kaizen Berlin](https://www.meetup.com/Kaizen-Berlin/)
 and
-[Frontend Union Conf](http://frontend-union-conf.github.io/func2016/)
-.
+[Frontend Union Conf](http://frontend-union-conf.github.io/func2016/).
 
 Currently I’m in the process of starting a product research and
 development agency called [Mean Computer](https://mean.computer).

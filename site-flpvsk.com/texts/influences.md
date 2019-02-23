@@ -5,7 +5,7 @@ export default GridTwoColumn;
 
 <Box>
 
-### Kent Beck
+### [Kent Beck](/influences/kent-beck)
 
 Test-Driven-Development and Extreme Programming
 
@@ -14,7 +14,7 @@ Test-Driven-Development and Extreme Programming
 
 <Box>
 
-### Genrich Altshuller
+### [Genrich Altshuller](/influences/genrich-altshuller)
 
 Algorithm of inventive problems solving
 
@@ -23,7 +23,7 @@ Algorithm of inventive problems solving
 
 <Box>
 
-### Eliyahu Goldratt
+### [Eliyahu Goldratt](/influences/eliyahu-goldratt)
 
 Theory of Constraints, Critical Chain Project management, Thinking
 Processes
@@ -33,7 +33,7 @@ Processes
 
 <Box>
 
-### Joshua Bloch
+### [Joshua Bloch](/influences/joshua-bloch)
 
 Programming languages and API design
 
@@ -42,7 +42,7 @@ Programming languages and API design
 
 <Box>
 
-### Christopher Alexander
+### [Christopher Alexander](/influences/christopher-alexander)
 
 Living Structure and Fit
 

@@ -10,13 +10,17 @@ import LinkExternal from '../shared/LinkExternal';
 import Box from '../shared/Box';
 
 const components = {
-  h3: TextItemHeading,
+  h3: props => <TextItemHeading {...props} mb={1} />,
   p: TextItemBody,
   a: (props) => {
     const { href } = props;
 
     if (!href || href.indexOf(':') === '-1') {
-      return <LinkText colors='' {...props} />;
+      return (
+        <Link href={href} prefetch passHref>
+          <LinkText color='blacks.0' {...props} />
+        </Link>
+      );
     }
 
     return <LinkExternal {...props} />
@@ -30,7 +34,7 @@ export default function GridTwoColumn({ children }) {
         gridTemplateRows='auto'
         gridTemplateColumns={['1fr', '1fr', '1fr 1fr',]}
         gridColumnGap={[ 5, 5, 8, 8 ]}
-        gridRowGap={[ 2, 2, 1, 1 ]} >
+        gridRowGap={[ 0, 0, 1, 1 ]} >
           {children.props.children}
       </BoxGrid>
     </MDXProvider>
