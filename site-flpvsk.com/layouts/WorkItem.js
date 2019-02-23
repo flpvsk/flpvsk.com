@@ -34,10 +34,16 @@ const components = {
 function WorkItem({ id, title, logo, links, children, mb }) {
   const linksMapped = links.map((link, i) => {
     const SvgIcon = Svgs[link.svgName];
+    let mr = [2, 3, 0];
+
+    if (i === links.length - 1) {
+      mr = [0];
+    }
+
     return (
       <LinkExternalNoDecoration
         key={i}
-        mr={[4, 4, 0]}
+        mr={mr}
         mb={[0, 0, 1]}
         href={link.href}>
           <BoxFlex
