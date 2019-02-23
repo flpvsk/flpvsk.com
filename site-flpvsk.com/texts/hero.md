@@ -2,24 +2,25 @@ import HeroText from '../layouts/HeroText';
 
 export default HeroText;
 
-Product manager,
+Product person,
 programmer
 and
 hobbyist musician.
 
-I helped build products like
+I design and build software. I helped make products like
 [Polychops](#Polychops),
 [Matterway](#Matterway)
 and
 [Mindojo](#Mindojo).
-Helped organize
+
+I enjoy meetups and conferences. I was involved in
 [MoscowJS](https://moscowjs.ru),
-[Kaizen Berlin](https://www.meetup.com/Kaizen-Berlin/)
+[Kaizen&nbsp;Berlin](https://www.meetup.com/Kaizen-Berlin/)
 and
-[Frontend Union Conf](http://frontend-union-conf.github.io/func2016/).
+[Frontend&nbsp;Union&nbsp;Conf](http://frontend-union-conf.github.io/func2016/).
 
 Currently I’m in the process of starting a product research and
-development agency called [Mean Computer](https://mean.computer).
+development agency called [Mean&nbsp;Computer](https://mean.computer).
 
 I
 [write](#RecentPosts),
