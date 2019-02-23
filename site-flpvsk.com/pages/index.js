@@ -327,10 +327,12 @@ const Home = withTheme(({ theme }) => {
             <Hero />
         </HeroSection>
 
-        <RecentPosts theme={theme}/>
-        <Separator />
         <Work />
+        <Separator />
+
+        <RecentPosts theme={theme}/>
         <Separator n={2} />
+
         <Influences />
         <Footer />
     </BoxGrid>
