@@ -201,7 +201,7 @@ function RecentPosts({ theme }) {
 
         <Box gridColumn={`1 / 3`} gridRow={1}>
           <TextSectionHeader>
-            Recent posts
+            Recent blog posts
           </TextSectionHeader>
         </Box>
 
