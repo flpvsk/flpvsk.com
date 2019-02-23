@@ -36,5 +36,5 @@ With `tinymeetup` initiative, I would like to:
 
 * I'm curious, if you were ever organizing a meetup: what were some of the challenges you had?
 * If you ever started or wanted to start a meetup, I'd be curious to hear your story.
-There's not much ready yet, but you can get an idea of how it could look like here: https://github.com/tinymeetup
+There's not much ready yet, but you can get an idea of how it could look like here: https://github.com/tinymeetup.
 
