@@ -30,7 +30,7 @@ export default function GridTwoColumn({ children }) {
         gridTemplateRows='auto'
         gridTemplateColumns={['1fr', '1fr', '1fr 1fr',]}
         gridColumnGap={[ 5, 5, 8, 8 ]}
-        gridRowGap={[ 0, 0, 1, 1 ]} >
+        gridRowGap={[ 2, 2, 1, 1 ]} >
           {children.props.children}
       </BoxGrid>
     </MDXProvider>
