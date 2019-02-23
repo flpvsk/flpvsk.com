@@ -24,7 +24,10 @@
     "next": "^8.0.1",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "styled-system": "^3.2.1"
+    "retext": "^6.0.1",
+    "retext-smartypants": "^3.0.2",
+    "styled-system": "^3.2.1",
+    "unist-util-visit": "^1.4.0"
   },
   "devDependencies": {}
 }
