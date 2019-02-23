@@ -34,6 +34,7 @@ import Footer from '../shared/Footer';
 
 import HeroText from '../texts/hero.md';
 import Matterway from '../texts/matterway.md';
+import Polychops from '../texts/polychops.md';
 import InfluencesContent from '../texts/influences.md';
 
 const ImgPortrait = styled.img({
@@ -166,7 +167,7 @@ function PostPreview(props) {
   } = props;
 
   return (
-    <Box as='article' maxWidth={'43rem'} mt={0} mb={7}>
+    <Box as='article' maxWidth={'43rem'} mt={0} mb={[5, 5, 7]}>
       <Link href={path} passHref={true} prefetch>
         <LinkText>
           <TextHeading
@@ -193,7 +194,6 @@ function RecentPosts({ theme }) {
       gridColumnGap={[ 5, 5, 8, 8 ]}
       gridTemplateRows='auto auto'
       gridAutoFlow='column'
-      mt={10}
       pl={[2, 3, 4]}
       pr={[2, 3, 4]}>
 
@@ -272,6 +272,7 @@ function Work() {
       gridTemplateColumns={'1fr'}
       gridTemplateRows={'auto'}>
         <TextSectionHeader>Work</TextSectionHeader>
+        <Polychops mb={4} />
         <Matterway mb={4} />
     </BoxGrid>
   );

@@ -38,6 +38,7 @@ function WorkItem({ id, title, logo, links, children, mb }) {
       <LinkExternalNoDecoration
         key={i}
         mr={[4, 4, 0]}
+        mb={[0, 0, 1]}
         href={link.href}>
           <BoxFlex
             minHeight={'2rem'}
@@ -87,11 +88,12 @@ function WorkItem({ id, title, logo, links, children, mb }) {
             gridColumn={[1, 1, 2, 2]}
             gridRow={[1, 1, 1, 1]} >
               <CompanyLogoImg
-                src='/static/logo-matterway.svg'
-                alt='Matterway logo' />
+                src={logo}
+                alt={`Logo of ${title}`} />
 
               <BoxFlex
                 mt={[1, 1, 4]}
+                flexWrap={'wrap'}
                 alignItems={['center', 'center', 'flex-start']}
                 flexDirection={['row', 'row', 'column']}>
 

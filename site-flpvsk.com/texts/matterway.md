@@ -3,12 +3,17 @@ import { makeWorkItem } from '../layouts/WorkItem';
 export default makeWorkItem({
   id: 'Matterway',
   title: 'Matterway / B2B SaaS',
-  logo: '/static/matterway.svg',
+  logo: '/static/logo-matterway.svg',
   links: [
     {
       svgName: 'play',
-      text: 'Early product demo',
-      href: 'https://matterway.io'
+      text: 'Watch demo',
+      href: 'https://www.youtube.com/watch?v=UNFcq8nkDrI'
+    },
+    {
+      svgName: 'play',
+      text: 'Watch pitch',
+      href: 'https://www.youtube.com/watch?v=cCzLv3Sfv7c',
     },
     {
       svgName: 'link',
