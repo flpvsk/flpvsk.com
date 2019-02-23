@@ -21,6 +21,4 @@ export default makeWorkItem({
 Polychops is a tool to help live musicians practice. It's a drum machine and a looper that work in your browser.
 
 My role was to do the initial round of user interviews, to generate the
-basic concept, build a prototype and iterate on it to v1 of the product.
-
-Polychops successfully launched in September 2018.
+basic concept, build a prototype and iterate on it to v1 of the product.  Polychops successfully launched in September 2018.

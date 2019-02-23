@@ -24,16 +24,10 @@ export default makeWorkItem({
 });
 
 
-I joined the company early on and helped define and implement the
-product.
+Making software at work usable. With Matterway we developed technology
+that allows customers to build ergonomic applications on top of their
+existing systems of record. And do that in a matter of days, not months.
 
-Our software allows customers to build usable apps on top of their
-existing systems of record. Those apps would work both on Desktop and
-Mobile platforms. Using our platform each app would take several hours to
-several days to build, instead of months using traditional tools.
-
-My role in the company evolved from a senior developer to a product
-manager.
-
+I joined the company early on and helped define and implement the product.
 By the time I left the company 30% of DAX companies were our customers or
 doing pilots with us.
