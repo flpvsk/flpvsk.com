@@ -7,7 +7,7 @@ export default {
   posts: [
     {
       title: 'Open-sourcing the Meetup',
-      path: `/posts/2018-12-23-open-sourcing-the-meetup`,
+      path: `/blog/2018-12-23-open-sourcing-the-meetup`,
       publishDate: '2018-12-23',
       author: 'Andrey Salomatin',
       description: `
@@ -16,7 +16,7 @@ export default {
     },
     {
       title: 'Making products under uncertainty',
-      path: `/posts/2018-12-23-open-sourcing-the-meetup`,
+      path: `/blog/2018-12-23-open-sourcing-the-meetup`,
       publishDate: '2017-08-23',
       author: 'Andrey Salomatin',
       description: `
@@ -25,7 +25,7 @@ export default {
     },
     {
       title: 'Theory of Constraints in Colour',
-      path: `/posts/2018-12-23-open-sourcing-the-meetup`,
+      path: `/blog/2018-12-23-open-sourcing-the-meetup`,
       publishDate: '2017-06-23',
       author: 'Andrey Salomatin',
       description: `

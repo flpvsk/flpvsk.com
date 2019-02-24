@@ -14,8 +14,8 @@ import noiseBackground from '../shared/noiseBackground';
 
 import Logo from '../shared/Logo';
 import Caption from '../shared/Caption';
-import TextBody from '../shared/TextBody';
 import TextHeading from '../shared/TextHeading';
+import TextItemBody from '../shared/TextItemBody';
 import LinkExternal from '../shared/LinkExternal';
 import LinkExternalNoDecoration from '../shared/LinkExternalNoDecoration';
 import LinkText from '../shared/LinkText';
@@ -180,9 +180,9 @@ function PostPreview(props) {
             </LinkText>
           </Link>
       </TextHeading>
-      <TextBody fontSize={[1, 1, 2, 2]}>
+      <TextItemBody fontSize={[1, 1, 2, 2]}>
         {description}
-      </TextBody>
+      </TextItemBody>
     </Box>
   );
 }
@@ -211,6 +211,10 @@ function RecentPosts({ theme }) {
               <PostPreview key={`post-${i}`} {...post} />
             ))
           }
+
+          <Button as='a' href='/blog'>
+            Go to the blog
+          </Button>
         </Box>
 
         <BoxFlex
@@ -277,6 +281,16 @@ function Work() {
         <Polychops mb={4} />
         <Matterway mb={4} />
         <Mindojo mb={4} />
+        {/*
+        <Box mb={4}>
+          <Button
+            fontSize={2}
+            as='a'
+            href='/static/AndreySalomatin-CV-en.pdf'>
+              Get Full CV
+          </Button>
+        </Box>
+        */}
     </BoxGrid>
   );
 }
