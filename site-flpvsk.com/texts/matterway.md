@@ -24,10 +24,11 @@ export default makeWorkItem({
 });
 
 
-Making software at work usable. With Matterway we developed technology
-that allows customers to build ergonomic applications on top of their
-existing systems of record. And do that in a matter of days, not months.
+Making software at work usable.
+
+With Matterway we developed a technology that allows customers to build
+ergonomic applications on top of their existing systems of record. Fast.
 
 I joined the company early on and helped define and implement the product.
-By the time I left the company 30% of DAX companies were our customers or
-doing pilots with us.
+By the time I left, Matterway had raised two rounds of funding and 30% of
+DAX companies were our customers or doing pilots with us.

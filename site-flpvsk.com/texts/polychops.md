@@ -18,7 +18,13 @@ export default makeWorkItem({
   ],
 });
 
-Polychops is a tool to help live musicians practice. It's a drum machine and a looper that work in your browser.
+Polychops is a fun practice tool for musicians.
 
-My role was to do the initial round of user interviews, to generate the
-basic concept, build a prototype and iterate on it to v1 of the product.  Polychops successfully launched in September 2018.
+It's a personal passion of mine. It started off with an idea for a
+polyrhythmic metronome and evolved into a drum-machine and a looper that
+work in your web-browser.
+
+I'm still working on the app in my free time, doing research, ideation
+and implementaion.
+
+Polychops launched in September 2018.

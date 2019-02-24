@@ -2,10 +2,7 @@ import HeroText from '../layouts/HeroText';
 
 export default HeroText;
 
-Product person,
-programmer
-and
-hobbyist musician.
+Coder turned product manager and founder. Hobbyist musician.
 
 I design and build software. I helped make products like
 [Polychops](#Polychops),
@@ -13,7 +10,7 @@ I design and build software. I helped make products like
 and
 [Mindojo](#Mindojo).
 
-I enjoy meetups and conferences. I was involved in
+I organize meetups and conferences. I was involved in
 [MoscowJS](https://moscowjs.ru),
 [Kaizen&nbsp;Berlin](https://www.meetup.com/Kaizen-Berlin/)
 and

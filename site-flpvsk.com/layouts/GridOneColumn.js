@@ -5,16 +5,15 @@ import BoxGrid from '../shared/BoxGrid';
 import components from '../shared/mdxComponentsMain';
 
 
-export default function GridTwoColumn({ children }) {
+export default function GridOneColumn({ children }) {
   return (
     <MDXProvider components={components}>
       <BoxGrid
         gridTemplateRows='auto'
-        gridTemplateColumns={['1fr', '1fr', '1fr 1fr',]}
-        gridColumnGap={[ 5, 5, 8, 8 ]}
-        gridRowGap={[ 0, 0, 1, 1 ]} >
+        gridTemplateColumns={['1fr']}>
           {children.props.children}
       </BoxGrid>
     </MDXProvider>
   );
 }
+

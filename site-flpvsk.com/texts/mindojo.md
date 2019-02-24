@@ -19,11 +19,12 @@ export default makeWorkItem({
 });
 
 
-Making software at work usable. With Matterway we developed technology
-that allows customers to build ergonomic applications on top of their
-existing systems of record. And do that in a matter of days, not months.
+Mindojo is an adaptive e-learning platform.
 
-I joined the company early on and helped define and implement the product.
-By the time I left the company 30% of DAX companies were our customers or
-doing pilots with us.
+Early version of the product is a [GMAT preparation
+app](https://gmat.economist.com/) published by The Economist journal.
+
+I joined the company as a full-stack developer and worked on the
+Artificial Intelligence learning platform.
+
 

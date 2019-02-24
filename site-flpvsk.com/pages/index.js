@@ -132,7 +132,7 @@ function Hero() {
                 <Caption
                   fontSize={[0, 0, 1, 1]}
                   color='white'>
-                    {`Hello =)`}
+                    {`Hello 👋`}
                 </Caption>
             </Box>
             <ImgPortrait

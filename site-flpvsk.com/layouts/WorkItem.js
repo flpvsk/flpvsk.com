@@ -4,6 +4,7 @@ import { MDXProvider } from '@mdx-js/tag'
 import styled from '@emotion/styled';
 
 import LinkExternalNoDecoration from '../shared/LinkExternalNoDecoration';
+import components from '../shared/mdxComponentsMain';
 
 import Box from '../shared/Box';
 import BoxGrid from '../shared/BoxGrid';
@@ -27,9 +28,6 @@ const CompanyLogoImg = styled.img({
   maxHeight: '80px',
 });
 
-const components = {
-  p: TextItemBody
-};
 
 function WorkItem({ id, title, logo, links, children, mb }) {
   const linksMapped = links.map((link, i) => {
