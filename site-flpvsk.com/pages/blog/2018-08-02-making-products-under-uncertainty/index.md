@@ -76,8 +76,7 @@ We also need to change the focus. Our target during research is not to implement
 
 Again, actually making the change *is not the goal of a research*.
 
-**Example from Polychops**
-
+**Example from Polychops**<br />
 [Polychops](https://medium.com/polychops/polychops-655f9347dd4b) started off as a metronome for practising polyrhythms. It had an unusual presentation. It worked in a different way compared to other metronome apps and websites.
 
 Before we started working on the project we had a ton of questions:
@@ -121,26 +120,22 @@ And remember, we have to become rookies. We have to have that beginner mindset w
 
 A prototype is just a tool for running an experiment. The actual purpose of an experiment is gathering feedback. It’s important to think about how are we going to gather it *before* we start prototyping.
 
-**Example from Productive Mobile**
-
+**Example from Productive Mobile**<br />
 With a B2B product where the sales cycle is at least six months. Besides, our customers are busy people, it was hard to get timely feedback. We worked around the problem by forming a separate team that was using the product in-house. Our *internal* customer. It was not an easy decision, but in the end, it had a huge positive impact on the product. We’ve shortened the feedback cycle and started moving at light speed.
 
 <!-- video here -->
 
-**Example from Polychops**
-
+**Example from Polychops**<br />
 With a B2C product, we’ve tried a lot of different ways of getting feedback. The first round was from friends musicians. Later [posts on Reddit](https://www.reddit.com/r/Bass/comments/8dm4hm/metronome_for_polyrhythm_practice/), which, in turn, lead to one-on-one interviews.
 
 Qualitative feedback gives more insights. The more outlandish the product idea, the less useful the quantitative data will be. Observe people using your prototype. It’s insightful *and* motivating.
 
-**Example from Booking.com**
-
+**Example from Booking.com**<br />
 Booking.com [famously runs many A/B tests](http://www.eyequant.com/blog/what-booking-can-teach-us-about-ab-testing) on the site. They are data-driven. I would argue that that’s what’s pushing the site into the unusable abyss.
 
 ![Booking.com](https://cdn-images-1.medium.com/max/2206/1*uFTNQJ9ExfeBjCi4tB2OyA.png)
 
-**Example from Polychops**
-
+**Example from Polychops**<br />
 The whole idea of the recording mode in Polychops was born out of feedback. A person wanted to export the audio of the beat to use it in their DAW and record themselves playing on top. We confirmed later that a lot of musicians record and listen back to themselves. So we decided to make it part of the metronome. The feature was born out of talking to people.
 
 ### Start with the interface, fake the rest
@@ -151,8 +146,7 @@ The interface is what your customers use, hence it’s the most important part t
 
 For UI products we’d map the user flow and create low-fidelity paper mockups. Then we’d use a combination of coding and drawing to build the experience that we want to verify. It’s ok to have some of the parts of the interface not working. But it should look realistic and get the point across.
 
-**Example from Polychops**
-
+**Example from Polychops**<br />
 An early prototype of Polychops was a tiny flash animation. We showed it to musicians of different levels to see their reaction, to see if it helps in understanding the concept of a polyrhythm.
 
 <!--
@@ -163,30 +157,25 @@ An early prototype of Polychops was a tiny flash animation. We showed it to musi
 
 The same approach works for API products. We’d start with writing documentation for the API. Then we’d try it out “on paper” on different usecases.
 
-**Example from Productive Mobile**
-
+**Example from Productive Mobile**<br />
 We were rethinking our visual mobile app builder. To give more flexibility to the creators we decided to introduce a new low-level API. To prototype it, we first came up with all the methods, their input and output signatures. We then used this new API on paper to verify that it would cover the usecases we were after. We’d write the code that calls the API and then we’d hardcode results of those calls.
 
 Prototype puts focus on the interface, so “backend” becomes something we can fake.
 
-**Example from a friend**
-
+**Example from a friend**<br />
 A friend of mine once told me that it takes their team two to four months to build a prototype and run an experiment. He works in a consumer-facing web platform. Turned out they are often blocked by the backend team. Their decision? To rewrite parts of the backend to use the new micro-service architecture. Although I’m happy for the backend team, it was completely unnecessary to run an experiment.
 
-**Example from Polychops: Authentication**
-
+**Example from Polychops: Authentication**<br />
 At some point, we wanted to let users on the platform interact with each other. To do that the prototype would need some kind of auth. But writing code for authentication and authorisation is a low-impact high-risk expensive task. To not waste time, we implemented auth on the client. A browser would generate and save a token in local storage and use it to authorise requests. It was fake, but it was good enough to run the experiment.
 
-**Example from Polychops: Backend API**
-
+**Example from Polychops: Backend API**<br />
 One of the calls to our API instead of going to the backend is resolved *on the client*. We pack a JSON with a result inside the app. We are not focusing on that part of the service right now and static data does the job well enough.
 
 ### Use a design system
 
 We’ll save a lot of time if we have a robust design system. With it ,we don’t have to design every interaction by hand. It frees up the mental resources and we can focus on the product. Going back to the rookie mindset, the fewer variables we have to tweak, the better.
 
-**Example from Polychops**
-
+**Example from Polychops**<br />
 We started the Polychops prototype without any design system. We were coming up with the interface “on the go”. It was ok in the beginning. But as we progressed we needed more and more kinds of interactions: notifications, menus, navigation. Instead of designing it all from scratch we switched to [an existing system](http://material.io/design). It saved time and mental capacity.
 
 ![Design system will help save time as the prototype becomes more complicated](https://cdn-images-1.medium.com/max/2000/1*fFPA_kyn9f8kTGKivpGcBw.png)
@@ -195,8 +184,7 @@ We started the Polychops prototype without any design system. We were coming up 
 
 Steal ideas from products you love. Ideally, you want to steal from other fields, not from competitors. Stealing from competitors has little to do with innovation, we already know it works.
 
-**Example from Polychops**
-
+**Example from Polychops**<br />
 The inspiration for the recording flow in Polychops comes from existing DAW software. For example, when you record, Logic saves all the takes, so you can choose one later. We did the same.
 
 ![Logic (left) Polychops bar view (right)](https://cdn-images-1.medium.com/max/2000/1*73Ik2SG6dy7Zxg0ju2E3xA.png)
@@ -207,18 +195,16 @@ It makes sense to write clean code when we know the system, its requirements and
 
 Here’re several guidelines that might be helpful.
 
-**Avoid refactoring**
-
+**Avoid refactoring**<br />
 Copy-paste a piece of code at least 3 times before abstracting.
 
 I often have the urge to abstract repetitions. What I’ve noticed working on prototypes is that *it leads to more work* down the road. For example, UI components might be similar in the beginning, but as you progress they’ll start to diverge. Prototypes are unstable. Besides, it’s much easier to come up with abstractions once you have all the versions of the thing in front of you.
 
-**Don’t write tests**
-
+**Don’t write tests**<br />
 Tests are specifications of expected behaviour. Early on you only have an educated guess about what this behaviour is and this guess is most likely wrong.
 
-**Structure the code according to the domain model, not the framework**
-
+**Structure the code according to the domain model, not the framework**<br
+/>
 Frameworks and libraries come and go, especially early on. A domain model is a more stable variable.
 
 For example, if you start using Redux, *instead of *splitting your code on
@@ -233,14 +219,12 @@ For example, if you start using Redux, *instead of *splitting your code on
 * Chops
 * Beats etc.
 
-**Abstract out libraries and frameworks**
-
+**Abstract out libraries and frameworks**<br />
 The initial chunk of work on Polychops was very client-side heavy. I started off using the component’s state as a data store. Later one part of the state moved into a Redux store and the other on the backend connected via Apollo.
 
 During these transitions, the “dumb” UI components stayed the same. They didn’t know what a Redux store or a GraphQL query is, that logic was in wrappers.
 
-**Repaying the debt**
-
+**Repaying the debt**<br />
 If the experiment is successful, we would want to proceed with the implementation. In this case we will have to come back and refactor.
 
 Shortcuts we take *borrow *the time from the implementation phase.

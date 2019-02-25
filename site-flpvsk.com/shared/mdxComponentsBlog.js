@@ -5,6 +5,7 @@ import Caption from '../shared/Caption';
 import LinkExternal from '../shared/LinkExternal';
 import TextBody from '../shared/TextBody';
 import TextHeading from '../shared/TextHeading';
+import Separator from '~/shared/Separator';
 
 import BoxFlex from '~/shared/BoxFlex';
 
@@ -87,6 +88,23 @@ const Img = styled.img(
 
 Img.defaultProps = {
   maxWidth: '100%'
+};
+
+const Hr = styled.hr(
+  space,
+  color,
+  borders,
+  borderColor,
+);
+
+Hr.defaultProps = {
+  mt: 2,
+  mb: 4,
+  mr: 8,
+  ml: 8,
+  border: 'none',
+  borderColor: 'black',
+  borderBottom: '1px solid',
 };
 
 
@@ -197,6 +215,10 @@ const components = {
       </BoxFlex>
     );
   },
+
+  hr: (props) => (
+    <Hr />
+  )
 };
 
 export default components;

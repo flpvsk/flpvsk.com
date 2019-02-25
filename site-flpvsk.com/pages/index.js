@@ -20,6 +20,7 @@ import TextItemBody from '~/shared/TextItemBody';
 import LinkExternal from '~/shared/LinkExternal';
 import LinkExternalNoDecoration from '~/shared/LinkExternalNoDecoration';
 import LinkText from '~/shared/LinkText';
+import Separator from '~/shared/Separator';
 
 import IconLinkTwitter from '~/shared/IconLinkTwitter';
 import IconLinkGithub from '~/shared/IconLinkGithub';
@@ -270,16 +271,6 @@ function Work() {
   );
 }
 
-function Separator({ n = 1 }) {
-  return (
-    <BoxFlex mt={[4, 4, 4, 6]}>
-      <img
-        width='100%'
-        height='60px'
-        src={`/static/separator-${n}.svg`} alt='Separator' />
-    </BoxFlex>
-  );
-}
 
 function Influences() {
   return (
