@@ -6,6 +6,7 @@ import Box from '../shared/Box';
 import BoxFlex from '../shared/BoxFlex';
 
 import Logo from '../shared/Logo';
+import Menu from '~/shared/Menu';
 import Footer from '../shared/Footer';
 
 import Caption from '../shared/Caption';
@@ -160,25 +161,16 @@ function BlogPostLayout({ meta = {}, theme, children }) {
     <MDXProvider components={components}>
       <>
         <Head>
-          <title>{titleText}{` – ${siteInfo.blogName}`}</title>
+          <title>{titleText}{` – ${siteInfo.blogTitle}`}</title>
         </Head>
-        <BoxFlex
-          alignItems='center'
-          justifyContent='center'
-          mb={[2, 1]}
-          mt={[2]}
-          maxHeight={'80px'}
-          width={'100%'}>
-            <Link prefetch href='/'>
-              <a>
-                <Logo
-                  innerColor={theme.colors.primary}
-                  outerColor={theme.colors.black}
-                  size={[56, 60, 80]} />
-              </a>
-            </Link>
-        </BoxFlex>
-        <Box as='article' ml={[2, 3, 4]} mr={[2, 3, 4]} pb={5}>
+        <Menu />
+        <Box
+          as='article'
+          ml={[ 2, 3, 4 ]}
+          mr={[ 2, 3, 4 ]}
+          mt={[ 3, 4, 5 ]}
+          pb={5}
+        >
           <Box as='header' w='100%'>
             <Box maxWidth={'45em'} ml='auto' mr='auto'>
               <TextHeading

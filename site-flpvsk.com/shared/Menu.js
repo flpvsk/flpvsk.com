@@ -80,11 +80,18 @@ export default function Menu({ items=menuItems, currentItemId }) {
     <BoxFlex
       pl={[2, 3, 4]}
       pr={[2, 3, 4]}
-      alignItems='center'
+      alignItems='stretch'
       borderBottom='1px solid'
       borderColor='black'
     >
-      <Logo size={40} innerColor={'primary'} outerColor='black' />
+      <Link href={'/'} passHref prefetch>
+        <LinkNoDecoration
+          display='flex'
+          alignItems='center'
+        >
+          <Logo size={40} innerColor={'primary'} outerColor='black' />
+        </LinkNoDecoration>
+      </Link>
       {itemsMapped}
     </BoxFlex>
   );
