@@ -4,39 +4,40 @@ import styled from '@emotion/styled';
 import { withTheme } from 'emotion-theming';
 import { right, width, height, } from 'styled-system';
 
-import siteInfo from '../siteInfo';
+import siteInfo from '~/siteInfo';
 
-import Box from '../shared/Box';
-import BoxGrid from '../shared/BoxGrid';
-import BoxFlex from '../shared/BoxFlex';
+import Box from '~/shared/Box';
+import BoxGrid from '~/shared/BoxGrid';
+import BoxFlex from '~/shared/BoxFlex';
 
-import noiseBackground from '../shared/noiseBackground';
+import noiseBackground from '~/shared/noiseBackground';
 
-import Logo from '../shared/Logo';
-import Caption from '../shared/Caption';
-import TextHeading from '../shared/TextHeading';
-import TextItemBody from '../shared/TextItemBody';
-import LinkExternal from '../shared/LinkExternal';
-import LinkExternalNoDecoration from '../shared/LinkExternalNoDecoration';
-import LinkText from '../shared/LinkText';
+import PostPreview from '~/shared/PostPreview';
+import Logo from '~/shared/Logo';
+import Caption from '~/shared/Caption';
+import TextHeading from '~/shared/TextHeading';
+import TextItemBody from '~/shared/TextItemBody';
+import LinkExternal from '~/shared/LinkExternal';
+import LinkExternalNoDecoration from '~/shared/LinkExternalNoDecoration';
+import LinkText from '~/shared/LinkText';
 
-import IconLinkTwitter from '../shared/IconLinkTwitter';
-import IconLinkGithub from '../shared/IconLinkGithub';
-import IconLinkEmail from '../shared/IconLinkEmail';
+import IconLinkTwitter from '~/shared/IconLinkTwitter';
+import IconLinkGithub from '~/shared/IconLinkGithub';
+import IconLinkEmail from '~/shared/IconLinkEmail';
 
-import SvgPlay from '../shared/SvgPlay';
-import SvgLink from '../shared/SvgLink';
+import SvgPlay from '~/shared/SvgPlay';
+import SvgLink from '~/shared/SvgLink';
 
-import Input from '../shared/Input';
-import Button from '../shared/Button';
+import Input from '~/shared/Input';
+import Button from '~/shared/Button';
 
-import Footer from '../shared/Footer';
+import Footer from '~/shared/Footer';
 
-import HeroText from '../texts/hero.md';
-import Polychops from '../texts/polychops.md';
-import Matterway from '../texts/matterway.md';
-import Mindojo from '../texts/mindojo.md';
-import InfluencesContent from '../texts/influences.md';
+import HeroText from '~/texts/hero.md';
+import Polychops from '~/texts/polychops.md';
+import Matterway from '~/texts/matterway.md';
+import Mindojo from '~/texts/mindojo.md';
+import InfluencesContent from '~/texts/influences.md';
 
 const ImgPortrait = styled.img({
   position: 'absolute',
@@ -159,33 +160,6 @@ TextSectionHeader.defaultProps = {
   fontSize: [6, 6, 7, 7],
 };
 
-
-function PostPreview(props) {
-  const {
-    title,
-    description,
-    path,
-  } = props;
-
-  return (
-    <Box as='article' maxWidth={'43rem'} mt={0} mb={[5, 5, 7]}>
-      <TextHeading
-        as='h3'
-        textStyle='h3'
-        fontSize={[4, 4, 5, 5]}
-        mb={2}>
-          <Link href={path} passHref={true} prefetch>
-            <LinkText>
-              {title}
-            </LinkText>
-          </Link>
-      </TextHeading>
-      <TextItemBody fontSize={[1, 1, 2, 2]}>
-        {description}
-      </TextItemBody>
-    </Box>
-  );
-}
 
 function RecentPosts({ theme }) {
   return (
