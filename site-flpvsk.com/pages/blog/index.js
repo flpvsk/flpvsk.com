@@ -7,6 +7,7 @@ import { right, width, height, } from 'styled-system';
 import Box from '~/shared/Box';
 import BoxGrid from '~/shared/BoxGrid';
 import BoxFlex from '~/shared/BoxFlex';
+import LinkNoDecoration from '~/shared/LinkNoDecoration';
 import Caption from '~/shared/Caption';
 
 import Logo from '~/shared/Logo';
@@ -60,21 +61,25 @@ function Menu({ items, currentItemId }) {
     return (
       <MenuItem
         key={item.id}
-        pr={1}
-        pl={1}
         mr={-1}
         ml={4}
         height={60}
-        alignItems={'center'}
+        alignItems={'stretch'}
         isSelected={currentItemId === item.id}
       >
-        <Caption
-          as='a'
-          href={item.href}
-          color='inherit'
-        >
-          {item.title}
-        </Caption>
+        <Link href={item.href} passHref prefetch>
+          <LinkNoDecoration
+            display='flex'
+            alignItems='center'
+            textStyle='caption'
+            fontSize={2}
+            color='inherit'
+            pr={1}
+            pl={1}
+          >
+            {item.title}
+          </LinkNoDecoration>
+        </Link>
       </MenuItem>
     );
   });

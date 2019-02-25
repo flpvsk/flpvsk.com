@@ -5,6 +5,8 @@ import {
   color,
   textStyle,
   space,
+  display,
+  alignItems,
 } from 'styled-system'
 
 const A = styled.a({
@@ -14,6 +16,8 @@ const A = styled.a({
   fontSize,
   textStyle,
   color,
+  display,
+  alignItems,
 );
 
 export default A;
