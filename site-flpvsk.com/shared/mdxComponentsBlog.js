@@ -133,11 +133,19 @@ const components = {
       mb={1}>{props.children}</TextHeading>
   ),
 
-  p: (props) => (
-    <TextArticleBody
-      {...props}
-      mt={0} />
-  ),
+  p: (props) => {
+    const { children } = props;
+    if (!(children instanceof Array)) {
+      if (children.props && children.props.name === 'img') {
+        return children;
+      }
+    }
+    return (
+      <TextArticleBody
+        {...props}
+        mt={0} />
+    );
+  },
 
   a: (props) => (
     <LinkExternal
