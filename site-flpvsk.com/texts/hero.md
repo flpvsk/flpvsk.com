@@ -20,7 +20,7 @@ Currently I’m in the process of starting a product research and
 development agency called [Mean&nbsp;Computer](https://mean.computer).
 
 I
-[write](#RecentPosts),
+[write](/blog),
 [speak](/talks)
 and
 [podcast](https://codepodcast.com)

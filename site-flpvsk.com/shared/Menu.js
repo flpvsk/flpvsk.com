@@ -24,12 +24,13 @@ export const menuItems = [
     title: 'Talks',
     href: '/talks',
   },
-
+/*
   {
     id: 'music',
     title: 'Music',
     href: '/music',
   },
+*/
 ];
 
 const MenuItem = styled(BoxFlex)(
@@ -48,7 +49,7 @@ const MenuItem = styled(BoxFlex)(
   }
 );
 
-export default function Menu({ items=menuItems, currentItemId }) {
+export default function Menu({ items=menuItems, currentItemId, isSticky }) {
   const itemsMapped = items.map(item => {
     return (
       <MenuItem
@@ -76,6 +77,14 @@ export default function Menu({ items=menuItems, currentItemId }) {
     );
   });
 
+  let stickyProps = {};
+  if (isSticky) {
+    stickyProps = {
+      position: 'sticky',
+      top: '0px',
+    };
+  }
+
   return (
     <BoxFlex
       pl={[2, 3, 4]}
@@ -83,6 +92,9 @@ export default function Menu({ items=menuItems, currentItemId }) {
       alignItems='stretch'
       borderBottom='1px solid'
       borderColor='black'
+      bg='white'
+      zIndex='2'
+      {...stickyProps}
     >
       <Link href={'/'} passHref prefetch>
         <LinkNoDecoration

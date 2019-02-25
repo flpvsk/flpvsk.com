@@ -31,6 +31,7 @@ import SvgLink from '~/shared/SvgLink';
 import Input from '~/shared/Input';
 import Button from '~/shared/Button';
 
+import Menu from '~/shared/Menu';
 import Footer from '~/shared/Footer';
 
 import HeroText from '~/texts/hero.md';
@@ -299,7 +300,7 @@ const Home = withTheme(({ theme }) => {
   return (
     <BoxGrid
       gridTemplateRows={[
-        'minmax(100vh, auto) repeat(auto-fit, minmax(15rem , auto))'
+        'minmax(100vh, auto) auto'
       ]}
       gridTemplateColumns={['1fr']}>
         <Head>
@@ -314,6 +315,10 @@ const Home = withTheme(({ theme }) => {
           borderColor='blacks.1'>
             <Hero />
         </HeroSection>
+
+        {/*
+          <Menu isSticky currentItemId='main' />
+        */}
 
         <Work />
         <Separator />

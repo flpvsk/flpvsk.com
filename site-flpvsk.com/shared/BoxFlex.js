@@ -4,6 +4,7 @@ import {
   width,
   height,
   position,
+  top,
   gridRow,
   gridColumn,
   flex,
@@ -18,6 +19,7 @@ import {
   maxWidth,
   borders,
   borderColor,
+  zIndex,
 } from 'styled-system'
 
 
@@ -37,8 +39,10 @@ const FlexBox = styled.div(
   background,
   backgroundRepeat,
   position,
+  top,
   borders,
   borderColor,
+  zIndex,
 );
 
 FlexBox.defaultProps = {
