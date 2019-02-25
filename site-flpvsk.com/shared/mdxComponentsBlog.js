@@ -98,10 +98,10 @@ const Hr = styled.hr(
 );
 
 Hr.defaultProps = {
-  mt: 2,
-  mb: 4,
-  mr: 8,
-  ml: 8,
+  mt: 3,
+  mb: 5,
+  mr: '30%',
+  ml: '30%',
   border: 'none',
   borderColor: 'black',
   borderBottom: '1px solid',
