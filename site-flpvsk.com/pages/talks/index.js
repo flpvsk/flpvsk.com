@@ -8,23 +8,24 @@ import TextHeading from '~/shared/TextHeading';
 
 import Menu from '~/shared/Menu';
 import Footer from '~/shared/Footer';
-import PostPreview from '~/shared/PostPreview';
 
 import siteInfo from '~/siteInfo';
 
+import TalksContent from '~/texts/talks.md';
 
-export default function Blog() {
+export default function Talks() {
   return (
     <BoxGrid
       gridTemplateColumns={'100vw'}
       gridTemplateRows={'auto'}
     >
       <Head>
-        <title>{siteInfo.blogTitle}</title>
+        <title>{`Talks – ${siteInfo.siteName}`}</title>
       </Head>
-      <Menu currentItemId='blog' />
+      <Menu currentItemId='talks' />
 
       <Box
+        as='article'
         maxWidth={'45em'}
         ml='auto'
         mr='auto'
@@ -41,26 +42,12 @@ export default function Blog() {
             mt={[ 3, 4, 5 ]}
             textAlign='center'
           >
-            {siteInfo.blogName}
-          </TextHeading>
-          <TextHeading
-            as='h2'
-            textStyle='h3'
-            fontSize={[ 2, 3, 4 ]}
-            color='blacks.0'
-            mt={[ 1, 1, 1 ]}
-            textAlign='center'
-          >
-            {`blog by Andrey Salomatin`}
+            My talks and guest appearances
           </TextHeading>
         </header>
 
         <Box mt={[ 7, 8, 9 ]}>
-          {
-            siteInfo.posts.map((post, i) => (
-              <PostPreview key={`post-${i}`} {...post} />
-            ))
-          }
+          <TalksContent />
         </Box>
       </Box>
       <Footer />

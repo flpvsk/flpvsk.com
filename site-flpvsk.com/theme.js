@@ -50,7 +50,7 @@ export default {
     h1: {
       fontFamily: serif,
       // fontSize: 148,
-      lineHeight: 1.08,
+      lineHeight: '1em',
       letterSpacing: 'normal',
       fontWeight: 'normal',
     },
@@ -58,7 +58,7 @@ export default {
     h2: {
       fontFamily: serif,
       // fontSize: 80,
-      lineHeight: 'auto',
+      lineHeight: '1em',
       letterSpacing: '-0.004375em',
       fontWeight: 'normal',
     },

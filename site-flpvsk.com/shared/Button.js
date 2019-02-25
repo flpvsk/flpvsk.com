@@ -33,7 +33,7 @@ Button.defaultProps = {
   pb: '4px',
   pt: '4px',
   textStyle: 'caption',
-  fontSize: [0, 1],
+  fontSize: [2],
   border: 'none',
   background: 'black',
   color: 'white',

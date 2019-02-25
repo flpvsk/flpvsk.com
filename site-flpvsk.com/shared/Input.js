@@ -30,7 +30,7 @@ Input.defaultProps = {
   pb: '4px',
   pt: '4px',
   textStyle: 'caption',
-  fontSize: [0, 1],
+  fontSize: [2],
   color: 'blacks.0',
   border: '1px solid',
   borderColor: 'blacks.2',
