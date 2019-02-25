@@ -39,7 +39,7 @@ export default function Talks() {
             textStyle='h2'
             fontSize={[ 6, 7, 8 ]}
             color='black'
-            mt={[ 3, 4, 5 ]}
+            mt={[ 4, 5, 6 ]}
             textAlign='center'
           >
             My talks and guest appearances

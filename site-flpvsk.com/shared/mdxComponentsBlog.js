@@ -1,16 +1,22 @@
+import styled from '@emotion/styled';
+import { css } from '@emotion/core'
+
 import Caption from '../shared/Caption';
 import LinkExternal from '../shared/LinkExternal';
 import TextBody from '../shared/TextBody';
 import TextHeading from '../shared/TextHeading';
 
-import styled from '@emotion/styled';
-import { css } from '@emotion/core'
+import BoxFlex from '~/shared/BoxFlex';
 
 import {
   space,
+  width,
+  maxWidth,
   textStyle,
   fontSize,
-  color
+  color,
+  borders,
+  borderColor,
 } from 'styled-system'
 
 const Code = styled.code(
@@ -22,13 +28,15 @@ const Code = styled.code(
 
 const ListItem = styled.li(
   css`
-    list-style: none;
-    list-style-image: none;
+    ul > & {
+      list-style: none;
+      list-style-image: none;
 
-    ::before {
-      padding-right: 15px;
-      font-size: 18px;
-      content: '•';
+      ::before {
+        padding-right: 15px;
+        font-size: 18px;
+        content: '•';
+      }
     }
   `,
   fontSize,
@@ -41,11 +49,52 @@ const UnorderedList = styled.ul(
   space
 );
 
+const Blockquote = styled.blockquote(
+  {
+    fontStyle: 'italic',
+  },
+  textStyle,
+  space,
+  borders,
+  borderColor,
+);
+
+
+Blockquote.defaultProps = {
+  textStyle: 'blockquote',
+  m: 0,
+  ml: -2,
+  mb: 3,
+  pl: 2,
+  pt: 1,
+  pb: 1,
+  borderLeft: `4px solid`,
+  borderColor: 'blacks.2',
+}
+
+const TextArticleBody = styled(TextBody)({
+  marginTop: 0,
+  '& + &': {
+    marginTop: '24px',
+  }
+});
+
+const Img = styled.img(
+  space,
+  width,
+  maxWidth,
+);
+
+Img.defaultProps = {
+  maxWidth: '100%'
+};
+
 
 const components = {
   h1: (props) => {
     return null;
   },
+
   h2: (props) => (
     <TextHeading
       as='h2'
@@ -55,6 +104,7 @@ const components = {
       mt={6}
       mb={1}>{props.children}</TextHeading>
   ),
+
   h3: (props) => (
     <TextHeading
       as='h3'
@@ -64,17 +114,19 @@ const components = {
       mt={6}
       mb={1}>{props.children}</TextHeading>
   ),
+
   p: (props) => (
-    <TextBody
+    <TextArticleBody
       {...props}
-      mt={0}
-      mb={3} />
+      mt={0} />
   ),
+
   a: (props) => (
     <LinkExternal
       {...props}
       color={'secondaryDark'} />
   ),
+
   ul: (props) => (
     <UnorderedList
       {...props}
@@ -83,6 +135,7 @@ const components = {
       mb={2}
     />
   ),
+
   li: (props) => (
     <ListItem
       {...props}
@@ -90,6 +143,12 @@ const components = {
       textStyle='body'
       pb={2}
       color='blacks.0' />
+  ),
+
+  blockquote: (props) => (
+    <Blockquote
+      {...props}
+      fontSize={[1, 2, 3]} />
   ),
 
   code: (props) => (
@@ -105,6 +164,39 @@ const components = {
       fontSize={'0.93em'}
       textStyle='code' />
   ),
+
+  img: (props) => {
+    let figCaption;
+
+    if (props.alt) {
+      figCaption = (
+        <Caption
+          as={'figcaption'}
+          bg={'black'}
+          color={'white'}
+          pt={'4px'}
+          pb={'4px'}
+          pr={1}
+          pl={1}
+        >
+          {props.alt}
+        </Caption>
+      );
+    }
+    return (
+      <BoxFlex
+        as='figure'
+        flexDirection='column'
+        alignItems='center'
+        m={0}
+        mt={2}
+        mb={6}
+      >
+        <Img mb={1} src={props.src} alt={props.alt} />
+        {figCaption}
+      </BoxFlex>
+    );
+  },
 };
 
 export default components;

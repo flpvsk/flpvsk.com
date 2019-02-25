@@ -17,8 +17,8 @@ export default {
     },
     {
       title: 'Making products under uncertainty',
-      path: `/blog/2018-12-23-open-sourcing-the-meetup`,
-      publishDate: '2017-08-23',
+      path: `/blog/2018-08-02-making-products-under-uncertainty`,
+      publishDate: '2018-08-02',
       author: 'Andrey Salomatin',
       description: `
         Established companies build products according to specs. That’s turning words into mockups and code. It’s easy. Now that we have some text let’s make sure it’s in three lines.

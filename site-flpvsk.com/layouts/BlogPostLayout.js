@@ -85,7 +85,7 @@ function BlogPostLayout({ meta = {}, theme, children }) {
           as='article'
           ml={[ 2, 3, 4 ]}
           mr={[ 2, 3, 4 ]}
-          mt={[ 3, 4, 5 ]}
+          mt={[ 4, 5, 6 ]}
           pb={5}
         >
           <Box as='header' w='100%'>

@@ -34,16 +34,16 @@ export default {
   },
 
   fontSizes: [
-    '1em',
-    '1.062em',
-    '1.188em',
-    '1.312em',
-    '1.5em',
-    '2em',
-    '3em',
-    '4em',
-    '5em',
-    '9.25em',
+    '1rem',
+    '1.062rem',
+    '1.188rem',
+    '1.312rem',
+    '1.5rem',
+    '2rem',
+    '3rem',
+    '4rem',
+    '5rem',
+    '9.25rem',
   ],
 
   textStyles: {
@@ -109,6 +109,9 @@ export default {
       // fontSize: 21,
       lineHeight: '1.5em',
       fontWeight: 'normal',
+    },
+
+    blockquote: {
     },
   },
 };
