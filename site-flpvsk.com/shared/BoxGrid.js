@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import {
   space,
   width,
+  height,
   display,
   flex,
   color,
@@ -20,6 +21,7 @@ import {
 const BoxGrid = styled.div(
   space,
   width,
+  height,
   flex,
   color,
   borders,

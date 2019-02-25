@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import {
   space,
   width,
+  height,
   position,
   gridRow,
   gridColumn,
@@ -15,12 +16,15 @@ import {
   background,
   backgroundRepeat,
   maxWidth,
+  borders,
+  borderColor,
 } from 'styled-system'
 
 
 const FlexBox = styled.div(
   space,
   maxWidth,
+  height,
   display,
   flexDirection,
   alignSelf,
@@ -33,6 +37,8 @@ const FlexBox = styled.div(
   background,
   backgroundRepeat,
   position,
+  borders,
+  borderColor,
 );
 
 FlexBox.defaultProps = {

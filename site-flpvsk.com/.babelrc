@@ -3,6 +3,7 @@
     "next/babel"
   ],
   "plugins": [
+   "root-import",
     [
       "emotion",
       {
