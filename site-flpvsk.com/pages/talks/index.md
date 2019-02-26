@@ -1,6 +1,10 @@
-import BlogText from '~/layouts/BlogText';
+import { makeSimplePage } from '~/layouts/PageSimple';
 
-export default BlogText;
+export default makeSimplePage({
+  title: 'Talks',
+  heading: `My talks and guest appearances`,
+  currentMenuItemId: 'talks',
+});
 
 Here's a collection of talks I gave as well as guest appearences on
 different podcasts. Topics vary from programming and tech to product

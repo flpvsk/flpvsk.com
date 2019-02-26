@@ -1,6 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link'
 
+import { MDXProvider } from '@mdx-js/tag'
+import components from '~/shared/mdxComponentsBlog';
+
 import Box from '~/shared/Box';
 import BoxGrid from '~/shared/BoxGrid';
 
@@ -11,18 +14,22 @@ import Footer from '~/shared/Footer';
 
 import siteInfo from '~/siteInfo';
 
-import TalksContent from '~/texts/talks.md';
 
-export default function Talks() {
+export default function PageSimple({
+  children,
+  title,
+  heading,
+  currentMenuItemId,
+}) {
   return (
     <BoxGrid
       gridTemplateColumns={'100vw'}
       gridTemplateRows={'auto'}
     >
       <Head>
-        <title>{`Talks – ${siteInfo.siteName}`}</title>
+        <title>{`${title} – ${siteInfo.siteName}`}</title>
       </Head>
-      <Menu currentItemId='talks' />
+      <Menu currentItemId={currentMenuItemId} />
 
       <Box
         as='article'
@@ -42,15 +49,24 @@ export default function Talks() {
             mt={[ 4, 5, 6 ]}
             textAlign='center'
           >
-            My talks and guest appearances
+            {heading || title}
           </TextHeading>
         </header>
 
         <Box mt={[ 7, 8, 9 ]}>
-          <TalksContent />
+          <MDXProvider components={components}>
+            {children}
+          </MDXProvider>
         </Box>
       </Box>
       <Footer />
     </BoxGrid>
   );
+}
+
+
+export function makeSimplePage(meta) {
+  return function SimplePageWrapper(props) {
+    return <PageSimple {...meta} {...props} />
+  };
 }
