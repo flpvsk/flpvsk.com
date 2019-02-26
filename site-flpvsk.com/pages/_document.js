@@ -18,6 +18,18 @@ class SiteDocument extends Document {
   render () {
     const globalStyle = css`
 
+      @font-face {
+        font-family: 'Robot Condensed Regular';
+        src:
+          local('Roboto Condensed'),
+          local('Roboto-Condensed'),
+          local('RobotoCondensed'),
+          url(/static/RobotoCondensed-Regular.ttf) format('truetype');
+        font-display: swap;
+        font-style: normal;
+        font-weight: normal;
+      }
+
       html {
         font-size: 100%;
       }
