@@ -16,7 +16,7 @@ I organize meetups and conferences. I was involved in
 and
 [Frontend&nbsp;Union&nbsp;Conf](http://frontend-union-conf.github.io/func2016/).
 
-Currently I’m in the process of starting a product research and
+Currently, I’m in the process of starting a product research and
 development agency called [Mean&nbsp;Computer](https://mean.computer).
 
 I

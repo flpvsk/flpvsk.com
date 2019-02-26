@@ -6,7 +6,7 @@ export default makeSimplePage({
   currentMenuItemId: 'talks',
 });
 
-Here's a collection of talks I gave as well as guest appearences on
+Here's a collection of talks I gave as well as guest appearances on
 different podcasts. Topics vary from programming and tech to product
 and general management.
 

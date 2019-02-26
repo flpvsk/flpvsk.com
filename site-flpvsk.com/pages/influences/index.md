@@ -31,14 +31,13 @@ Another good book by Goldratt, this time on TOC in project management, is
 
 ### Genrich Altshuller
 
-There is an algorithm for innovative problem solving. It's not serial search, it's not random guessing, *it is not brainstorming*.
+There is an algorithm for innovative problem-solving. It's not serial search, it's not random guessing, *it is not brainstorming*.
 
 Soviet engineer, thinker and science-fiction writer Genrich Altshuller
 came up with the
 [Theory of Innovation](https://www.goodreads.com/book/show/232915.The_Innovation_Algorithm).
 Some of the schools and universities in Russia still teach it. It's
-applied in R&D and manufacturing outside of the ex-Soviet space. It's
-facinating.
+applied at R&D and manufacturing organizations all over the world.
 
 
 ### Kent Beck
@@ -53,8 +52,8 @@ that's just scratching the surface! Thinking about it now I understand  that it 
 I'm just getting into Christopher's work.
 His
 [Notes on the Synthesis of Form](https://www.goodreads.com/book/show/320553.Notes_on_the_Synthesis_of_Form)
-is really something. The book is about architechture and design, but all
-the concepts apply to building products, companies, any sort of evolving
+is really something. The book is about architecture and design, but all
+the concepts apply to designing products, companies, any sort of evolving
 systems.
 
 As a teaser of his work and what kind of a thinker he is, check out

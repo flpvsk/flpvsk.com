@@ -21,10 +21,10 @@ export default makeWorkItem({
 Polychops is a fun practice tool for musicians.
 
 It's a personal passion of mine. It started off with an idea for a
-polyrhythmic metronome and evolved into a drum-machine and a looper that
-work in your web-browser.
+polyrhythmic metronome and evolved into a drum machine and a looper that
+work in your web browser.
 
 I'm still working on the app in my free time, doing research, ideation
-and implementaion.
+and implementation.
 
 Polychops launched in September 2018.

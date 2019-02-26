@@ -21,7 +21,7 @@ export default makeWorkItem({
 
 Mindojo is an adaptive e-learning platform.
 
-Early version of the product is a [GMAT preparation
+The early version of the product is a [GMAT preparation
 app](https://gmat.economist.com/) published by The Economist journal.
 
 I joined the company as a full-stack developer and worked on the
