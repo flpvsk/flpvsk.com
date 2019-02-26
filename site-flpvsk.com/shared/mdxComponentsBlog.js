@@ -109,24 +109,42 @@ Hr.defaultProps = {
 };
 
 
+function propsToId(props) {
+  const { children } = props;
+
+  if (children && typeof children === 'string') {
+    return children.replace(/[\n|\s]/g, '');
+  }
+
+  return null;
+}
+
+
 const components = {
   h1: (props) => {
     return null;
   },
 
-  h2: (props) => (
-    <TextHeading
-      as='h2'
-      fontSize={[4, 5, 6]}
-      textStyle='h4'
-      color='blacks.0'
-      mt={6}
-      mb={1}>{props.children}</TextHeading>
-  ),
+  h2: (props) => {
+    return (
+      <TextHeading
+        as='h2'
+        id={propsToId(props)}
+        fontSize={[4, 5, 6]}
+        textStyle='h4'
+        color='blacks.0'
+        mt={6}
+        mb={1}
+      >
+        {props.children}
+      </TextHeading>
+    )
+  },
 
   h3: (props) => (
     <TextHeading
       as='h3'
+      id={propsToId(props)}
       fontSize={[3, 4, 5]}
       textStyle='h4'
       color='blacks.0'
@@ -137,6 +155,7 @@ const components = {
   h4: (props) => (
     <TextHeading
       as='h4'
+      id={propsToId(props)}
       textStyle='h4'
       color='blacks.1'
       fontWeight='bold'

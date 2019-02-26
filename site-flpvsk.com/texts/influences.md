@@ -5,16 +5,18 @@ export default GridTwoColumn;
 
 <Box>
 
-### [Kent Beck](/influences/kent-beck)
+### [Eliyahu Goldratt](/influences#EliyahuGoldratt)
 
-Test-Driven-Development and Extreme Programming
+Theory of Constraints, Critical Chain Project management, Thinking
+Processes
 
 </Box>
 
 
+
 <Box>
 
-### [Genrich Altshuller](/influences/genrich-altshuller)
+### [Genrich Altshuller](/influences#GenrichAltshuller)
 
 Algorithm of inventive problems solving
 
@@ -23,17 +25,16 @@ Algorithm of inventive problems solving
 
 <Box>
 
-### [Eliyahu Goldratt](/influences/eliyahu-goldratt)
+### [Kent Beck](/influences#KentBeck)
 
-Theory of Constraints, Critical Chain Project management, Thinking
-Processes
+Test-Driven-Development and Extreme Programming
 
 </Box>
 
 
 <Box>
 
-### [Joshua Bloch](/influences/joshua-bloch)
+### [Joshua Bloch](/influences#JoshuaBloch)
 
 Programming languages and API design
 
@@ -42,7 +43,7 @@ Programming languages and API design
 
 <Box>
 
-### [Christopher Alexander](/influences/christopher-alexander)
+### [Christopher Alexander](/influences#ChristopherAlexander)
 
 Living Structure and Fit
 

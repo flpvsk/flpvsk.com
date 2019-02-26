@@ -24,6 +24,11 @@ export const menuItems = [
     title: 'Talks',
     href: '/talks',
   },
+  {
+    id: 'influences',
+    title: 'Influences',
+    href: '/influences',
+  },
 /*
   {
     id: 'music',
