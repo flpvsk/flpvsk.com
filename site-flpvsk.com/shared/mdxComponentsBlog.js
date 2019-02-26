@@ -241,8 +241,8 @@ const components = {
         flexDirection='column'
         alignItems='center'
         m={0}
-        mt={2}
-        mb={6}
+        mt={4}
+        mb={4}
       >
         <Img mb={1} src={props.src} alt={props.alt} />
         {figCaption}

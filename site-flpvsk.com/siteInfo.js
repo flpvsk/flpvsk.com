@@ -36,5 +36,14 @@ export default {
         There are thousands of possible reasons for a piece of software to not perform well. Thousands. How many ways do we have of finding and fixing those issues? One. There’s one way we can do it.
       `
     },
+    {
+      title: `Kanban like it's 1984`,
+      heading: `Kanban like it’s 1984`,
+      publishDate: '2017-12-11',
+      author: 'Andrey Salomatin',
+      path: `/blog/2017-12-11-kanban-like-it-is-1984`,
+      description: `
+        Everything was better in the 80s, so let’s go back in time for a minute. Imagine you are a worker on a car plant. What would you day look like?`,
+    },
   ],
 };
