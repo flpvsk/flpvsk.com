@@ -17,6 +17,7 @@ import theme from '../theme';
 class SiteDocument extends Document {
   render () {
     const globalStyle = css`
+
       html {
         font-size: 100%;
       }

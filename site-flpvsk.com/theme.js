@@ -1,7 +1,7 @@
 const serif = 'georgia, times, serif';
 const mono = '"Roboto Mono", monospace';
 const sansSerif =
-  '"Roboto Condensed", roboto, -apple-system, ubuntu, arial, sans-serif';
+  '"Roboto Condensed Regular", "Roboto Condensed", roboto, -apple-system, ubuntu, arial, sans-serif';
 
 export default {
   breakpoints: ['28rem', '42rem', '62.5rem'],

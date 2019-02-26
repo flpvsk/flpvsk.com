@@ -2,7 +2,15 @@ import Head from 'next/head';
 import Link from 'next/link'
 import styled from '@emotion/styled';
 import { withTheme } from 'emotion-theming';
-import { right, width, height, } from 'styled-system';
+import {
+  position,
+  right,
+  bottom,
+  width,
+  height,
+  maxHeight,
+  maxWidth,
+} from 'styled-system';
 
 import siteInfo from '~/siteInfo';
 
@@ -42,10 +50,19 @@ import Matterway from '~/texts/matterway.md';
 import Mindojo from '~/texts/mindojo.md';
 import InfluencesContent from '~/texts/influences.md';
 
-const ImgPortrait = styled.img({
-  position: 'absolute',
-  bottom: 0,
-}, right, width, height);
+const Img = styled.img(
+  { flex: '0 0 100%' },
+  maxWidth,
+  maxHeight,
+  width,
+  height
+);
+
+const Picture = styled.picture({
+  display: 'flex',
+  height: 'auto',
+  maxHeight: '100%',
+}, position, bottom, right, width, height);
 
 
 function SvgArrow(props) {
@@ -53,6 +70,22 @@ function SvgArrow(props) {
     <svg style={props} viewBox='0 0 200 90'>
       <path d='M0 0 L100 90 L200 0 Z' />
     </svg>
+  );
+}
+
+function ImgProgressive({
+  path='/static',
+  imgName,
+  position,
+  bottom,
+  right,
+  ...other
+}) {
+  return (
+    <Picture position={position} bottom={bottom} right={right}>
+      <source srcSet={`${path}/${imgName}.webp`} type='image/webp' />
+      <Img {...other} src={`${path}/${imgName}.png`} />
+    </Picture>
   );
 }
 
@@ -139,10 +172,13 @@ function Hero() {
                     {`Hello 👋`}
                 </Caption>
             </Box>
-            <ImgPortrait
-              src='/static/portrait.webp'
-              width={[160, 160, 200, 320]}
-               />
+            <ImgProgressive
+              position='absolute'
+              bottom='0'
+              imgName='portrait'
+              maxHeight={[151, 151, 188, 302]}
+              maxWidth={[160, 160, 200, 320]}
+             />
           </Box>
       </BoxFlex>
     </BoxGrid>
