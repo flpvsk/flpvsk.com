@@ -236,7 +236,13 @@ function RecentPosts({ theme }) {
           mt={-2}
           justifyContent='center'
           display={['none', 'none', 'flex', 'flex']}>
-            <Box as='form' m={0}>
+            <Box
+              as='form'
+              m={0}
+              action='https://tinyletter.com/flpvsk'
+              method='post'
+              target='popupwindow'
+            >
               <Box
                 pt={2}
                 mb={10}
@@ -270,10 +276,12 @@ function RecentPosts({ theme }) {
               <BoxFlex flexDirection='column'>
                 <Input
                   id='subscribe-email-input'
+                  name='email'
                   mb={1}
                   width={`100%`}
                   placeholder='Email'
                   type='email' />
+                <input type='hidden' name='embed' value='1' />
                 <Button alignSelf='flex-end'>Subscribe</Button>
               </BoxFlex>
             </Box>

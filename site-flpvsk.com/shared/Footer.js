@@ -84,7 +84,12 @@ export default function Footer() {
           flexDirection='column'
           alignItems={['flex-start', 'flex-start', 'flex-start']}
         >
-          <form style={{width: '100%'}}>
+          <form
+            style={{width: '100%', margin: 0}}
+            action='https://tinyletter.com/flpvsk'
+            method='post'
+            target='popupwindow'
+          >
             <Caption
               as='label'
               htmlFor='subscribe-input-footer'
@@ -96,7 +101,9 @@ export default function Footer() {
               <Input
                 id='subscribe-input-footer'
                 type='email'
+                name='email'
                 placeholder='Email' />
+              <input type='hidden' name='embed' value='1' />
               <Button ml={1}>Subscribe</Button>
             </BoxFlex>
           </form>
