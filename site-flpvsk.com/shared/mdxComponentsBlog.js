@@ -200,6 +200,7 @@ const components = {
           as={'figcaption'}
           bg={'black'}
           color={'white'}
+          textAlign='center'
           pt={'4px'}
           pb={'4px'}
           pr={1}
