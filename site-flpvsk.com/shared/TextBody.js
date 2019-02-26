@@ -5,6 +5,8 @@ import {
   textStyle,
   textAlign,
   fontSize,
+  fontStyle,
+  fontWeight,
   color,
   space,
 } from 'styled-system'
@@ -13,6 +15,8 @@ const P = styled.p(
   textStyle,
   textAlign,
   fontSize,
+  fontStyle,
+  fontWeight,
   color,
   space,
 );

@@ -8,6 +8,7 @@ export default {
   posts: [
     {
       title: 'Open-sourcing the Meetup',
+      heading: 'Open-sourcing the\u00A0Meetup',
       path: `/blog/2018-12-23-open-sourcing-the-meetup`,
       publishDate: '2018-12-23',
       author: 'Andrey Salomatin',
@@ -17,6 +18,7 @@ export default {
     },
     {
       title: 'Making products under uncertainty',
+      heading: 'Making products under\u00A0uncertainty',
       path: `/blog/2018-08-02-making-products-under-uncertainty`,
       publishDate: '2018-08-02',
       author: 'Andrey Salomatin',
@@ -26,8 +28,9 @@ export default {
     },
     {
       title: 'Theory of Constraints in Colour',
-      path: `/blog/2018-12-23-open-sourcing-the-meetup`,
-      publishDate: '2017-06-23',
+      heading: `Theory of\u00A0Constraints in\u00A0Colour`,
+      path: `/blog/2018-02-16-theory-of-constraints-in-colour`,
+      publishDate: '2018-02-16',
       author: 'Andrey Salomatin',
       description: `
         There are thousands of possible reasons for a piece of software to not perform well. Thousands. How many ways do we have of finding and fixing those issues? One. There’s one way we can do it.

@@ -8,6 +8,7 @@ import TextItemBody from '~/shared/TextItemBody';
 export default function PostPreview(props) {
   const {
     title,
+    heading,
     description,
     path,
   } = props;
@@ -21,7 +22,7 @@ export default function PostPreview(props) {
         mb={2}>
           <Link href={path} passHref={true} prefetch>
             <LinkText>
-              {title}
+              {heading || title}
             </LinkText>
           </Link>
       </TextHeading>

@@ -65,6 +65,7 @@ Blockquote.defaultProps = {
   textStyle: 'blockquote',
   m: 0,
   ml: -2,
+  mt: 2,
   mb: 3,
   pl: 2,
   pt: 1,
@@ -100,8 +101,8 @@ const Hr = styled.hr(
 Hr.defaultProps = {
   mt: 3,
   mb: 5,
-  mr: '30%',
-  ml: '30%',
+  mr: ['4%', '4%', '8%'],
+  ml: ['4%', '4%', '8%'],
   border: 'none',
   borderColor: 'black',
   borderBottom: '1px solid',
@@ -133,6 +134,20 @@ const components = {
       mb={1}>{props.children}</TextHeading>
   ),
 
+  h4: (props) => (
+    <TextHeading
+      as='h4'
+      textStyle='h4'
+      color='blacks.1'
+      fontWeight='bold'
+      fontSize={[1, 2, 3]}
+      mt={3}
+      mb={0}
+    >
+      {props.children}
+    </TextHeading>
+  ),
+
   p: (props) => {
     const { children } = props;
     if (!(children instanceof Array)) {
@@ -144,6 +159,16 @@ const components = {
       <TextArticleBody
         {...props}
         mt={0} />
+    );
+  },
+
+  strong: (props) => {
+    return (
+      <TextBody
+        as='strong'
+        color='blacks.1'
+        fontWeight='bold'
+        {...props} />
     );
   },
 

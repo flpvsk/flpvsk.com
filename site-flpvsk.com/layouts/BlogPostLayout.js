@@ -72,6 +72,7 @@ function InfoStripe({ author, publishDate }) {
 
 function BlogPostLayout({ meta = {}, theme, children }) {
   const titleText = meta.title || '';
+  const headingText = meta.heading || titleText;
   const author = meta.author;
 
   return (
@@ -97,7 +98,7 @@ function BlogPostLayout({ meta = {}, theme, children }) {
                 textAlign='center'
                 mt={0}
                 mb={4}
-                color='black'>{titleText}</TextHeading>
+                color='black'>{headingText}</TextHeading>
             </Box>
 
             <InfoStripe {...meta} />
