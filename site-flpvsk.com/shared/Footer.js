@@ -43,8 +43,9 @@ function SourceCodeLicense() {
       <LinkExternal
         color={'black'}
         href='https://tldrlegal.com/license/mit-license'>
-          {`MIT License.`}
+          {`MIT License`}
       </LinkExternal>
+      {`.`}
     </>
   );
 }
