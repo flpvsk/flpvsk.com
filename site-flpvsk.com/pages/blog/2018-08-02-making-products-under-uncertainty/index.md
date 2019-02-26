@@ -6,6 +6,7 @@ export const meta = {
   title: 'Making products under uncertainty',
   publishDate: '2018-08-02',
   author: 'Andrey Salomatin',
+  description: `Established companies build products according to specs. That’s turning words into mockups and code. It’s easy. Now that we have some text let’s make sure it’s in three lines.`,
 };
 
 export default makeBlogPost(meta);

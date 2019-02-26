@@ -2,6 +2,8 @@ import Head from 'next/head';
 import { MDXProvider } from '@mdx-js/tag'
 import Link from 'next/link'
 
+import MetaArticle from '~/shared/MetaArticle';
+
 import Box from '../shared/Box';
 import BoxFlex from '../shared/BoxFlex';
 
@@ -78,9 +80,7 @@ function BlogPostLayout({ meta = {}, theme, children }) {
   return (
     <MDXProvider components={components}>
       <>
-        <Head>
-          <title>{titleText}{` – ${siteInfo.blogTitle}`}</title>
-        </Head>
+        <MetaArticle {...meta} />
         <Menu />
         <Box
           as='article'

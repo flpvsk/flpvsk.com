@@ -12,6 +12,7 @@ import BoxFlex from '~/shared/BoxFlex';
 
 import noiseBackground from '~/shared/noiseBackground';
 
+import Meta from '~/shared/Meta';
 import PostPreview from '~/shared/PostPreview';
 import Logo from '~/shared/Logo';
 import Caption from '~/shared/Caption';
@@ -296,6 +297,7 @@ const Home = withTheme(({ theme }) => {
       gridTemplateColumns={['1fr']}>
         <Head>
           <title>{siteInfo.siteName}</title>
+          <Meta />
         </Head>
 
         <HeroSection

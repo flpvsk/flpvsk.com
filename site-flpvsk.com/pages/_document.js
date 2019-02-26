@@ -1,4 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document';
+
+import MetaFavicon from '~/shared/MetaFavicon';
+
 // import {
 //   ServerStyleSheet,
 //   createGlobalStyle,
@@ -64,6 +67,9 @@ class SiteDocument extends Document {
             <meta
               name="viewport"
               content="initial-scale=1.0, width=device-width" />
+
+            <MetaFavicon />
+
             <Global styles={globalStyle} />
           </Head>
 
