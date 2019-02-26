@@ -1,4 +1,6 @@
-import { makeBlogPost } from '../../../layouts/BlogPostLayout';
+import { makeBlogPost } from '~/layouts/BlogPostLayout';
+import VideoYouTube from '~/shared/VideoYouTube';
+import VideoCoub from '~/shared/VideoCoub';
 
 export const meta = {
   title: 'Making products under uncertainty',
@@ -10,7 +12,7 @@ export default makeBlogPost(meta);
 
 >  This article is a follow-up to my talk. You can watch the video recording of the talk [in Russian](https://youtu.be/Uqxc_7NAJDY) or in English:
 
-<!-- paste video here -->
+<VideoYouTube id='mUhjlmzSRL4' />
 
 Established companies build products according to specs. That’s turning words into mockups and code. It’s *easy*.
 
@@ -123,7 +125,7 @@ A prototype is just a tool for running an experiment. The actual purpose of an e
 **Example from Productive Mobile**<br />
 With a B2B product where the sales cycle is at least six months. Besides, our customers are busy people, it was hard to get timely feedback. We worked around the problem by forming a separate team that was using the product in-house. Our *internal* customer. It was not an easy decision, but in the end, it had a huge positive impact on the product. We’ve shortened the feedback cycle and started moving at light speed.
 
-<!-- video here -->
+<VideoYouTube id='UNFcq8nkDrI' />
 
 **Example from Polychops**<br />
 With a B2C product, we’ve tried a lot of different ways of getting feedback. The first round was from friends musicians. Later [posts on Reddit](https://www.reddit.com/r/Bass/comments/8dm4hm/metronome_for_polyrhythm_practice/), which, in turn, lead to one-on-one interviews.
@@ -149,11 +151,9 @@ For UI products we’d map the user flow and create low-fidelity paper mockups. 
 **Example from Polychops**<br />
 An early prototype of Polychops was a tiny flash animation. We showed it to musicians of different levels to see their reaction, to see if it helps in understanding the concept of a polyrhythm.
 
-<!--
- <iframe src="https://medium.com/media/d5f4bba3cb8825f22d2b6ceedae79e41" frameborder=0></iframe>
+<VideoYouTube id='c4QiPPfVNbk' />
 
- <iframe src="https://medium.com/media/6bc5a96af6bfd2d5a4f3870d9ee00bde" frameborder=0></iframe>
- -->
+<VideoCoub id='1byrp3' />
 
 The same approach works for API products. We’d start with writing documentation for the API. Then we’d try it out “on paper” on different usecases.
 
