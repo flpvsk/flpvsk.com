@@ -21,7 +21,6 @@ export default function Talks() {
     >
       <Head>
         <title>{`Talks – ${siteInfo.siteName}`}</title>
-        <MetaFavicon />
       </Head>
       <Menu currentItemId='talks' />
 

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "next",
     "build": "next build",
+    "export": "next export",
     "prod": "next start"
   },
   "keywords": [],
