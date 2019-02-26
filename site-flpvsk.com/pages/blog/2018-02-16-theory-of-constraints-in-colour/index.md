@@ -7,7 +7,7 @@ export const meta = {
   heading: `Theory of\u00A0Constraints in\u00A0Colour`,
   publishDate: '2018-08-02',
   author: 'Andrey Salomatin',
-  description: `There are thousands of possible reasons for a piece of software to not perform well. Thousands. How many ways do we have of finding and fixing those issues? One. There’s one way we can do it.`,
+  description: `There are thousands of possible reasons for a piece of software to not perform well. Thousands. How many ways do we have of finding and fixing those issues? One.`,
 };
 
 export default makeBlogPost(meta);

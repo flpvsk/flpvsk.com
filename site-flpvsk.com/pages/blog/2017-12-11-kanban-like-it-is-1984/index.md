@@ -6,7 +6,7 @@ export const meta = {
   heading: `Kanban like\u00A0it’s\u00A01984`,
   publishDate: '2017-12-11',
   author: 'Andrey Salomatin',
-  description: `Everything was better in the 80s, so let’s go back in time for a minute. Imagine you are a worker on a car plant. What would you day look like?`,
+  description: `Everything was better in the 80s, so let’s go back in time for a minute. Imagine you are a worker at a car plant. What would your day look like?`,
 };
 
 export default makeBlogPost(meta);

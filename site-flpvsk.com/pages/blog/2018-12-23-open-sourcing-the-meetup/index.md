@@ -4,7 +4,7 @@ export const meta = {
   title: 'Open-sourcing the Meetup',
   publishDate: '2018-12-23',
   author: 'Andrey Salomatin',
-  description: `Increasingly meetups are dependent on platforms like Meetup.com and Facebook. Network effects help with discovery and that's cool, that's how most participants find those meetups.`
+  description: `Increasingly meetups are dependent on platforms like Meetup.com and Facebook. Is it the best option? Let’s imagine an open-source version of meetup software.`,
 };
 
 export default makeBlogPost(meta);
