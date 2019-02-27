@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Link from 'next/link'
 import styled from '@emotion/styled';
 import { withTheme } from 'emotion-theming';
@@ -339,10 +338,7 @@ const Home = withTheme(({ theme }) => {
         'minmax(100vh, auto) auto'
       ]}
       gridTemplateColumns={['1fr']}>
-        <Head>
-          <title>{siteInfo.siteName}</title>
-          <Meta />
-        </Head>
+        <Meta />
 
         <HeroSection
           as='section'
