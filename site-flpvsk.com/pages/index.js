@@ -175,6 +175,7 @@ function Hero() {
               position='absolute'
               bottom='0'
               imgName='portrait'
+              alt={`That's me.`}
               maxHeight={[151, 151, 188, 302]}
               maxWidth={[160, 160, 200, 320]}
              />

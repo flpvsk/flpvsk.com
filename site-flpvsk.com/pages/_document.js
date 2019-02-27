@@ -75,7 +75,7 @@ class SiteDocument extends Document {
 
     return (
       <ThemeProvider theme={theme}>
-        <html>
+        <html lang='en'>
           <Head>
             <meta charSet="utf-8" />
             <meta
