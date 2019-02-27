@@ -50,6 +50,17 @@ Russian)](https://www.youtube.com/watch?v=izOvzrDOpW0&list=PLsQoQOfHBXXFIo1dc1HH
 [Video from Web-Standards Kyiv (in
 Russian)](https://www.youtube.com/watch?v=UEDBNwZqs4Y&list=PLsQoQOfHBXXFIo1dc1HHbSnJb2azXIXxf&index=6)
 
+### Building bridges
+
+A lightning talk about using Javascript VM and Web technologies within
+native applications.
+
+[Video from WarsawJS](https://www.youtube.com/watch?v=mXfMtbeYfA4)<br />
+[Slides](https://flpvsk.github.io/building-bridges/)<br />
+[Source code](https://github.com/flpvsk/building-bridges)<br />
+[Warsaw Native in the App Store](https://itunes.apple.com/us/app/warsaw-native/id1143933761?ls=1&mt=8)
+
+
 ### How to stop debugging async code and start living
 
 An overview of patterns for writing asynchronous code in Javascript.
