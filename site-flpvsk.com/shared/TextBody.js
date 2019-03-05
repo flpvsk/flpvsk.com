@@ -9,7 +9,7 @@ import {
   fontWeight,
   color,
   space,
-} from 'styled-system'
+} from 'styled-system';
 
 const P = styled.p(
   textStyle,
@@ -18,7 +18,7 @@ const P = styled.p(
   fontStyle,
   fontWeight,
   color,
-  space,
+  space
 );
 
 const fontSizes = {
@@ -28,7 +28,7 @@ const fontSizes = {
 
 function TextBody(props) {
   const fontSize = fontSizes[props.size];
-  return <P {...props} fontSize={fontSize} textStyle={'body'} />
+  return <P {...props} fontSize={fontSize} textStyle={'body'} />;
 }
 
 TextBody.defaultProps = {

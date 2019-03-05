@@ -6,8 +6,8 @@ import {
   textAlign,
   textStyle,
   fontSize,
-  color
-} from 'styled-system'
+  color,
+} from 'styled-system';
 
 const Caption = styled.div`
   ${display}
@@ -19,11 +19,9 @@ const Caption = styled.div`
   ${color}
 `;
 
-
 Caption.defaultProps = {
   textStyle: 'caption',
-  fontSize: [ 0, 1 ],
+  fontSize: [0, 1],
 };
-
 
 export default Caption;

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { css } from '@emotion/core'
+import { css } from '@emotion/core';
 
 import Caption from '../shared/Caption';
 import LinkExternal from '../shared/LinkExternal';
@@ -18,14 +18,9 @@ import {
   color,
   borders,
   borderColor,
-} from 'styled-system'
+} from 'styled-system';
 
-const Code = styled.code(
-  fontSize,
-  textStyle,
-  color,
-);
-
+const Code = styled.code(fontSize, textStyle, color);
 
 const ListItem = styled.li(
   css`
@@ -43,12 +38,10 @@ const ListItem = styled.li(
   fontSize,
   textStyle,
   color,
-  space,
-);
-
-const UnorderedList = styled.ul(
   space
 );
+
+const UnorderedList = styled.ul(space);
 
 const Blockquote = styled.blockquote(
   {
@@ -57,9 +50,8 @@ const Blockquote = styled.blockquote(
   textStyle,
   space,
   borders,
-  borderColor,
+  borderColor
 );
-
 
 Blockquote.defaultProps = {
   textStyle: 'blockquote',
@@ -72,31 +64,22 @@ Blockquote.defaultProps = {
   pb: 1,
   borderLeft: `4px solid`,
   borderColor: 'blacks.2',
-}
+};
 
 const TextArticleBody = styled(TextBody)({
   marginTop: 0,
   '& + &': {
     marginTop: '24px',
-  }
+  },
 });
 
-const Img = styled.img(
-  space,
-  width,
-  maxWidth,
-);
+const Img = styled.img(space, width, maxWidth);
 
 Img.defaultProps = {
-  maxWidth: '100%'
+  maxWidth: '100%',
 };
 
-const Hr = styled.hr(
-  space,
-  color,
-  borders,
-  borderColor,
-);
+const Hr = styled.hr(space, color, borders, borderColor);
 
 Hr.defaultProps = {
   mt: 3,
@@ -108,7 +91,6 @@ Hr.defaultProps = {
   borderBottom: '1px solid',
 };
 
-
 function propsToId(props) {
   const { children } = props;
 
@@ -119,13 +101,12 @@ function propsToId(props) {
   return null;
 }
 
-
 const components = {
-  h1: (props) => {
+  h1: props => {
     return null;
   },
 
-  h2: (props) => {
+  h2: props => {
     return (
       <TextHeading
         as='h2'
@@ -138,10 +119,10 @@ const components = {
       >
         {props.children}
       </TextHeading>
-    )
+    );
   },
 
-  h3: (props) => (
+  h3: props => (
     <TextHeading
       as='h3'
       id={propsToId(props)}
@@ -149,10 +130,13 @@ const components = {
       textStyle='h4'
       color='blacks.0'
       mt={6}
-      mb={1}>{props.children}</TextHeading>
+      mb={1}
+    >
+      {props.children}
+    </TextHeading>
   ),
 
-  h4: (props) => (
+  h4: props => (
     <TextHeading
       as='h4'
       id={propsToId(props)}
@@ -167,75 +151,55 @@ const components = {
     </TextHeading>
   ),
 
-  p: (props) => {
+  p: props => {
     const { children } = props;
     if (!(children instanceof Array)) {
       if (children.props && children.props.name === 'img') {
         return children;
       }
     }
-    return (
-      <TextArticleBody
-        {...props}
-        mt={0} />
-    );
+    return <TextArticleBody {...props} mt={0} />;
   },
 
-  strong: (props) => {
+  strong: props => {
     return (
       <TextBody
         as='strong'
         color='blacks.1'
         fontWeight='bold'
-        {...props} />
+        {...props}
+      />
     );
   },
 
-  a: (props) => (
-    <LinkExternal
-      {...props}
-      color={'secondaryDark'} />
-  ),
+  a: props => <LinkExternal {...props} color={'secondaryDark'} />,
 
-  ul: (props) => (
-    <UnorderedList
-      {...props}
-      pl={'4px'}
-      ml={0}
-      mb={2}
-    />
-  ),
+  ul: props => <UnorderedList {...props} pl={'4px'} ml={0} mb={2} />,
 
-  li: (props) => (
+  li: props => (
     <ListItem
       {...props}
       fontSize={[1, 2, 3]}
       textStyle='body'
       pb={2}
-      color='blacks.0' />
+      color='blacks.0'
+    />
   ),
 
-  blockquote: (props) => (
-    <Blockquote
-      {...props}
-      fontSize={[1, 2, 3]} />
-  ),
+  blockquote: props => <Blockquote {...props} fontSize={[1, 2, 3]} />,
 
-  code: (props) => (
-    <Code
-      {...props}
-      textStyle='code' />
-  ),
+  code: props => <Code {...props} textStyle='code' />,
 
-  inlineCode: (props) => (
+  inlineCode: props => (
     <Code
       {...props}
       bg={'blacks.3'}
       fontSize={'0.93em'}
-      textStyle='code' />
+      textStyle='code'
+    />
   ),
 
-  img: (props) => {
+  img: props => {
     let figCaption;
 
     if (props.alt) {
@@ -269,9 +233,7 @@ const components = {
     );
   },
 
-  hr: (props) => (
-    <Hr />
-  )
+  hr: props => <Hr />,
 };
 
 export default components;

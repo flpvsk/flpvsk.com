@@ -1,17 +1,15 @@
 import styled from '@emotion/styled';
-import { css } from '@emotion/core'
-import {
-  fontSize,
-  color
-} from 'styled-system'
+import { css } from '@emotion/core';
+import { fontSize, color } from 'styled-system';
 
 const LinkText = styled.a(
-  (props) => css`
+  props => css`
     cursor: pointer;
     text-decoration: none;
     background-repeat: repeat-x;
     background-image: linear-gradient(
-      to right,${props.color} 100%,
+      to right,
+      ${props.color} 100%,
       ${props.color} 0
     );
     background-image: linear-gradient(
@@ -24,12 +22,11 @@ const LinkText = styled.a(
     background-position: 0 calc(1em + 1px);
   `,
   fontSize,
-  color,
+  color
 );
 
-
 LinkText.defaultProps = {
-  color: 'blacks.0'
+  color: 'blacks.0',
 };
 
 export default LinkText;

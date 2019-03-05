@@ -10,7 +10,7 @@ import {
   border,
   borderColor,
   flex,
-} from 'styled-system'
+} from 'styled-system';
 
 const Input = styled.input(
   space,
@@ -21,7 +21,7 @@ const Input = styled.input(
   fontSize,
   border,
   borderColor,
-  flex,
+  flex
 );
 
 Input.defaultProps = {

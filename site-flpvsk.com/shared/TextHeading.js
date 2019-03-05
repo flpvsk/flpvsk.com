@@ -11,8 +11,7 @@ import {
   background,
   zIndex,
   maxWidth,
-} from 'styled-system'
-
+} from 'styled-system';
 
 const Heading = styled.h1(
   space,
@@ -25,14 +24,12 @@ const Heading = styled.h1(
   textAlign,
   background,
   zIndex,
-  maxWidth,
+  maxWidth
 );
-
 
 Heading.defaultProps = {
   color: 'black',
   m: 0,
 };
-
 
 export default Heading;

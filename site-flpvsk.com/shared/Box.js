@@ -21,7 +21,7 @@ import {
   top,
   right,
   bottom,
-} from 'styled-system'
+} from 'styled-system';
 
 const Box = styled.div(
   space,
@@ -46,7 +46,7 @@ const Box = styled.div(
   top,
   right,
   bottom,
-  bottom,
+  bottom
 );
 
 Box.propTypes = {

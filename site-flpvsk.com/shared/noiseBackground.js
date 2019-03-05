@@ -1,7 +1,8 @@
-import { css } from '@emotion/core'
+import { css } from '@emotion/core';
 
 function inlineSvgNoise(color) {
-  return escape(`
+  return escape(
+    `
     <svg
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="none"
@@ -32,16 +33,17 @@ function inlineSvgNoise(color) {
         </defs>
       <path filter="url(#a)" fill="${color}" d="M0 0h300v300H0z"/>
     </svg>
-  `.replace(/\n/g, '').replace(/\s+/g, ' ')
-  )
+  `
+      .replace(/\n/g, '')
+      .replace(/\s+/g, ' ')
+  );
 }
 
-
 export default function noiseBackground(props) {
-    // background-image: ${
-    //   `url(data:image/svg+xml;utf8,` +
-    //   `${inlineSvgNoise(props.theme.colors.primary)})`
-    // };
+  // background-image: ${
+  //   `url(data:image/svg+xml;utf8,` +
+  //   `${inlineSvgNoise(props.theme.colors.primary)})`
+  // };
   return css`
     background-color: ${props.theme.colors.primary};
   `;

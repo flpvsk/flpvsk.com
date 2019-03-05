@@ -7,7 +7,7 @@ import {
   maxHeight,
   borders,
   borderColor,
-} from 'styled-system'
+} from 'styled-system';
 
 const Iframe = styled.iframe(
   space,
@@ -16,7 +16,7 @@ const Iframe = styled.iframe(
   maxWidth,
   maxHeight,
   borders,
-  borderColor,
+  borderColor
 );
 
 Iframe.defaultProps = {

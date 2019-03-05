@@ -20,8 +20,7 @@ import {
   borders,
   borderColor,
   zIndex,
-} from 'styled-system'
-
+} from 'styled-system';
 
 const FlexBox = styled.div(
   space,
@@ -42,12 +41,11 @@ const FlexBox = styled.div(
   top,
   borders,
   borderColor,
-  zIndex,
+  zIndex
 );
 
 FlexBox.defaultProps = {
   display: 'flex',
 };
-
 
 export default FlexBox;

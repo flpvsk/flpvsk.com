@@ -9,33 +9,31 @@ import MetaFavicon from '~/shared/MetaFavicon';
 // } from 'styled-components';
 
 import { ThemeProvider } from 'emotion-theming';
-import { Global, css } from '@emotion/core'
+import { Global, css } from '@emotion/core';
 import theme from '../theme';
 
-
-
 class SiteDocument extends Document {
-  render () {
+  render() {
     const globalStyle = css`
-
       @font-face {
         font-family: 'Roboto Condensed';
         font-display: swap;
         font-style: normal;
         font-weight: 400;
-        src:
-          local('Roboto Condensed'),
-          local('RobotoCondensed-Regular'),
+        src: local('Roboto Condensed'), local('RobotoCondensed-Regular'),
           url(/static/RobotoCondensed-Regular.ttf) format('truetype'),
           url(/static/RobotoCondensed-Regular.woff2) format('woff2');
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC,
+          U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122,
+          U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
 
       html {
         font-size: 100%;
       }
 
-      html, body {
+      html,
+      body {
         margin: 0;
         max-width: 100%;
 
@@ -45,7 +43,10 @@ class SiteDocument extends Document {
         -webkit-font-smoothing: antialiased;
       }
 
-      html, body, .root, #__next {
+      html,
+      body,
+      .root,
+      #__next {
         height: 100%;
       }
 
@@ -56,19 +57,23 @@ class SiteDocument extends Document {
         font-family: inherit;
       }
 
-      *, *:before, *:after {
+      *,
+      *:before,
+      *:after {
         box-sizing: border-box;
       }
 
       ::selection {
-        background: ${theme.colors.secondary}
+        background: ${theme.colors.secondary};
       }
 
       ::-moz-selection {
-        background: ${theme.colors.secondary}
+        background: ${theme.colors.secondary};
       }
 
-      input, button, a {
+      input,
+      button,
+      a {
         outline-color: ${theme.colors.secondary};
       }
     `;
@@ -77,10 +82,11 @@ class SiteDocument extends Document {
       <ThemeProvider theme={theme}>
         <html lang='en'>
           <Head>
-            <meta charSet="utf-8" />
+            <meta charSet='utf-8' />
             <meta
-              name="viewport"
-              content="initial-scale=1.0, width=device-width" />
+              name='viewport'
+              content='initial-scale=1.0, width=device-width'
+            />
 
             <MetaFavicon />
 
@@ -88,7 +94,7 @@ class SiteDocument extends Document {
           </Head>
 
           <body>
-            <div className="root">
+            <div className='root'>
               <Main />
             </div>
             <NextScript />

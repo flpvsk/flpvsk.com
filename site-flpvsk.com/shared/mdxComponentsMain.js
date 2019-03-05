@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link';
 
 import LinkText from './LinkText';
 import LinkExternal from './LinkExternal';
@@ -9,7 +9,7 @@ import TextItemHeading from './TextItemHeading';
 const components = {
   h3: props => <TextItemHeading {...props} mb={1} />,
   p: TextItemBody,
-  a: (props) => {
+  a: props => {
     const { href } = props;
 
     if (!href || href.indexOf(':') === '-1') {
@@ -20,7 +20,7 @@ const components = {
       );
     }
 
-    return <LinkExternal {...props} />
+    return <LinkExternal {...props} />;
   },
 };
 

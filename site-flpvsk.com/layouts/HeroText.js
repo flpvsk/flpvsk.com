@@ -1,6 +1,5 @@
 import React from 'react';
-import { MDXProvider } from '@mdx-js/tag'
-
+import { MDXProvider } from '@mdx-js/tag';
 
 import TextItemBody from '../shared/TextItemBody';
 import LinkText from '../shared/LinkText';
@@ -10,14 +9,14 @@ import Box from '../shared/Box';
 
 const components = {
   p: TextItemBody,
-  a: (props) => {
+  a: props => {
     const { href } = props;
 
     if (!href || href.indexOf(':') === '-1') {
       return <LinkText colors='' {...props} />;
     }
 
-    return <LinkExternal {...props} />
+    return <LinkExternal {...props} />;
   },
 };
 

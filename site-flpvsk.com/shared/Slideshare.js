@@ -1,8 +1,8 @@
 import Iframe from './Iframe';
 
 export default function Slideshare({
-  width='100%',
-  height='400px',
+  width = '100%',
+  height = '400px',
   id,
   ...other
 }) {

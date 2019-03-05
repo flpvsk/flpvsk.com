@@ -10,9 +10,10 @@ import {
   boxShadow,
   alignSelf,
   justifySelf,
-} from 'styled-system'
+} from 'styled-system';
 
-const Button = styled.button({
+const Button = styled.button(
+  {
     cursor: 'pointer',
   },
   space,
@@ -24,7 +25,7 @@ const Button = styled.button({
   background,
   boxShadow,
   alignSelf,
-  justifySelf,
+  justifySelf
 );
 
 Button.defaultProps = {
@@ -38,6 +39,6 @@ Button.defaultProps = {
   background: 'black',
   color: 'white',
   boxShadow: 'button',
-}
+};
 
 export default Button;

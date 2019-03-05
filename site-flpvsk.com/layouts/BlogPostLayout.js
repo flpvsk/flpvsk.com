@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import { MDXProvider } from '@mdx-js/tag'
-import Link from 'next/link'
+import { MDXProvider } from '@mdx-js/tag';
+import Link from 'next/link';
 
 import MetaArticle from '~/shared/MetaArticle';
 
@@ -19,25 +19,19 @@ import TextHeading from '../shared/TextHeading';
 import components from '~/shared/mdxComponentsBlog';
 
 import styled from '@emotion/styled';
-import { css } from '@emotion/core'
+import { css } from '@emotion/core';
 import { withTheme } from 'emotion-theming';
 
-import {
-  space,
-  textStyle,
-  fontSize,
-  color
-} from 'styled-system'
+import { space, textStyle, fontSize, color } from 'styled-system';
 
 import siteInfo from '../siteInfo';
-
 
 function dateToText(date) {
   const d = new Date(date);
   return d.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   });
 }
 
@@ -64,13 +58,13 @@ function InfoStripe({ author, publishDate }) {
         pr={[2, 3, 4]}
         width='100%'
         fontSize={[2, 3]}
-        textAlign='center'>
-          {`${author} ${dateString}`}
+        textAlign='center'
+      >
+        {`${author} ${dateString}`}
       </Caption>
     </BoxFlex>
   );
 }
-
 
 function BlogPostLayout({ meta = {}, theme, children }) {
   const titleText = meta.title || '';
@@ -84,9 +78,9 @@ function BlogPostLayout({ meta = {}, theme, children }) {
         <Menu />
         <Box
           as='article'
-          ml={[ 2, 3, 4 ]}
-          mr={[ 2, 3, 4 ]}
-          mt={[ 4, 5, 6 ]}
+          ml={[2, 3, 4]}
+          mr={[2, 3, 4]}
+          mt={[4, 5, 6]}
           pb={5}
         >
           <Box as='header' w='100%'>
@@ -98,7 +92,10 @@ function BlogPostLayout({ meta = {}, theme, children }) {
                 textAlign='center'
                 mt={0}
                 mb={4}
-                color='black'>{headingText}</TextHeading>
+                color='black'
+              >
+                {headingText}
+              </TextHeading>
             </Box>
 
             <InfoStripe {...meta} />

@@ -7,9 +7,10 @@ import {
   space,
   display,
   alignItems,
-} from 'styled-system'
+} from 'styled-system';
 
-const A = styled.a({
+const A = styled.a(
+  {
     textDecoration: 'none',
   },
   space,
@@ -17,7 +18,7 @@ const A = styled.a({
   textStyle,
   color,
   display,
-  alignItems,
+  alignItems
 );
 
 export default A;

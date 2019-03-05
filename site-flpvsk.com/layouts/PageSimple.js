@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Link from 'next/link'
+import Link from 'next/link';
 
-import { MDXProvider } from '@mdx-js/tag'
+import { MDXProvider } from '@mdx-js/tag';
 import components from '~/shared/mdxComponentsBlog';
 
 import Box from '~/shared/Box';
@@ -14,7 +14,6 @@ import Footer from '~/shared/Footer';
 
 import siteInfo from '~/siteInfo';
 
-
 export default function PageSimple({
   children,
   title,
@@ -22,10 +21,7 @@ export default function PageSimple({
   currentMenuItemId,
 }) {
   return (
-    <BoxGrid
-      gridTemplateColumns={'100vw'}
-      gridTemplateRows={'auto'}
-    >
+    <BoxGrid gridTemplateColumns={'100vw'} gridTemplateRows={'auto'}>
       <Head>
         <title>{`${title} – ${siteInfo.siteName}`}</title>
       </Head>
@@ -36,27 +32,25 @@ export default function PageSimple({
         maxWidth={'45em'}
         ml='auto'
         mr='auto'
-        pl={[ 2, 3, 4 ]}
-        pr={[ 2, 3, 4 ]}
-        pb={[ 3, 4, 5 ]}
+        pl={[2, 3, 4]}
+        pr={[2, 3, 4]}
+        pb={[3, 4, 5]}
       >
         <header>
           <TextHeading
             as='h1'
             textStyle='h2'
-            fontSize={[ 6, 7, 8 ]}
+            fontSize={[6, 7, 8]}
             color='black'
-            mt={[ 4, 5, 6 ]}
+            mt={[4, 5, 6]}
             textAlign='center'
           >
             {heading || title}
           </TextHeading>
         </header>
 
-        <Box mt={[ 7, 8, 9 ]}>
-          <MDXProvider components={components}>
-            {children}
-          </MDXProvider>
+        <Box mt={[7, 8, 9]}>
+          <MDXProvider components={components}>{children}</MDXProvider>
         </Box>
       </Box>
       <Footer />
@@ -64,9 +58,8 @@ export default function PageSimple({
   );
 }
 
-
 export function makeSimplePage(meta) {
   return function SimplePageWrapper(props) {
-    return <PageSimple {...meta} {...props} />
+    return <PageSimple {...meta} {...props} />;
   };
 }

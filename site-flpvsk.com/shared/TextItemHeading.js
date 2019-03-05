@@ -10,5 +10,4 @@ TextItemHeading.defaultProps = {
   mt: 0,
 };
 
-
 export default TextItemHeading;

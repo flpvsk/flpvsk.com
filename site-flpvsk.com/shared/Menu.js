@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link';
 import styled from '@emotion/styled';
 
 import BoxFlex from '~/shared/BoxFlex';
@@ -29,7 +29,7 @@ export const menuItems = [
     title: 'Influences',
     href: '/influences',
   },
-/*
+  /*
   {
     id: 'music',
     title: 'Music',
@@ -38,29 +38,31 @@ export const menuItems = [
 */
 ];
 
-const MenuItem = styled(BoxFlex)(
-  props => {
-    const { white, black } = props.theme.colors;
-    const { isSelected } = props;
-    return {
-      backgroundColor: isSelected ? black : white,
-      color: isSelected ? white : black,
+const MenuItem = styled(BoxFlex)(props => {
+  const { white, black } = props.theme.colors;
+  const { isSelected } = props;
+  return {
+    backgroundColor: isSelected ? black : white,
+    color: isSelected ? white : black,
 
-      '&:hover': {
-        backgroundColor: props.theme.colors.black,
-        color: props.theme.colors.white,
-      }
-    };
-  }
-);
+    '&:hover': {
+      backgroundColor: props.theme.colors.black,
+      color: props.theme.colors.white,
+    },
+  };
+});
 
-export default function Menu({ items=menuItems, currentItemId, isSticky }) {
+export default function Menu({
+  items = menuItems,
+  currentItemId,
+  isSticky,
+}) {
   const itemsMapped = items.map(item => {
     return (
       <MenuItem
         key={item.id}
         mr={-1}
-        ml={[ 3, 4 ]}
+        ml={[3, 4]}
         height={60}
         alignItems={'stretch'}
         isSelected={currentItemId === item.id}
@@ -102,10 +104,7 @@ export default function Menu({ items=menuItems, currentItemId, isSticky }) {
       {...stickyProps}
     >
       <Link href={'/'} passHref prefetch>
-        <LinkNoDecoration
-          display='flex'
-          alignItems='center'
-        >
+        <LinkNoDecoration display='flex' alignItems='center'>
           <Logo size={40} innerColor={'primary'} outerColor='black' />
         </LinkNoDecoration>
       </Link>

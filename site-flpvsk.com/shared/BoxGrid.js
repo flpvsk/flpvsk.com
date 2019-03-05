@@ -16,7 +16,7 @@ import {
   gridRow,
   borders,
   borderColor,
-} from 'styled-system'
+} from 'styled-system';
 
 const BoxGrid = styled.div(
   space,
@@ -31,9 +31,8 @@ const BoxGrid = styled.div(
   gridTemplateRows,
   gridAutoFlow,
   gridRowGap,
-  gridColumnGap,
+  gridColumnGap
 );
-
 
 BoxGrid.defaultProps = {
   display: 'grid',
