@@ -302,7 +302,6 @@ function Work() {
         <Polychops mb={4} />
         <Matterway mb={4} />
         <Mindojo mb={4} />
-        {/*
         <Box mb={4}>
           <Button
             fontSize={2}
@@ -311,7 +310,6 @@ function Work() {
               Get Full CV
           </Button>
         </Box>
-        */}
     </BoxGrid>
   );
 }
