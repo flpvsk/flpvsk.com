@@ -110,9 +110,24 @@ typography.
 ![Vertical rhythm][img-vert-rhythm]
 
 Why is it so hard to implement? After all we're just arranging pixels on
-the screen. What works in an abstract world of forms should work here.
-But it doesn't.
+the screen. Pixels are squares. Squares are geometric shapes that we
+should be able to manipulate with ease. But we can't.
 
+### A pixel is not a pixel
+
+The problem is that a pixel on the screen is represented by something else
+in the code. It's a DOM element, a View, an Object. It's a thousand
+different things. What a pixel *actually is* is hidden from a developer.
+
+![Browser's render pipeline][img-render-pipeline]
+
+In case of a browser it leads to all sorts of inconveniences:
+
+* We are limited to the use cases that browser vendors consider
+  common;
+* We can't write tests for layout or paint stages of rendering;
+* Testing anything UI-related requires *spinning off a browser.* It's like
+  going groceries shopping on a private jet.
 
 <!--
 > All problems in computer science can be solved by another level of
@@ -121,6 +136,8 @@ But it doesn't.
 > – [David Wheeler](https://en.wikipedia.org/wiki/David_Wheeler_%28computer_scientist%29)
 -->
 
+## A reasonable explanation
+
 
 [code-ui-ep]:https://todo
 [vert-rhythm]:https://todo
@@ -128,3 +145,4 @@ But it doesn't.
 [img-ex1]:/static/blog/pixel/ex1.tiff
 [img-ex2]:/static/blog/pixel/ex2.tiff
 [img-vert-rhythm]:/static/blog/pixel/vertical-rhythm.png
+[img-render-pipeline]:/static/blog/pixel/render-pipeline.png
