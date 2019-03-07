@@ -14,9 +14,13 @@ Building graphical user interfaces always seemed unnecessarily hard to me.
 So much so I even made a [podcast episode][code-ui-ep] about that topic.
 
 One of the reasons why seems to be common across different kinds of
-systems. It's not GUI-specific. That reason is poor API design.
-Specifically poor balance of *control* vs *ease-of-use* over the space
-of use cases.
+systems. That reason is poor API design. Specifically poor balance of
+*control* vs *ease-of-use* over the set of use cases.
+
+Most of the examples in this post will be from web frontend development.
+Although this issue is not GUI-specific. It's a generic problem in API
+design.
+
 
 ## The lost art of geometry
 
@@ -136,8 +140,30 @@ In case of a browser it leads to all sorts of inconveniences:
 > – [David Wheeler](https://en.wikipedia.org/wiki/David_Wheeler_%28computer_scientist%29)
 -->
 
-## A reasonable explanation
+## The wrong tradeoff
 
+In the beginning of the article I said that the core issue here is:
+
+> Poor balance of control vs ease-of-use in an API over the set of use
+> cases.
+
+What in the world does that mean?
+
+Let's unpack that statement starting from the end. The set of use cases of
+an API is everything a user might want to implement using that API.
+
+Browser vendors give us abilities to make GUIs. Any interface we might
+want to build is included in the set of use cases. As you can guess, it's
+a large set.
+
+Ease-of-use in this context is reverse-proportional to effort. The more
+time it takes to implement a use case using an API, the harder it is to
+use.
+
+What I mean by "control" is how fine-grained the commands that we send to
+an API can be. In a graphics API the levels of control could vary from
+changing properties of a shape or an element to changing properties of a
+pixel.
 
 [code-ui-ep]:https://todo
 [vert-rhythm]:https://todo
