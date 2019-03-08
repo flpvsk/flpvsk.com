@@ -18,7 +18,6 @@ export default function MetaArticle({
 
   let imageTags = [];
 
-  console.log('xxx image', image);
   if (image) {
     const imgUrl = `${siteInfo.host}${image}`;
     imageTags = [
