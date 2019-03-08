@@ -16,7 +16,7 @@ export default function MetaArticle({
   const titleText = title || '';
   const headingText = heading || titleText;
 
-  const imageTags = [];
+  let imageTags = [];
 
   if (image) {
     const imgUrl = `${siteInfo.host}${image}`;
