@@ -9,6 +9,18 @@ export default {
   host: 'https://flpvsk.com',
   posts: [
     {
+      title: `Control vs effort in API design`,
+      heading: `Control\u00A0vs\u00A0effort in\u00A0API design`,
+      path: `/blog/2019-03-08-a-pixel-is-not-a-pixel`,
+      publishDate: '2019-03-08',
+      author: 'Andrey Salomatin',
+      description:
+        `Building graphical user interfaces is hard. ` +
+        `One of the reasons why is poor API design. ` +
+        `Specifically poor balance of ` +
+        `control vs effort over the set of use cases.`,
+    },
+    {
       title: 'Open-sourcing the Meetup',
       heading: 'Open-sourcing the\u00A0Meetup',
       path: `/blog/2018-12-23-open-sourcing-the-meetup`,

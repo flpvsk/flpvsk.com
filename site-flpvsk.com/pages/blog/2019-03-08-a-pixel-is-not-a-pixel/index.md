@@ -1,27 +1,29 @@
 import { makeBlogPost } from '~/layouts/BlogPostLayout';
 
 export const meta = {
-  title: `A pixel is not a pixel`,
-  title: `Balancing effort and control in API design`,
-  heading: `Balancing effort\u00A0and\u00A0control in\u00A0API design`,
+  title: `Control vs effort in API design`,
+  heading: `Control\u00A0vs\u00A0effort in\u00A0API design`,
   publishDate: '2019-03-08',
   author: 'Andrey Salomatin',
+  image: 'https://flpvsk.com/static/blog/pixel/browser-api-3.tiff',
   description:
-    `When adding layers of abstraction does more harm than good`,
+    `Building graphical user interfaces is hard. ` +
+    `One of the reasons why is poor API design. ` +
+    `Specifically poor balance of ` +
+    `control vs effort over the set of use cases.`,
 };
 
 export default makeBlogPost(meta);
 
-Building graphical user interfaces always seemed unnecessarily hard to me.
-So much so I even made a [podcast episode][code-ui-ep] about that topic.
+Building graphical user interfaces is hard.
 
-One of the reasons why seems to be common across different kinds of
-systems. That reason is poor API design. Specifically poor balance of
-*control* vs *effort* over the set of use cases.
+One of the reasons why is poor API design. Specifically poor balance of
+*control* vs *effort* over the set of use cases. This post is about that
+specific problem.
 
-Most of the examples in this post will be from web frontend development.
-Although this issue is not GUI-specific. It's a generic problem in API
-design.
+Although this issue is not GUI-specific, it's a generic problem in API
+design, most of the examples in this post will be from frontend
+development.
 
 
 ## The lost art of geometry
@@ -36,7 +38,7 @@ rectangle against the other?
 
 ![Puzzle: center a rectangle][img-ex1]
 
-In case you'd like to take a shot at it, here're a few options:
+In case you'd like to take a shot at it, here are a few options:
 
 ```
 1. x = h1 / 2
@@ -59,8 +61,8 @@ You see, it's only one line of Math -- that old unsexy programming language
 of spreadsheets.
 
 If we transfer this problem from the world of forms into the world of HTML
-documents, it's still solvable. With CSS -- that new cool styling language
-of browsers.
+documents, it's still solvable. This time with CSS -- that new cool
+styling language of browsers.
 
 ```
 .container {
@@ -100,8 +102,8 @@ The answer is:
 
 </details>
 
-This time the solution is more complicated, but it's still Math and it's
-still just one line.
+The solution is more complex this time, but it's still Math and it's still
+just one line.
 
 How would we do this with CSS? With iOS AutoLayout? Android Layout?
 
@@ -110,7 +112,7 @@ Sadly, there's no way.
 ### Who's got the rhythm?
 
 Those puzzles were inspired by real-world use cases for GUIs. The last
-one is a model of [vertical rhythm,][vert-rhythm] a concept from
+one is a model of [Vertical rhythm,][vert-rhythm] a concept from
 typography.
 
 ![Vertical rhythm][img-vert-rhythm]
@@ -122,7 +124,7 @@ should be able to manipulate with ease. But we can't.
 ### A pixel is not a pixel
 
 The problem is that a pixel on the screen is represented by something else
-in the code. It's a DOM element, a View, an Object. It's a thousand
+in the system. It's a DOM element, a View, an Object. It's a thousand
 different things. What a pixel *actually is* is hidden from a developer.
 
 ![Browser's render pipeline][img-render-pipeline]
@@ -146,8 +148,7 @@ In case of a browser it leads to all sorts of inconveniences:
 
 In the beginning of the article I said that the core issue here is:
 
-> Poor balance of control vs effort in an API over the set of use
-> cases.
+> Poor balance of control vs effort over the set of use cases.
 
 What in the world does that mean?
 
@@ -173,14 +174,14 @@ are the more control we have.
 ![Level of Abstraction vs Effort relationship for different kinds of use cases][img-effort-abstraction-graph]
 
 It might seem that these two parameters, effort and control, are in direct
-conflict. The more control we have the more work we have to do to get the
-job done. That is true, but it's not all the truth.
+conflict. The more control we have the more work we have to do. That is
+true, but it's not all the truth.
 
 As we move through the set of use cases the effort/control relationship
-changes. Showing one paragraph of text on the screen is easy to do with
+changes. Showing one paragraph of text on a screen is easy to do with
 high-level browser APIs. It's more and more effortful as we use lower
 level abstractions. Imagine coding a shader that draws characters of a
-given font on the screen 😱.
+given font on the screen.😱
 
 Now let's remember the example with the grid in the beginning of the
 article. Some use cases, like in that example, are plain impossible with
@@ -194,8 +195,8 @@ would be to prioritise one part of the equation over the other.
 
 ## #UseThePlatform
 
-Historically browser vendors prioritized minimizing effort for a set of
-common use cases. Browsers are decent at displaying documents with text
+Historically browser vendors prioritized minimizing effort over a set of
+common use cases. Browsers were decent at displaying documents with text
 and images on a desktop screen.
 
 ![Browser API as a flat surface][img-browser-api-1]
@@ -207,9 +208,9 @@ more access, more *control* to the makers.
 
 ![Browser API as a cheese][img-browser-api-2]
 
-That lead us into the situation we are in today. There's the flat API for
-common cases with a bunch of "holes" drilled into the lower-level
-functionality browsers have (and had for a while.)
+That led us into the situation we are in today. There's the flat API for
+common cases with a bunch of "holes" drilled into it to get to the
+lower-level functionality browsers have (and had for a while.)
 
 That's why we can draw arbitrary shapes on an html canvas, but we can't
 make those shapes a proper part of DOM, CSSOM or AOM (Accessibility Object
@@ -233,10 +234,10 @@ down the stack.*
 Prioritizing either effort or control is one way to solve this conflict.
 There's another way. The much harder way.
 
-As designers of an API we can decide to expose it in layers, giving access
-to both low-level and high-level primitives. The tricky part is to do it
-in a way where a developer can mess around with lower-level API without
-the result being "excluded" from the top-level result.
+As designers of an API we can decide to expose it in layers. To give
+access to both low-level and high-level primitives. The tricky part is to
+do it in a way where a developer can mess around with lower-level API
+without the result being "excluded" from the rest of the system.
 
 [Flutter][flutter] is a good example of that kind of approach. Flutter is
 a cross-platform mobile development platform made by Google.
@@ -245,12 +246,14 @@ a cross-platform mobile development platform made by Google.
 
 Because of the layered structure of the Flutter API we can:
 
-* Make a widget that is responsible for layout of its children;
+* Make a widget that is responsible for laying out its children;
 * Unit-test our custom layout widget *without starting an emulator*;
 * Make a widget with a custom paint method. For example we can make a
   button with a custom shape, interesting shadow or coloring effect;
 * That custom widget will still ramain a button in terms of gestures it
-  accepts, accessibility and other properties.
+  accepts, accessibility and other properties;
+* We could unit-test the paint operation. Again, just by running the code
+  in a Dart VM, no emulator required.
 
 Going back to our grid example from the top of the article. Here's the
 code of the widget that centers its children vertically, tying them to a
@@ -281,19 +284,28 @@ Here's how the result app in Flutter looks like:
 ## Clothing thoughts
 
 This principles of effort-vs-conflict, layered-vs-flat helped me solve
-some of the recurring issues in my work. It's a useful lens when
-considering or building any sort of API.
+some of the recurring issues in my work. It's a useful lens to look
+through.
 
 Sometimes we get caught up "drilling" our flat high-level API to extract
 the functionality that is already there underneath. That's a sign that we
 might need to change our approach. Remember there's *a much larger set of
 use cases* that we might be able to support with a lower-level API.
 Extracting each use case one by one leads to bloated design and *more
-work* from you as a designer.
+work* from you as an API designer.
 
-[code-ui-ep]:https://todo
-[vert-rhythm]:https://todo
+---
+
+If you'd like to learn more about different approaches to GUI development,
+check out [this Code Podcast episode][code-ui-ep] I made.
+
+This article is based on an API Design talk I made. You
+can find [the video of that talk here.][api-design-talk]
+
+[code-ui-ep]:https://codepodcast.com/posts/2017-04-28-episode-6-dont-make-me-write-ui/
+[vert-rhythm]:https://zellwk.com/blog/why-vertical-rhythms/
 [flutter]:https://flutter.dev
+[api-design-talk]:/talks#LessonsonAPIdesign
 
 [img-ex1]:/static/blog/pixel/ex1.tiff
 [img-ex2]:/static/blog/pixel/ex2.tiff
@@ -304,4 +316,4 @@ work* from you as a designer.
 [img-browser-api-2]:/static/blog/pixel/browser-api-2.tiff
 [img-browser-api-3]:/static/blog/pixel/browser-api-3.tiff
 [img-flutter]:/static/blog/pixel/flutter.png
-[video-flutter-app]:/static/blog/pixel/flutter-app-video-trimmed.mp4
+[video-flutter-app]:/static/blog/pixel/flutter-recording-trimmed.mp4
