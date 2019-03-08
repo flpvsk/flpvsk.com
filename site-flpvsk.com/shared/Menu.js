@@ -42,7 +42,7 @@ const MenuItem = styled(BoxFlex)(props => {
   const { white, black } = props.theme.colors;
   const { isSelected } = props;
   return {
-    backgroundColor: isSelected ? black : white,
+    backgroundColor: isSelected ? black : 'transparent',
     color: isSelected ? white : black,
 
     '&:hover': {
