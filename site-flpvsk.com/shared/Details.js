@@ -10,7 +10,6 @@ const DetailsElement = styled.details(
   {
     '& > *': {
       marginTop: 8,
-      marginLeft: 16,
     },
 
     '& > summary': {
@@ -24,7 +23,6 @@ const DetailsElement = styled.details(
 export default function Details({ summary, children }) {
   return (
     <DetailsElement
-      bg='blacks.3'
       p={1}
       ml={-1}
       mr={-1}

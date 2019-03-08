@@ -7,6 +7,7 @@ import TextBody from '../shared/TextBody';
 import TextHeading from '../shared/TextHeading';
 import Separator from '~/shared/Separator';
 
+import Box from '~/shared/Box';
 import BoxFlex from '~/shared/BoxFlex';
 
 import {
@@ -188,13 +189,22 @@ const components = {
 
   blockquote: props => <Blockquote {...props} fontSize={[1, 2, 3]} />,
 
-  code: props => <Code {...props} textStyle='code' />,
+  pre: props => <Box
+    as='pre'
+    p={1}
+    ml={-1}
+    mr={-1}
+    bg={'codeBg'}
+    {...props} />,
+
+  code: props => <Code {...props} textStyle='code' color={'black'} />,
 
   inlineCode: props => (
     <Code
       {...props}
-      bg={'blacks.3'}
+      bg={'codeBg'}
       fontSize={'0.93em'}
+      color={'black'}
       textStyle='code'
     />
   ),

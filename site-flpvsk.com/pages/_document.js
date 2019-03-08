@@ -28,6 +28,21 @@ class SiteDocument extends Document {
           U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
 
+      @font-face{
+        font-family: 'Fira Code';
+        font-display: swap;
+        font-weight: 400;
+        font-style: normal;
+        src: url('/static/FiraCode-Regular.eot');
+        src:
+          local('Fira Code'), local('FiraCode-Regular'),
+          url('/static/FiraCode-Regular.eot') format('embedded-opentype'),
+          url('/static/FiraCode-Regular.woff2') format('woff2'),
+          url('/static/FiraCode-Regular.woff') format('woff'),
+          url('/static/FiraCode-Regular.ttf') format('truetype');
+      }
+
+
       html {
         font-size: 100%;
       }

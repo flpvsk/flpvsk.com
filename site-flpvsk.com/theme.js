@@ -1,5 +1,5 @@
 const serif = 'georgia, times, serif';
-const mono = '"Roboto Mono", monospace';
+const mono = '"Fira Code", "Roboto Mono", monospace';
 const sansSerif =
   '"Roboto Condensed", roboto, -apple-system, ubuntu, arial, sans-serif';
 
@@ -21,6 +21,7 @@ export default {
     primary: '#f6e436',
     secondary: '#FF9F9F',
     secondaryDark: '#FF6B6B',
+    codeBg: '#fdf6e3',
     blacks: [
       '#111',
       '#333',
