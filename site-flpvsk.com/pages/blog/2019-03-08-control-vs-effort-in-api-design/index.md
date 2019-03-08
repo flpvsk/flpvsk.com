@@ -1,4 +1,5 @@
 import { makeBlogPost } from '~/layouts/BlogPostLayout';
+import Details from '~/shared/Details';
 
 export const meta = {
   title: `Control vs effort in API design`,
@@ -46,16 +47,13 @@ In case you'd like to take a shot at it, here are a few options:
 3. x = (h1 + h2) / 2
 ```
 
-<details>
-<summary>See the answer</summary>
-
-The answer is:
+<Details summary='See the answer'>
 
 ```
 2. x = (h1 - h2) / 2
 ```
 
-</details>
+</Details>
 
 You see, it's only one line of Math -- that old unsexy programming language
 of spreadsheets.
@@ -91,21 +89,16 @@ Here are the options:
 3. x = h3 * floor((h1 + h2) / 2)
 ```
 
-<details>
-<summary>See the answer</summary>
-
-The answer is:
+<Details summary='See the answer'>
 
 ```
 1. x = h3 * round((h1 - h2) / (2 * h3))
 ```
 
-</details>
+</Details>
 
 The solution is more complex this time, but it's still Math and it's still
-just one line.
-
-How would we do this with CSS? With iOS AutoLayout? Android Layout?
+just one line. How would we do this with CSS? With iOS AutoLayout? Android Layout?
 
 Sadly, there's no way.
 
