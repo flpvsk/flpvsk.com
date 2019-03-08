@@ -201,6 +201,17 @@ const components = {
 
   img: props => {
     let figCaption;
+    let media;
+
+    if (/\.mp4$/.test(props.src)) {
+      media = (
+        <Img as='video' controls loop mb={1} alt={props.alt}>
+          <source src={props.src} type='video/mp4' />
+        </Img>
+      );
+    } else {
+      media = <Img mb={1} src={props.src} alt={props.alt} />;
+    }
 
     if (props.alt) {
       figCaption = (
@@ -218,6 +229,7 @@ const components = {
         </Caption>
       );
     }
+
     return (
       <BoxFlex
         as='figure'
@@ -227,7 +239,7 @@ const components = {
         mt={4}
         mb={4}
       >
-        <Img mb={1} src={props.src} alt={props.alt} />
+        {media}
         {figCaption}
       </BoxFlex>
     );
