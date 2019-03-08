@@ -9,7 +9,7 @@ export const meta = {
   image: '/static/blog/pixel/browser-api-3.png',
   description:
     `Building graphical user interfaces is hard. ` +
-    `One of the reasons why is poor API design. ` +
+    `One of the reasons is poor API design. ` +
     `Specifically poor balance of ` +
     `control vs effort over the set of use cases.`,
 };
@@ -18,13 +18,14 @@ export default makeBlogPost(meta);
 
 Building graphical user interfaces is hard.
 
-One of the reasons why is poor API design. Specifically poor balance of
-*control* vs *effort* over the set of use cases. This post is about that
-specific problem.
+One of the reasons is poor API design. Specifically poor balance of
+*control* vs *effort* over a set of use cases. Effort is the time it
+takes to implement a use case using an API. Control is how fine-grained
+the commands that we send to an API can be.
 
-Although this issue is not GUI-specific, it's a generic problem in API
-design, most of the examples in this post will be from frontend
-development.
+This issue of balance is not GUI-specific, it's a generic problem in API
+design. This post is my attempt to understand the dynamics between control
+and effort using examples from frontend development.
 
 
 ## The lost art of geometry
@@ -111,14 +112,14 @@ typography.
 ![Vertical rhythm][img-vert-rhythm]
 
 Why is it so hard to implement? After all, we're just arranging pixels on
-the screen. Pixels are squares. Squares are geometric shapes that we
+a screen. Pixels are squares. Squares are geometric shapes that we
 should be able to manipulate with ease. But we can't.
 
 ### A pixel is not a pixel
 
 The problem is that a pixel on the screen is represented by something else
 in the system. It's a DOM element, a View, an Object. It's a thousand
-different things. What a pixel *actually is* hidden from a developer.
+different things. What a pixel *actually is* is hidden from a developer.
 
 ![Browser's render pipeline][img-render-pipeline]
 
@@ -141,15 +142,14 @@ In case of a browser it leads to all sorts of inconveniences:
 
 At the beginning of the article I said that the core issue here is:
 
-> Poor balance of control vs effort over the set of use cases.
+> Poor balance of control vs effort over a set of use cases.
 
-What in the world does that mean?
+Let's unpack that statement.
 
-Let's unpack that statement starting from the end. The set of use cases of
-an API is everything a dev might want to implement.
-
-Browser vendors give us abilities to make GUIs. Any interface we might
-want to build is included in the set of use cases. It's a large set.
+The set of use cases of an API is everything a dev might want to
+implement. Browser vendors give us abilities to make GUIs. Any interface
+we might want to build is included in the set of use cases. It's a large
+set.
 
 Effort is the time it takes to implement a use case using an API. The
 more time it takes (for the person who already knows how the API works)
@@ -174,13 +174,13 @@ As we move through the set of use cases the effort/control relationship
 changes. Showing one paragraph of text on a screen is easy to do with
 high-level browser APIs. It's more and more effortful as we use lower
 level abstractions. Imagine coding a shader that draws characters of a
-given font on the screen.😱
+given font.😱
 
 Now let's remember the example with the grid at the beginning of the
-article. Some use cases, like in that example, are plain impossible with
-high-level abstractions. Until API vendors consider a use case like
-that common enough, there's no way we can implement it. At the same time,
-it's not hard to make it using a high-control low-level API like OpenGL.
+article. Some use cases are plain impossible with high-level abstractions.
+Until API vendors consider a use case like that common enough, there's no
+way we can implement it. At the same time, it's not hard to make it using
+a high-control low-level API like OpenGL.
 
 We're slowly approaching the topic of API design. What are our options as
 a system designer when we face these kinds of tradeoffs? One obvious choice
@@ -201,9 +201,9 @@ more access, more *control* to the makers.
 
 ![Browser API as a cheese][img-browser-api-2]
 
-That led us into the situation we are in today. There's the flat API for
+That led us into the situation we are in today. There's that flat API for
 common cases with a bunch of "holes" drilled into it to get to the
-lower-level functionality browsers have (and had for a while.)
+lower-level functionality browsers have (and had for a while).
 
 That's why we can draw arbitrary shapes on an HTML canvas, but we can't
 make those shapes a proper part of DOM, CSSOM or AOM (Accessibility Object
@@ -212,12 +212,11 @@ Model).
 We can use different layout models like flexbox or grid. But there's no way
 we can unit-test the results of a layout stage.
 
-We can to some extent control what a browser stores in its cache, but we
+We can to some degree control what a browser stores in its cache, but we
 can not save, retrieve and manipulate file contents in our code. At some
 point, we will be able to do that thanks to the File API. But it would be a
-separate construct, on the side, not related to Cache, Service Workers,
-Application Cache and other APIs that *all have the same foundation lower
-down the stack.*
+separate construct, on a side, not related to Cache, Service Workers,
+Application Cache and other APIs. Even though all of those *have the same foundation lower down the stack.*
 
 ![Browser API vs Browser insides][img-browser-api-3]
 
@@ -229,7 +228,7 @@ There's another way. The much harder way.
 
 As designers of an API we can decide to expose it in layers. To give
 access to both low-level and high-level primitives. The tricky part is to
-do it in a way where a developer can mess around with lower-level API
+do it in a way where a developer can mess around with a lower-level API
 without the result being "excluded" from the rest of the system.
 
 [Flutter][flutter] is a good example of that kind of approach. Flutter is
@@ -237,7 +236,7 @@ a cross-platform mobile development platform made by Google.
 
 ![Flutter architecture][img-flutter]
 
-Because of the layered structure of the Flutter API we can:
+Because of the layered structure of the Flutter API we are able to:
 
 * Make a widget that is responsible for laying out its children;
 * Unit-test our custom layout widget *without starting an emulator*;
@@ -245,8 +244,8 @@ Because of the layered structure of the Flutter API we can:
   button with a custom shape, interesting shadow or coloring effect;
 * That custom widget will still remain a button in terms of gestures it
   accepts, accessibility and other properties;
-* We could unit-test the paint operation. Again, just by running the code
-  in a Dart VM, no emulator required.
+* We could unit-test the paint operation too. Again, just by running the
+  code in a Dart VM, no emulator required.
 
 Going back to our grid example from the top of the article. Here's the
 code of the widget that centers its children vertically, tying them to a
@@ -281,16 +280,16 @@ some of the recurring issues in my work. It's a useful lens to look
 through.
 
 Sometimes we get caught up "drilling" our flat high-level API to extract
-the functionality that is already there underneath. That's a sign that we
-might need to change our approach. Remember there's *a much larger set of
-use cases* that we might be able to support with a lower-level API.
+the functionality that is burried underneath. That's the sign that we might
+need to change our approach. Remember there's *a much larger set of use
+cases* that we might be able to support with a lower-level API.
 Extracting each use case one by one leads to bloated design and *more
 work* from you as an API designer.
 
 ---
 
 If you'd like to learn more about different approaches to GUI development,
-check out [this Code Podcast episode][code-ui-ep] I made.
+check out [this Code Podcast episode.][code-ui-ep]
 
 This article is based on an API Design talk I made. You
 can find [the video of that talk here.][api-design-talk]

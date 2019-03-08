@@ -16,7 +16,7 @@ export default {
       author: 'Andrey Salomatin',
       description:
         `Building graphical user interfaces is hard. ` +
-        `One of the reasons why is poor API design. ` +
+        `One of the reasons is poor API design. ` +
         `Specifically poor balance of ` +
         `control vs effort over the set of use cases.`,
     },
