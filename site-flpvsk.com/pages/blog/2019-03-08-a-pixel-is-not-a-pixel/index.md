@@ -2,6 +2,8 @@ import { makeBlogPost } from '~/layouts/BlogPostLayout';
 
 export const meta = {
   title: `A pixel is not a pixel`,
+  title: `Balancing effort and control in API design`,
+  heading: `Balancing effort\u00A0and\u00A0control in\u00A0API design`,
   publishDate: '2019-03-08',
   author: 'Andrey Salomatin',
   description:
@@ -15,7 +17,7 @@ So much so I even made a [podcast episode][code-ui-ep] about that topic.
 
 One of the reasons why seems to be common across different kinds of
 systems. That reason is poor API design. Specifically poor balance of
-*control* vs *ease-of-use* over the set of use cases.
+*control* vs *effort* over the set of use cases.
 
 Most of the examples in this post will be from web frontend development.
 Although this issue is not GUI-specific. It's a generic problem in API
@@ -144,31 +146,162 @@ In case of a browser it leads to all sorts of inconveniences:
 
 In the beginning of the article I said that the core issue here is:
 
-> Poor balance of control vs ease-of-use in an API over the set of use
+> Poor balance of control vs effort in an API over the set of use
 > cases.
 
 What in the world does that mean?
 
 Let's unpack that statement starting from the end. The set of use cases of
-an API is everything a user might want to implement using that API.
+an API is everything a dev might want to implement.
 
 Browser vendors give us abilities to make GUIs. Any interface we might
-want to build is included in the set of use cases. As you can guess, it's
-a large set.
+want to build is included in the set of use cases. It's a large set.
 
-Ease-of-use in this context is reverse-proportional to effort. The more
-time it takes to implement a use case using an API, the harder it is to
-use.
+Effort is the time it takes to implement a use case using an API. The
+more time it takes (for the person who already knows how the API works)
+the harder it is to use.
 
 What I mean by "control" is how fine-grained the commands that we send to
 an API can be. In a graphics API the levels of control could vary from
-changing properties of a shape or an element to changing properties of a
-pixel.
+changing properties of a component to changing properties of a shape to
+manipulating a pixel.
+
+Amount of control we have is often determined by the level of abstraction
+we're working with. The lower the abstraction the closer to hardware we
+are the more control we have.
+
+![Level of Abstraction vs Effort relationship for different kinds of use cases][img-effort-abstraction-graph]
+
+It might seem that these two parameters, effort and control, are in direct
+conflict. The more control we have the more work we have to do to get the
+job done. That is true, but it's not all the truth.
+
+As we move through the set of use cases the effort/control relationship
+changes. Showing one paragraph of text on the screen is easy to do with
+high-level browser APIs. It's more and more effortful as we use lower
+level abstractions. Imagine coding a shader that draws characters of a
+given font on the screen 😱.
+
+Now let's remember the example with the grid in the beginning of the
+article. Some use cases, like in that example, are plain impossible with
+high-level abstractions. Until API vendors consider a use case like
+that common enough, there's no way we can implement it. At the same time
+it's not hard to make it using a high-control low-level API like OpenGL.
+
+We're slowly approaching the topic of API design. What are our options as
+a system designer when we face these kind of tradeoffs? One obvious choice
+would be to prioritise one part of the equation over the other.
+
+## #UseThePlatform
+
+Historically browser vendors prioritized minimizing effort for a set of
+common use cases. Browsers are decent at displaying documents with text
+and images on a desktop screen.
+
+![Browser API as a flat surface][img-browser-api-1]
+
+Issues began when publishers and developers started asking for more.
+Supporting several platforms, different screen resolutions and densities.
+Building apps, games and other interactive media. It all required giving
+more access, more *control* to the makers.
+
+![Browser API as a cheese][img-browser-api-2]
+
+That lead us into the situation we are in today. There's the flat API for
+common cases with a bunch of "holes" drilled into the lower-level
+functionality browsers have (and had for a while.)
+
+That's why we can draw arbitrary shapes on an html canvas, but we can't
+make those shapes a proper part of DOM, CSSOM or AOM (Accessibility Object
+Model).
+
+We can use different layout models like flexbox or grid. But there's no way
+we can unit-test the results of a layout stage.
+
+We can to some extent control what a browser stores in its cache, but we
+can not save, retrieve and manipulate file contents in our code. At some
+point we will be able to do that thanks to the File API. But it would be a
+separate construct, on the side, not related to Cache, Service Workers,
+Application Cache and other APIs that *all have the same foundation lower
+down the stack.*
+
+![Browser API vs Browser insides][img-browser-api-3]
+
+
+## The hard way
+
+Prioritizing either effort or control is one way to solve this conflict.
+There's another way. The much harder way.
+
+As designers of an API we can decide to expose it in layers, giving access
+to both low-level and high-level primitives. The tricky part is to do it
+in a way where a developer can mess around with lower-level API without
+the result being "excluded" from the top-level result.
+
+[Flutter][flutter] is a good example of that kind of approach. Flutter is
+a cross-platform mobile development platform made by Google.
+
+![Flutter architecture][img-flutter]
+
+Because of the layered structure of the Flutter API we can:
+
+* Make a widget that is responsible for layout of its children;
+* Unit-test our custom layout widget *without starting an emulator*;
+* Make a widget with a custom paint method. For example we can make a
+  button with a custom shape, interesting shadow or coloring effect;
+* That custom widget will still ramain a button in terms of gestures it
+  accepts, accessibility and other properties.
+
+Going back to our grid example from the top of the article. Here's the
+code of the widget that centers its children vertically, tying them to a
+grid:
+
+```dart
+Offset getPositionForChild(
+  Size containerSize,
+  Size childSize
+) {
+  final h1 = containerSize.height;
+  final h2 = childSize.height;
+  final h3 = rowHeight;
+  final rowsCount = ((h1 - h2) / (2 * h3)).round();
+  return Offset(0, rowsCount * h3);
+}
+```
+
+As you can see, the code in Flutter looks very similar to what we came
+up with using Math: `x = h3 * round((h1 - h2) / (2 * h3)).` That's another
+benefit of working on the right level of abstraction: the way we express
+our intention is straight-forward.
+
+Here's how the result app in Flutter looks like:
+
+![App with a custom grid layout in Flutter][video-flutter-app]
+
+## Clothing thoughts
+
+This principles of effort-vs-conflict, layered-vs-flat helped me solve
+some of the recurring issues in my work. It's a useful lens when
+considering or building any sort of API.
+
+Sometimes we get caught up "drilling" our flat high-level API to extract
+the functionality that is already there underneath. That's a sign that we
+might need to change our approach. Remember there's *a much larger set of
+use cases* that we might be able to support with a lower-level API.
+Extracting each use case one by one leads to bloated design and *more
+work* from you as a designer.
 
 [code-ui-ep]:https://todo
 [vert-rhythm]:https://todo
+[flutter]:https://flutter.dev
 
 [img-ex1]:/static/blog/pixel/ex1.tiff
 [img-ex2]:/static/blog/pixel/ex2.tiff
 [img-vert-rhythm]:/static/blog/pixel/vertical-rhythm.png
 [img-render-pipeline]:/static/blog/pixel/render-pipeline.png
+[img-effort-abstraction-graph]:/static/blog/pixel/effort-abstraction-graph.tiff
+[img-browser-api-1]:/static/blog/pixel/browser-api-1.tiff
+[img-browser-api-2]:/static/blog/pixel/browser-api-2.tiff
+[img-browser-api-3]:/static/blog/pixel/browser-api-3.tiff
+[img-flutter]:/static/blog/pixel/flutter.png
+[video-flutter-app]:/static/blog/pixel/flutter-app-video-trimmed.mp4
