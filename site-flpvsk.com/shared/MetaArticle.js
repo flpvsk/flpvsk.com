@@ -18,6 +18,7 @@ export default function MetaArticle({
 
   let imageTags = [];
 
+  console.log('xxx image', image);
   if (image) {
     const imgUrl = `${siteInfo.host}${image}`;
     imageTags = [
@@ -80,6 +81,7 @@ export default function MetaArticle({
       <meta name='og:site_name' content={siteInfo.blogName} />
       <meta name='og:type' content='article' />
 
+      {imageTags}
       {tagsTag}
       {publishDateTag}
       {modifiedDateTag}

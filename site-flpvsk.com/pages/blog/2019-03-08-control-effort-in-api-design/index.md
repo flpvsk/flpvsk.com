@@ -2,11 +2,11 @@ import { makeBlogPost } from '~/layouts/BlogPostLayout';
 import Details from '~/shared/Details';
 
 export const meta = {
-  title: `Control vs effort in API design`,
-  heading: `Control\u00A0vs\u00A0effort in\u00A0API design`,
+  title: `Control and effort in API design`,
+  heading: `Control\u00A0and\u00A0effort in\u00A0API design`,
   publishDate: '2019-03-08',
   author: 'Andrey Salomatin',
-  image: 'https://flpvsk.com/static/blog/pixel/browser-api-3.png',
+  image: '/static/blog/pixel/browser-api-3.png',
   description:
     `Building graphical user interfaces is hard. ` +
     `One of the reasons why is poor API design. ` +

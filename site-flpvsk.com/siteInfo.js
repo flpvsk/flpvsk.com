@@ -9,9 +9,9 @@ export default {
   host: 'https://flpvsk.com',
   posts: [
     {
-      title: `Control vs effort in API design`,
-      heading: `Control\u00A0vs\u00A0effort in\u00A0API design`,
-      path: `/blog/2019-03-08-control-vs-effort-in-api-design`,
+      title: `Control and effort in API design`,
+      heading: `Control\u00A0and\u00A0effort in\u00A0API design`,
+      path: `/blog/2019-03-08-control-effort-in-api-design`,
       publishDate: '2019-03-08',
       author: 'Andrey Salomatin',
       description:
