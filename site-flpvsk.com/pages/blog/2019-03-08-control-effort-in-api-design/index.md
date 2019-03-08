@@ -3,7 +3,7 @@ import Details from '~/shared/Details';
 
 export const meta = {
   title: `Control and effort in API design`,
-  heading: `Control\u00A0and\u00A0effort in\u00A0API design`,
+  heading: `Control and effort in API\u00A0design`,
   publishDate: '2019-03-08',
   author: 'Andrey Salomatin',
   image: '/static/blog/pixel/browser-api-3.png',

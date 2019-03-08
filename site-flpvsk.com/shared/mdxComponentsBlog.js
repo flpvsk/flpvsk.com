@@ -190,7 +190,15 @@ const components = {
   blockquote: props => <Blockquote {...props} fontSize={[1, 2, 3]} />,
 
   pre: props => (
-    <Box as='pre' p={1} ml={-1} mr={-1} bg={'codeBg'} {...props} />
+    <Box
+      as='pre'
+      p={1}
+      ml={-1}
+      mr={-1}
+      bg={'codeBg'}
+      {...props}
+      overflow='scroll'
+    />
   ),
 
   code: props => <Code {...props} textStyle='code' color={'black'} />,

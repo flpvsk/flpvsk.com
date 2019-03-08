@@ -44,6 +44,7 @@ class SiteDocument extends Document {
 
       html {
         font-size: 100%;
+        overflow-x: hidden;
       }
 
       html,
