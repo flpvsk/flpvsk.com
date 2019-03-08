@@ -5,7 +5,7 @@ export const meta = {
   heading: `Control\u00A0vs\u00A0effort in\u00A0API design`,
   publishDate: '2019-03-08',
   author: 'Andrey Salomatin',
-  image: 'https://flpvsk.com/static/blog/pixel/browser-api-3.tiff',
+  image: 'https://flpvsk.com/static/blog/pixel/browser-api-3.png',
   description:
     `Building graphical user interfaces is hard. ` +
     `One of the reasons why is poor API design. ` +
@@ -307,13 +307,13 @@ can find [the video of that talk here.][api-design-talk]
 [flutter]:https://flutter.dev
 [api-design-talk]:/talks#LessonsonAPIdesign
 
-[img-ex1]:/static/blog/pixel/ex1.tiff
-[img-ex2]:/static/blog/pixel/ex2.tiff
+[img-ex1]:/static/blog/pixel/ex1.png
+[img-ex2]:/static/blog/pixel/ex2.png
 [img-vert-rhythm]:/static/blog/pixel/vertical-rhythm.png
 [img-render-pipeline]:/static/blog/pixel/render-pipeline.png
-[img-effort-abstraction-graph]:/static/blog/pixel/effort-abstraction-graph.tiff
-[img-browser-api-1]:/static/blog/pixel/browser-api-1.tiff
-[img-browser-api-2]:/static/blog/pixel/browser-api-2.tiff
-[img-browser-api-3]:/static/blog/pixel/browser-api-3.tiff
+[img-effort-abstraction-graph]:/static/blog/pixel/effort-abstraction-graph.png
+[img-browser-api-1]:/static/blog/pixel/browser-api-1.png
+[img-browser-api-2]:/static/blog/pixel/browser-api-2.png
+[img-browser-api-3]:/static/blog/pixel/browser-api-3.png
 [img-flutter]:/static/blog/pixel/flutter.png
 [video-flutter-app]:/static/blog/pixel/flutter-recording-trimmed.mp4
