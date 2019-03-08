@@ -117,7 +117,7 @@ typography.
 
 ![Vertical rhythm][img-vert-rhythm]
 
-Why is it so hard to implement? After all we're just arranging pixels on
+Why is it so hard to implement? After all, we're just arranging pixels on
 the screen. Pixels are squares. Squares are geometric shapes that we
 should be able to manipulate with ease. But we can't.
 
@@ -125,7 +125,7 @@ should be able to manipulate with ease. But we can't.
 
 The problem is that a pixel on the screen is represented by something else
 in the system. It's a DOM element, a View, an Object. It's a thousand
-different things. What a pixel *actually is* is hidden from a developer.
+different things. What a pixel *actually is* hidden from a developer.
 
 ![Browser's render pipeline][img-render-pipeline]
 
@@ -146,7 +146,7 @@ In case of a browser it leads to all sorts of inconveniences:
 
 ## The wrong tradeoff
 
-In the beginning of the article I said that the core issue here is:
+At the beginning of the article I said that the core issue here is:
 
 > Poor balance of control vs effort over the set of use cases.
 
@@ -163,7 +163,7 @@ more time it takes (for the person who already knows how the API works)
 the harder it is to use.
 
 What I mean by "control" is how fine-grained the commands that we send to
-an API can be. In a graphics API the levels of control could vary from
+an API can be. In a graphics API, the levels of control could vary from
 changing properties of a component to changing properties of a shape to
 manipulating a pixel.
 
@@ -183,14 +183,14 @@ high-level browser APIs. It's more and more effortful as we use lower
 level abstractions. Imagine coding a shader that draws characters of a
 given font on the screen.😱
 
-Now let's remember the example with the grid in the beginning of the
+Now let's remember the example with the grid at the beginning of the
 article. Some use cases, like in that example, are plain impossible with
 high-level abstractions. Until API vendors consider a use case like
-that common enough, there's no way we can implement it. At the same time
+that common enough, there's no way we can implement it. At the same time,
 it's not hard to make it using a high-control low-level API like OpenGL.
 
 We're slowly approaching the topic of API design. What are our options as
-a system designer when we face these kind of tradeoffs? One obvious choice
+a system designer when we face these kinds of tradeoffs? One obvious choice
 would be to prioritise one part of the equation over the other.
 
 ## #UseThePlatform
@@ -212,7 +212,7 @@ That led us into the situation we are in today. There's the flat API for
 common cases with a bunch of "holes" drilled into it to get to the
 lower-level functionality browsers have (and had for a while.)
 
-That's why we can draw arbitrary shapes on an html canvas, but we can't
+That's why we can draw arbitrary shapes on an HTML canvas, but we can't
 make those shapes a proper part of DOM, CSSOM or AOM (Accessibility Object
 Model).
 
@@ -221,7 +221,7 @@ we can unit-test the results of a layout stage.
 
 We can to some extent control what a browser stores in its cache, but we
 can not save, retrieve and manipulate file contents in our code. At some
-point we will be able to do that thanks to the File API. But it would be a
+point, we will be able to do that thanks to the File API. But it would be a
 separate construct, on the side, not related to Cache, Service Workers,
 Application Cache and other APIs that *all have the same foundation lower
 down the stack.*
@@ -248,9 +248,9 @@ Because of the layered structure of the Flutter API we can:
 
 * Make a widget that is responsible for laying out its children;
 * Unit-test our custom layout widget *without starting an emulator*;
-* Make a widget with a custom paint method. For example we can make a
+* Make a widget with a custom paint method. For example, we can make a
   button with a custom shape, interesting shadow or coloring effect;
-* That custom widget will still ramain a button in terms of gestures it
+* That custom widget will still remain a button in terms of gestures it
   accepts, accessibility and other properties;
 * We could unit-test the paint operation. Again, just by running the code
   in a Dart VM, no emulator required.
@@ -277,13 +277,13 @@ up with using Math: `x = h3 * round((h1 - h2) / (2 * h3)).` That's another
 benefit of working on the right level of abstraction: the way we express
 our intention is straight-forward.
 
-Here's how the result app in Flutter looks like:
+Here's how the resulting app in Flutter looks like:
 
 ![App with a custom grid layout in Flutter][video-flutter-app]
 
-## Clothing thoughts
+## Closing thoughts
 
-This principles of effort-vs-conflict, layered-vs-flat helped me solve
+These principles of effort-vs-conflict, layered-vs-flat helped me solve
 some of the recurring issues in my work. It's a useful lens to look
 through.
 
