@@ -11,7 +11,7 @@ export default {
     {
       title: `Control vs effort in API design`,
       heading: `Control\u00A0vs\u00A0effort in\u00A0API design`,
-      path: `/blog/2019-03-08-a-pixel-is-not-a-pixel`,
+      path: `/blog/2019-03-08-control-vs-effort-in-api-design`,
       publishDate: '2019-03-08',
       author: 'Andrey Salomatin',
       description:
