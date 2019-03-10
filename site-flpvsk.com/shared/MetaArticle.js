@@ -17,6 +17,7 @@ export default function MetaArticle({
   const headingText = heading || titleText;
 
   let imageTags = [];
+  let twitterCardType = 'summary';
 
   if (image) {
     const imgUrl = `${siteInfo.host}${image}`;
@@ -29,6 +30,7 @@ export default function MetaArticle({
       />,
       <meta key='og:image' name='og:image' content={imgUrl} />,
     ];
+    twitterCardType = 'summary_large_image';
   }
 
   let publishDateTag;
@@ -68,7 +70,7 @@ export default function MetaArticle({
       <meta itemprop='name' content='Andrey Salomatin' />
       <meta itemprop='description' content={description} />
 
-      <meta name='twitter:card' content='summary' />
+      <meta name='twitter:card' content={twitterCardType} />
       <meta name='twitter:title' content={titleText} />
       <meta name='twitter:description' content={description} />
       <meta name='twitter:site' content='@flpvsk' />
