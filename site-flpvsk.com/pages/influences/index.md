@@ -65,5 +65,5 @@ Christopher Alexander gave at a software engineering conference.
 
 Probably the only reason I like Java is Joshua's book. He showed me that there's a beautiful *language* behind the syntax.
 
-[Effective Java](https://www.goodreads.com/book/show/172800.Beyond_the_Goal)
+[Effective Java](https://www.goodreads.com/book/show/105099.Effective_Java_Programming_Language_Guide)
 paired with open-source Java code released by Google (think [Guice](https://github.com/google/guice)) taught me a ton about programming.
