@@ -9,6 +9,14 @@ export default {
   host: 'https://flpvsk.com',
   posts: [
     {
+      title: `Vampire-centered design`,
+      heading: `Vampire-centered design`,
+      path: `/blog/2019-03-22-vampire-centered-design`,
+      publishDate: '2019-03-22',
+      author: 'Andrey Salomatin',
+      description: ``,
+    },
+    {
       title: `Control and effort in API design`,
       heading: `Control\u00A0and\u00A0effort in\u00A0API design`,
       path: `/blog/2019-03-08-control-effort-in-api-design`,
