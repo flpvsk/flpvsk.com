@@ -9,6 +9,14 @@ export default {
   host: 'https://flpvsk.com',
   posts: [
     {
+      title: `Building local-first web & mobile apps using event-sourcing`,
+      heading: `Building local-first web & mobile apps using event-sourcing`,
+      path: `/blog/2019-07-30-local-first-apps-event-sourcing`,
+      publishDate: '2019-07-30',
+      author: 'Andrey Salomatin',
+      description: `TODO`,
+    },
+    {
       title: `Control and effort in API design`,
       heading: `Control\u00A0and\u00A0effort in\u00A0API design`,
       path: `/blog/2019-03-08-control-effort-in-api-design`,
