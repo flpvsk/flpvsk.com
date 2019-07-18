@@ -15,6 +15,7 @@ const styles = {
     paddingBottom: 8,
     fontSize: '0.9rem',
     fontFamily: 'sans-serif',
+    backgroundColor: '#fdf6e3',
   },
 
   pipeline: {
@@ -76,7 +77,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 8,
-    marginBottom: 4,
+    marginBottom: 8,
   },
 
   row_log: {
@@ -106,23 +107,18 @@ const styles = {
   },
 };
 
-const defaultState = {
+const conflictDetectionInit = {
   value: null,
   originEventId: null,
   hasConflict: false,
   conflictingValues: [],
 };
 
-function reducer(state = defaultState, event) {
-  const conflictInfo = {
-    hasConflict: false,
-    conflictingValues: [],
-  };
-
+function conflictDetectionReducer(state = conflictDetectionInit, event) {
   if (
     state &&
-    state.originEventId &&
-    state.originEventId > event.originEventId &&
+    state.version &&
+    state.version > event.originEventId &&
     state.value !== event.data.value
   ) {
     const values = state.value ? [ state.value ] : state.conflictingValues;
@@ -137,9 +133,31 @@ function reducer(state = defaultState, event) {
   return {
     ...state,
     value: event.data.value,
-    originEventId: event.originEventId,
+    version: event.originEventId,
     hasConflict: false,
     conflictingValues: [],
+  };
+}
+
+
+const lastWriteWinsInit = { value: null };
+function lastWriteWinsReducer(state = lastWriteWinsInit, event) {
+  if (state.version > event.originEventId) {
+    return state;
+  }
+
+  return {
+    ...state,
+    version: event.originEventId,
+    value: event.data.value,
+  };
+}
+
+const maxInit = { value: null };
+function maxReducer(state = maxInit, event) {
+  return {
+    ...state,
+    value: Math.max(state.value, event.data.value),
   };
 }
 
@@ -187,9 +205,7 @@ function getSeq(id) {
   return Number(idPart.split('.').slice(-1)[0]);
 }
 
-const lastIdByReplica = {
-
-};
+const lastIdByReplica = {};
 
 function genId(replica) {
   const d = new Date();
@@ -232,10 +248,31 @@ function byLocalReverse(e1, e2) {
   return 0;
 }
 
-export default function DemoCrud({ header, }) {
+const reducers = [
+  {
+    name: 'Conflict detection',
+    reducer: conflictDetectionReducer,
+    initValue: conflictDetectionInit,
+  },
+  {
+    name: 'Last-write-wins',
+    reducer: lastWriteWinsReducer,
+    initValue: lastWriteWinsInit,
+  },
+  {
+    name: 'Max reducer',
+    reducer: maxReducer,
+    initValue: maxInit,
+  },
+];
+
+export default function DemoEventSourcing({ header, showReducers, }) {
   const [app1Events, setApp1Events] = useState([]);
   const [app2Events, setApp2Events] = useState([]);
   const [serverEvents, setServerEvents] = useState([]);
+  const [reducerIndex, setReducerIndex] = useState(0);
+
+  const reducerOption = reducers[reducerIndex];
 
   async function updateApp1Value(v) {
     const eventId = genId('laptop');
@@ -288,13 +325,13 @@ export default function DemoCrud({ header, }) {
   }
 
   const app1State = [...app1Events]
-    .reduce(reducer, defaultState);
+    .reduce(reducerOption.reducer, reducerOption.initValue);
 
   const app2State = [...app2Events]
-    .reduce(reducer, defaultState);
+    .reduce(reducerOption.reducer, reducerOption.initValue);
 
   const serverState = [...serverEvents]
-    .reduce(reducer, defaultState);
+    .reduce(reducerOption.reducer, reducerOption.initValue);
 
   const app1Value = app1State.value;
   const app2Value = app2State.value;
@@ -304,12 +341,32 @@ export default function DemoCrud({ header, }) {
   const sortedApp2 = [...app2Events].sort(byLocalReverse);
   const sortedServer = [...serverEvents].sort(byLocalReverse);
 
+  let reducerOptions = null;
+  if (showReducers) {
+    reducerOptions = reducers.map((option, i) => (
+      <div key={`reducer-option-${i}`} style={{ marginRight: 16 }}>
+        <input
+          style={{ marginRight: 8 }}
+          id={`reducer-${i}`}
+          type='radio'
+          name='reducer-option'
+          checked={i === reducerIndex}
+          onChange={() => setReducerIndex(i)}
+        />
+        <label htmlFor={`reducer-${i}`}>{option.name}</label>
+      </div>
+    ));
+  }
+
   return (
     <div style={styles.block}>
       <div style={styles.row_header}>
         <h4 style={styles.h4}>
           {header}
         </h4>
+      </div>
+      <div style={styles.row}>
+        {reducerOptions}
       </div>
       <div style={styles.pipeline}>
         <div style={styles.process}>
@@ -366,11 +423,12 @@ export default function DemoCrud({ header, }) {
 
 
 function ConflictInfo({ hasConflict, conflictingValues }) {
-  let text = '';
-
-  if (hasConflict) {
-    text = `Has conflict: ${conflictingValues.join(' vs ')}`;
+  if (!hasConflict) {
+    return <div style={{minHeight: '1em'}} />;
   }
+
+  const values = [...conflictingValues].reverse();
+  const text = `Has conflict: ${values.join(' vs ')}`;
 
   return (
     <div style={{minHeight: '1em', color: 'tomato'}}>{text}</div>

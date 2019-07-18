@@ -213,7 +213,7 @@ increasing identifier and assigns it to *two fields*: `localEventId` and
 * `localEventId` is an indicator of the order in which a replica has observed an event, it changes from replica to replica;
 * `originEventId` is the actual id of the event, it stays the same across replicas.
 
-<DemoEventSourcing header='Conflict detection' />
+<DemoEventSourcing header='Conflict detection w/ event-sourcing' />
 
 Whenever a replica observes an event created by someone else, it overrides
 its `localEventId` before adding it to its log.  That way we know the
@@ -238,12 +238,132 @@ Example 2: `ReplicaA` has received some events from `ReplicaB`, with the
 last `localEventId (on ReplicaB) === 'event-5'`. `ReplicaA` can now query
 events that `ReplicaB` *observed after* `event-5`.
 
+> It's not easy to explain the sync process with just text and pictures,
+> so please do play around with the demo above.
+>
+> The demo shows how we can detect conflicts: one replica changing its
+> number to `ValueA` before receiving an update with a different value,
+> `ValueB`, from another replica.
 
-### Storing events
+### Reducers
 
-We can store events in any SQL/NoSQL storage. In the web browser
-[IndexedDB][indexeddb] fits perfectly, on a mobile device [SQLite](sqlite)
-does the job.
+Capturing and syncing events across replicas was the hard part, but it's
+not very useful in itself. How can we show actual values to the user?
+
+I've already mentioned reducers – functions that can help us transform a
+list of events into a value-object. Here's how a simple
+last-write-wins reducer might look like:
+
+```js
+// Last-write-wins reducer
+
+function reducer(state = initialState, event) {
+  if (state.version > event.originEventId) {
+    return state;
+  }
+
+  return {
+    ...state,
+    version: event.originEventId,
+    value: event.data.value,
+  };
+}
+```
+
+If we want to do something more complex, like conflict detection, the
+reducer will look slightly different:
+
+
+```js
+// Conflict-detecting reducer, simplified
+
+function reducer(state = initialState, event) {
+  if (state.version > event.originEventId) {
+    return {
+      ...state,
+      hasConflict: true,
+      conflictingValues: (
+        state.conflictingValues.concat([
+          event.data.value
+        ])
+      ),
+    };
+  }
+
+  return {
+    ...state,
+    hasConflict: false,
+    version: event.originEventId,
+    value: event.data.value,
+  };
+}
+```
+
+What's great is that we can swap the reducer as the app and the business
+requirements change. As long as events contain all the necessary metadata
+for the new reducer to work – we can painlessly fit it in.
+
+At the same time, if the reducers are pure functions with no side-effects,
+we can reuse them across the backend / frontend divide.
+
+Here's an example of the app with several different reducers:
+
+<DemoEventSourcing
+  header='Using different reducers on the same data'
+  showReducers={true}
+/>
+
+### Snapshots
+
+We can now reduce events and get the actual value, how do we filter and
+query data that is scattered across hundreds of tiny events?
+
+This is where snapshots come in. Snapshot is a versioned value-object
+saved in an indexable storage. Here's how to generate a snapshot from
+scratch:
+
+1. List all the local events related to an object using `objectId`;
+2. Run those events through the reducer to get the value-object;
+3. The most recent (largest) `localEventId` among those events is the `version` of the snapshot;
+4. Save the snapshot alongside its version in an indexable storage.
+
+Now let's say the app receives new events related to an object that
+already has an older snapshot. In this case:
+
+1. Get the most recent snapshot of the object by its `objectId`;
+2. List all the local events related to that object starting from the `localEventId` equal to the `version` of the most recent snapshot;
+3. Run those events through the reducer using the snapshot as the initial state;
+4. The most recent (largest) `localEventId` among those events is the `version` of the snapshot;
+5. Save the snapshot alongside its version in an indexable storage.
+
+Snapshots are expandable, we can delete and recreated them whenever we
+need. The typical usecase for Snapshots is feeding list views, tables and
+search in the app.
+
+
+### Storage
+
+We can store both events and snapshots in any SQL/NoSQL storage on both
+frontend and backend, browser and mobile.
+
+Events table (or collection) contains all the events for all the objects
+in the system that use event-sourcing. Events storage would normally have
+unique indexes on `localEventId`, `originEventId` and `objectId` fields.
+
+Snapshots storage would have an index on `[ objectId, version ]` pair and
+any other fields we want to query or search. For example a `User` object
+might have a full-text index on the `fullName` field.
+
+As for the actual databases, in the web browser [IndexedDB][indexeddb]
+fits perfectly, on a mobile device [SQLite](sqlite) does the job.
+
+When using SQL storage I tend to store indexable fields in separate
+columns and the rest of the data as a JSON string in a column named
+`rawData` or somesuch.
+
+
+### Transport
+
 
 [crud]: https://en.wikipedia.org/wiki/Create%2C_read%2C_update_and_delete
 [rest]: https://todo

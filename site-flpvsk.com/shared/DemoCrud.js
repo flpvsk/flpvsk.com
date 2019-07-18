@@ -15,6 +15,7 @@ const styles = {
     paddingBottom: 8,
     fontSize: '0.9rem',
     fontFamily: 'sans-serif',
+    backgroundColor: '#fdf6e3',
   },
 
   pipeline: {
@@ -74,7 +75,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 8,
-    marginBottom: 4,
+    marginBottom: 8,
   },
 
   button: {
