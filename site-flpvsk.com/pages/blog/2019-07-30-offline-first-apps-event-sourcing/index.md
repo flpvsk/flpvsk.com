@@ -437,13 +437,43 @@ up from [Victor Grischenko's][victor] work on [RON][ron].
 * Whenever we receive an event from another replica, we check it's `localEventId` against the last value remembered by our local clock. If it is larger, we override the remembered value;
 * On app startup we initialize the local clock instance with the largest `localEventId` from the local storage.
 
-### Issues with event-sourcing
+### Pros of event-sourcing
+
+* The app can work online / offline and with poor connectivity;
+* We can share most of the code for working with events and snapshots across the server and different clients;
+* Concurrency issues become *possible* to detect and debug;
+* The amount of traffic the app generates decreases;
+* We can add offline features gradually;
+* We can vary depending on a feature or even user preferences how much data we want to store for offline use;
+* Client devices can sync with each other without relying on the server;
+* We can change business logic retroactively by changing reducers, as long as events contain all the necessary data for the new reducer to work;
+* We can store additional metadata with the event. Things like the user that made the edit and the timestamp. That's useful for implementing audit features.
 
 
-### CRDT
+### Cons of event-sourcing
+
+Compared to CRUD here are the things we have to be aware of:
+
+* The amount of data we need to store on devices and *especially* on the server grows significantly;
+* It's a new paradigm for many developers. It takes time and effort to get used to it;
+
+It doesn't seem like much if we look at sheer numbers, but these two
+points are *very significant* and can overshadow the benefits of
+event-sourcing.
 
 
 ## Finale
+
+I've built several applications using a combination of event-sourcing and
+CRUD. I use CRUD for the data that rarely changes, doesn't need to be
+updated offline or by several users at a time. Event-sourcing for
+everything that needs offline and real-time functionality: chat,
+collaborative editing, local-first applications.
+
+It's astonishing how powerful and underutilized our users' devices are and
+I believe if we want to improve UX and performance of our apps we have to
+step away from CRUD as the dominant paradigm for data synchronization and
+try new approaches.
 
 
 [crud]: https://en.wikipedia.org/wiki/Create%2C_read%2C_update_and_delete
