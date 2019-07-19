@@ -84,10 +84,13 @@ function BlogPostLayout({ meta = {}, theme, children }) {
           pb={5}
         >
           <Box as='header' w='100%'>
-            <Box maxWidth={'45em'} ml='auto' mr='auto'>
+            <Box
+              ml={[1, 2, 3, 4]}
+              mr={[1, 2, 3, 4]}
+            >
               <TextHeading
                 as='h1'
-                fontSize={[6, 7, 8]}
+                fontSize={[4, 6, 6, 8]}
                 textStyle='h2'
                 textAlign='center'
                 mt={0}

@@ -390,7 +390,7 @@ Making real-time apps is easy with event-sourcing too. We can use
 If we are on a mobile or a desktop device we can bypass the server
 completely and sync devices directly using [libp2p][libp2p] or [dat][dat].
 The approach would be *exactly the same*. It could work in a web-browser
-too through [WebRTC][webrtc] although not without quirks and problems
+too, through [WebRTC][webrtc], although not without quirks and problems
 intrinsic to that protocol.
 
 We can combine approaches. Normally in an app I would use both REST or
