@@ -404,7 +404,7 @@ export default function DemoEventSourcing({ header, showReducers, }) {
         </div>
         <div style={styles.process}>
           <BoxFlex flexDirection='column' alignItems='center'>
-            <label htmlFor='app2Value'>{`User's smartphone`}</label>
+            <label htmlFor='app2Value'>{`User's phone`}</label>
             <div style={styles.btnRow}>
               <Btn selected={app2Value} value={1} update={updateApp2Value} />
               <Btn selected={app2Value} value={2} update={updateApp2Value} />

@@ -401,6 +401,50 @@ Websocket for receiving updates related to that object in real-time.
 The beauty of event-sourcing is it doesn't depend on the transport you
 choose. Use whatever works for your app. The sync code will be the same.
 
+### Clocks and generating event IDs
+
+Choosing the right algorithm for generating eventIds is extremely
+important. Remember that those ids should be globally unique, locally
+monotonically increasing and ideally as close to globally monotonically
+increasing as we can get. Let's get into those properties one at a time:
+
+**Globally unique**<br />We are working with a distributed system. Parts of the system might go offline at any point. We need a globally unique identifier to be able to distinguish events from each other;
+
+**Monotonically increasing (within replica)**<br/>
+Events happen in order. At least they do so on a single replica. Order is important for programs to be able to calculate the final value object.
+
+`[ (set 1), (set 2) ]` will yield a different final value than `[ (set 2), (set 1) ]`;
+
+**Monotonically increasing (globally)**<br/>
+This is the trickiest condition. In an ideal world all the events
+happening on all the replicas would have an absolute and precise order.
+That is possible *in theory*. *In theory* if all the physical clocks on
+all the computers in the system would be perfectly synchronized, we could
+use timestamps as identifiers. *In practice* synchronizing clocks
+precisely across several machines is impossible.
+
+Physical clocks can not do the job, so people inveted
+[logical][logicalClock] and [hybrid][hybridClock] clocks. The goal of
+those is to get us as close as possible to the ideal scenario without
+relying on too much communication between replicas.
+
+Clocks is a large subject in itself and frankly I don't know enough to
+talk about it. Here's the approach I'm using in my projects that I picked
+up from [Victor Grischenko's][victor] work on [RON][ron].
+
+* Each replica (server process, a tab in the browser, a mobile app) has an instance of a hybrid clock;
+* Whenever a new event is created on a replica, we use that clock to generate an id for that event. That id is a combination of a replica name, a timestamp and a sequence number. The clock "remembers" the last id it generated to guarantee that the next id would be larger than the previous one;
+* Whenever we receive an event from another replica, we check it's `localEventId` against the last value remembered by our local clock. If it is larger, we override the remembered value;
+* On app startup we initialize the local clock instance with the largest `localEventId` from the local storage.
+
+### Issues with event-sourcing
+
+
+### CRDT
+
+
+## Finale
+
 
 [crud]: https://en.wikipedia.org/wiki/Create%2C_read%2C_update_and_delete
 [rest]: https://todo
@@ -414,3 +458,7 @@ choose. Use whatever works for your app. The sync code will be the same.
 [webrtc]: https://todo
 [libp2p]: https://todo
 [dat]: https://todo
+[logicalClock]: https://todo
+[hybridClock]: https://todo
+[victor]: https://twitter.com/gritzko
+[ron]: http://replicated.cc
