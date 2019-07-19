@@ -1,8 +1,11 @@
 import React, { useState, useEffect, } from 'react';
+import styled from '@emotion/styled';
+import BoxFlex from '~/shared/BoxFlex';
 
 const styles = {
   block: {
     display: 'flex',
+    width: '100%',
     flexDirection: 'column',
     alignContent: 'stretch',
     alignItems: 'stretch',
@@ -22,8 +25,16 @@ const styles = {
     display: 'flex',
     flex: 1,
     flexDirection: 'row',
-    flexWrap: 'wrap',
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
+  },
+
+  processWrapper: {
+    display: 'flex',
+    flexWrap: 'nowrap',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
   },
 
   process: {
@@ -37,7 +48,9 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
-    minWidth: 48,
+    whiteSpace: 'nowrap',
+    minWidth: 32,
+    minHeight: 32,
     paddingTop: 8,
   },
 
@@ -46,6 +59,7 @@ const styles = {
     justifyContent: 'center',
     padding: 4,
     backgroundColor: 'mediumseagreen',
+    whiteSpace: 'nowrap',
   },
 
   comm_negative: {
@@ -56,6 +70,7 @@ const styles = {
     paddingTop: 4,
     paddingBottom: 4,
     backgroundColor: 'tomato',
+    whiteSpace: 'nowrap',
   },
 
   row: {
@@ -82,6 +97,13 @@ const styles = {
     fontSize: '1em',
     padding: 8,
     marginRight: 4,
+  },
+
+  btnRow: {
+    display: 'flex',
+    flexWrap: 'nowrap',
+    marginTop: 8,
+    marginBottom: 4,
   },
 
   h4: {
@@ -160,11 +182,19 @@ export default function DemoCrud({ header, hasRandomDelay }) {
           {header}
         </h4>
       </div>
-      <div style={styles.pipeline}>
+      <BoxFlex
+        flexDirection={[ 'column', 'row', ]}
+        alignItems={[ 'center' ]}
+        justifyContent={'space-between'}
+      >
         <div style={styles.process}>
           <label>{`User's laptop`}</label>
-          <div>
-            <Btn selected={app1Value} value={1} update={updateApp1Value} />
+          <div style={styles.btnRow}>
+            <Btn
+              selected={app1Value}
+              value={1}
+              update={updateApp1Value}
+            />
             <Btn selected={app1Value} value={2} update={updateApp1Value} />
             <Btn selected={app1Value} value={3} update={updateApp1Value} />
           </div>
@@ -196,14 +226,14 @@ export default function DemoCrud({ header, hasRandomDelay }) {
           ))}
         </div>
         <div style={styles.process}>
-          <label htmlFor='app2Value'>{`User's smartphone`}</label>
-          <div>
+          <label htmlFor='app2Value'>{`User's phone`}</label>
+          <div style={styles.btnRow}>
             <Btn selected={app2Value} value={1} update={updateApp2Value} />
             <Btn selected={app2Value} value={2} update={updateApp2Value} />
             <Btn selected={app2Value} value={3} update={updateApp2Value} />
           </div>
         </div>
-      </div>
+      </BoxFlex>
       <div style={styles.row}>
         <label htmlFor='delay' style={{marginRight: 4}}>
           Delay: {delayStr}

@@ -22,7 +22,7 @@ absent or poor connection. Even when online using CRUD eventually leads to loss 
 In this post I'll share how I use event-sourcing to overcome limitations
 of CRUD and some of the new problems that come with this approach.
 
-## Problem
+## The problem
 
 When we use CRUD, we basically tether our frontend application to the
 server. The server's database becomes the ultimate source of truth. The
@@ -67,7 +67,7 @@ Things get even worse if we add offline/poor connection to the picture. Do we al
 * If no, how do we detect if the device is truly offline? It's possible that we have got no or very slow internet, even if the sensors on device tell us we're connected.
 
 
-## Workarounds
+### Workarounds
 
 There are tricks we could employ to improve the situation, without getting
 rid of CRUD. For example:
@@ -179,6 +179,10 @@ it's created. Upon creation events get assigned a globally unique locally
 monotonically increasing identifier `originEventId`. How to generate these
 ids is a big subject in itself, I'll talk about it more later in the
 article.
+
+Events must contain all the necessary data for us to later be able to
+reconstruct the object. They also can contain additional info. For example
+for audit purposes each event might have a `userId` and a `timestamp` set.
 
 Because `originEventId` is monotonically increasing, we can sort events
 before reducing if our reducer is order-dependant:
@@ -340,6 +344,14 @@ Snapshots are expandable, we can delete and recreated them whenever we
 need. The typical usecase for Snapshots is feeding list views, tables and
 search in the app.
 
+We can store snapshots on every replica, depending on the experience we
+want to achieve. For example if we want to let users be able to search
+through their social media feed offline, we'd have to store a significant
+amount of snapshot data locally. If that's not required, we can use the
+server for such queries. Third option is to do something in between – my
+apps typically store snapshots of at least 1 page worth of content
+locally and load everything else from the server if required.
+
 
 ### Storage
 
@@ -354,15 +366,40 @@ Snapshots storage would have an index on `[ objectId, version ]` pair and
 any other fields we want to query or search. For example a `User` object
 might have a full-text index on the `fullName` field.
 
-As for the actual databases, in the web browser [IndexedDB][indexeddb]
-fits perfectly, on a mobile device [SQLite](sqlite) does the job.
+In the web browser IndexedDB fits perfectly, on a mobile device SQLite
+does the job. I've had some experience with MongoDB, MSSql Server, MySQL.
+All work fine.
 
 When using SQL storage I tend to store indexable fields in separate
 columns and the rest of the data as a JSON string in a column named
 `rawData` or somesuch.
 
+The only tricky part is finding out how can we index `*EventId` fields so
+that we can query events in order. That depends on the clock
+implementation you choose. More on this later.
 
 ### Transport
+
+We can use HTTP(S) to sync events and snapshots via a [REST][rest] or a
+[GraphQL][graphql] API, it's no different from how we'd normally build a
+server.
+
+Making real-time apps is easy with event-sourcing too. We can use
+[Websocket][websocket] to send events to all subscribed replicas.
+
+If we are on a mobile or a desktop device we can bypass the server
+completely and sync devices directly using [libp2p][libp2p] or [dat][dat].
+The approach would be *exactly the same*. It could work in a web-browser
+too through [WebRTC][webrtc] although not without quirks and problems
+intrinsic to that protocol.
+
+We can combine approaches. Normally in an app I would use both REST or
+GraphQL and a Websocket. For example REST for sending events to the
+server, querying snapshots and receiving initial event log for an object,
+Websocket for receiving updates related to that object in real-time.
+
+The beauty of event-sourcing is it doesn't depend on the transport you
+choose. Use whatever works for your app. The sync code will be the same.
 
 
 [crud]: https://en.wikipedia.org/wiki/Create%2C_read%2C_update_and_delete
@@ -371,3 +408,9 @@ columns and the rest of the data as a JSON string in a column named
 [indexeddb]: https://todo
 [sqlite]: https://todo
 [scuttlebutt]: https://todo
+[graphql]: https://todo
+[websocket]: https://todo
+[rest]: https://todo
+[webrtc]: https://todo
+[libp2p]: https://todo
+[dat]: https://todo

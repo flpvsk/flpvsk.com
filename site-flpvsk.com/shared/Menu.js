@@ -72,10 +72,10 @@ export default function Menu({
             display='flex'
             alignItems='center'
             textStyle='caption'
-            fontSize={2}
+            fontSize={[1, 2]}
             color='inherit'
-            pr={1}
-            pl={1}
+            pr={[0, 1]}
+            pl={[0, 1]}
           >
             {item.title}
           </LinkNoDecoration>

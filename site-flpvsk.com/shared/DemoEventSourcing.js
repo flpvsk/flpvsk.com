@@ -1,4 +1,5 @@
 import React, { useState, useEffect, } from 'react';
+import BoxFlex from '~/shared/BoxFlex';
 
 const styles = {
   block: {
@@ -18,17 +19,11 @@ const styles = {
     backgroundColor: '#fdf6e3',
   },
 
-  pipeline: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-
   process: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'space-between',
     flexShrink: 0,
     flexGrow: 0,
     flexBasis: '33%',
@@ -93,6 +88,14 @@ const styles = {
     marginRight: 4,
   },
 
+  btnRow: {
+    display: 'flex',
+    flexWrap: 'nowrap',
+    marginTop: 8,
+    marginBottom: 4,
+  },
+
+
   h4: {
     margin: 0,
     fontSize: '1.2em',
@@ -101,9 +104,6 @@ const styles = {
 
   ul: {
     padding: 0,
-    flexBasis: '33%',
-    flexShrink: 0,
-    flexGrow: 0,
   },
 };
 
@@ -368,52 +368,60 @@ export default function DemoEventSourcing({ header, showReducers, }) {
       <div style={styles.row}>
         {reducerOptions}
       </div>
-      <div style={styles.pipeline}>
+      <BoxFlex
+        flexDirection={[ 'column', 'row', ]}
+        alignItems={[ 'center', 'stretch', ]}
+        justifyContent={'space-between'}
+      >
         <div style={styles.process}>
-          <label>{`User's laptop`}</label>
-          <div>
-            <Btn selected={app1Value} value={1} update={updateApp1Value} />
-            <Btn selected={app1Value} value={2} update={updateApp1Value} />
-            <Btn selected={app1Value} value={3} update={updateApp1Value} />
-          </div>
-          <div>
-            <button onClick={syncApp1} style={styles.button}>
-              Sync with server
-            </button>
-          </div>
-          <ConflictInfo {...app1State} />
-        </div>
-        <div style={styles.process}>
-          <label>{`Server`}</label>
-          <h4 style={styles.h4}>{serverValue}</h4>
-          <ConflictInfo {...serverState} />
-        </div>
-        <div style={styles.process}>
-          <label htmlFor='app2Value'>{`User's smartphone`}</label>
-          <div>
-            <Btn selected={app2Value} value={1} update={updateApp2Value} />
-            <Btn selected={app2Value} value={2} update={updateApp2Value} />
-            <Btn selected={app2Value} value={3} update={updateApp2Value} />
-          </div>
-          <div>
-            <button onClick={syncApp2} style={styles.button}>
-              Sync with server
-            </button>
-          </div>
-          <ConflictInfo {...app2State} />
-        </div>
-      </div>
-      <div style={styles.row_log}>
+          <BoxFlex flexDirection='column' alignItems='center'>
+            <label>{`User's laptop`}</label>
+            <div style={styles.btnRow}>
+              <Btn selected={app1Value} value={1} update={updateApp1Value} />
+              <Btn selected={app1Value} value={2} update={updateApp1Value} />
+              <Btn selected={app1Value} value={3} update={updateApp1Value} />
+            </div>
+            <div>
+              <button onClick={syncApp1} style={styles.button}>
+                Sync with server
+              </button>
+            </div>
+            <ConflictInfo {...app1State} />
+          </BoxFlex>
           <ul style={styles.ul}>
-            {sortedApp1.map(e => <Event {...e} />)}
+            {sortedApp1.map(e => <Event key={e.localEventId} {...e} />)}
           </ul>
+        </div>
+        <div style={styles.process}>
+          <BoxFlex flexDirection='column' alignItems='center'>
+            <label>{`Server`}</label>
+            <h4 style={styles.h4}>{serverValue}</h4>
+            <ConflictInfo {...serverState} />
+          </BoxFlex>
           <ul style={styles.ul}>
-            {sortedServer.map(e => <Event {...e} />)}
+            {sortedServer.map(e => <Event key={e.localEventId} {...e} />)}
           </ul>
-        <ul style={styles.ul}>
-          {sortedApp2.map(e => <Event {...e} />)}
-        </ul>
-      </div>
+        </div>
+        <div style={styles.process}>
+          <BoxFlex flexDirection='column' alignItems='center'>
+            <label htmlFor='app2Value'>{`User's smartphone`}</label>
+            <div style={styles.btnRow}>
+              <Btn selected={app2Value} value={1} update={updateApp2Value} />
+              <Btn selected={app2Value} value={2} update={updateApp2Value} />
+              <Btn selected={app2Value} value={3} update={updateApp2Value} />
+            </div>
+            <div>
+              <button onClick={syncApp2} style={styles.button}>
+                Sync with server
+              </button>
+            </div>
+            <ConflictInfo {...app2State} />
+          </BoxFlex>
+          <ul style={styles.ul}>
+            {sortedApp2.map(e => <Event key={e.localEventId} {...e} />)}
+          </ul>
+        </div>
+      </BoxFlex>
       <div style={styles.row}>
         <button style={styles.button} onClick={reset}>Reset all</button>
       </div>
