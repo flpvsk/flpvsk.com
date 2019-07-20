@@ -19,7 +19,7 @@ export default makeBlogPost(meta);
 
 Today [CRUD][crud] is *the default* paradigm for managing data in a
 user-facing application. It works fine if the user's device has a stable
-internet connection, but makes the app unusable in the case of absent or
+internet connection, but makes the app unusable in the case of an absent or
 poor connection. Even when online using CRUD eventually leads to loss of
 data and ordering issues due to the concurrent nature of network
 communication.
@@ -41,14 +41,14 @@ database makes it even harder.
 Here's a quick demo. Let's say we have a single number that we want to
 synchronize between 3 instances of the app:
 
-* App on user's laptop;
-* App on user's smartphone;
+* App on the user's laptop;
+* App on the user's smartphone;
 * Server.
 
 Let's say each instance loads the value from the server upon startup. To
 make user experience better, each frontend updates the UI as soon as the
 user clicks on a button and makes the update call to the server
-immediatly after. To simulate network conditions, we'll add a delay in
+immediately after. To simulate network conditions, we'll add a delay in
 frontend-to-server communication. "Reload all" button sets the value on
 each of the frontends to the current value on the server.
 
@@ -73,7 +73,7 @@ Things get even more complex if we add offline/poor connection to the
 picture. Do we allow users to edit the value while offline?
 
 * If yes, how do we sync that value to the database once the device is back online? How do we know that the value wasn't changed by a different process during the "offline time";
-* If no, how do we detect if the device is truly offline? It's possible that we have got no or very slow internet even if the sensors on device tell us we're connected.
+* If no, how do we detect if the device is truly offline? It's possible that we have got no or very slow internet even if the sensors on a device tell us we're connected.
 
 
 ### Workarounds
@@ -82,11 +82,11 @@ There are tricks we could employ to improve the situation, without having
 to get rid of CRUD. For example:
 
 * Poll data from the server at regular intervals to make sure UI is up to date with the server;
-* Restrict offline edits, using regular ping-style checks to the API host to determine wheather we're offline;
+* Restrict offline edits, using regular ping-style checks to the API host to determine whether we're offline;
 * Use a versioning system similar to the one in [CouchDB][couchdb]. Only allow those updates that have the up-to-date version number of the object attached.
 
 These tricks might make the system a bit more reliable, but they will
-*definitely worsen* user experience.
+*worsen* user experience.
 
 ## Local-first
 
@@ -99,7 +99,7 @@ A better way is to untether the frontend from the server. The client app needs t
 To do that we need to move the app logic to the client. Make the
 user-facing app behave more like Winamp less like Soundcloud.
 
-In the client-server model the server is the ultimate authority and hence
+In the client-server model, the server is the ultimate authority and hence
 the ultimate bottleneck. We need to move towards a *peer-to-peer* or
 *local-first* model.
 
@@ -117,25 +117,25 @@ each other for a couple of months.
 
 Imagine now that Ron meets Ginny and they catch up. Now Ron knows that
 Ginny has passed her exams successfully and Ginny knows that Ron's rat
-dissappeared. Both of those facts are unknown to Harry.
+disappeared. Both of those facts are unknown to Harry.
 
-Some time later Ginny meets Harry. The CRUD approach to get Harry up to
+Sometime later Ginny meets Harry. The CRUD approach to get Harry up to
 speed would be for Ginny to describe who Ron is in every detail including
 the fact that *Ron doesn't have a rat*. Outside of it being weird to
 mention that last point, it would be a very inefficient way to
 tell Harry what's been going on with his friend.
 
-In real world it would go a bit different though. Ginny would ask Harry
-when was the last time he'd heard of Ron and then describe him events that
-happened to his friend after that moment.
+In the real world it would go a bit different though. Ginny would ask Harry
+when was the last time he'd heard of Ron and then describe to him events
+that happened to his friend after that moment.
 
 Their communication model gives us a good idea of how event-sourcing works.
 
 ## Event-sourcing
 
-In the event-sourcing model each instance of the app has its own
+In the event-sourcing model each instance of the app has its
 append-only log of events. Events are atomic updates that correspond to
-user actions in the app. Those logs of events is what gets synchronized between all the instances of the app, including the server.
+user actions in the app. Those logs of events are what gets synchronized between all the instances of the app, including the server.
 
 So, let's say we have a user profile object that looks like this:
 
@@ -149,8 +149,8 @@ So, let's say we have a user profile object that looks like this:
 }
 ```
 
-Instead working directly with this object, whenever we want to read or
-udpate it, we would work with events that later will be reduced to become
+Instead of working directly with this object, whenever we want to read or
+update it, we would work with events that later will be reduced to become
 that object.
 
 This is similar to how in banking software we don't write code that
@@ -185,14 +185,15 @@ on that log.
 
 Events represent atomic operations. They must contain all the necessary
 data for us to later be able to reconstruct the object. They *can* also
-contain additional info.  For example for audit purposes each event might
+contain additional info.  For example, for audit purposes, each event might
 have a `userId` and a `timestamp` set.
 
 Each event has an `originEventId` that never changes and a `localEventId`
 that is assigned by the replica at the moment it observes that event.
 
-`objectId` field is the globally unique identifier of the object the event
-is related to. In the example above that object is my user's profile.
+The `objectId` field is the globally unique identifier of the object the
+event is related to. In the example above that object is my user's
+profile.
 
 To reconstruct an actual value-object from a log of events, we can use a
 reducer:
@@ -217,8 +218,8 @@ I'll call an instance of the app **a replica.**  It could be a client app
 or a server.
 
 Each replica has its *append-only* log of events. Another way to think
-about it is that each replica records all the events in order it observes
-them.
+about it is that each replica records all the events in the order it
+observes them.
 
 Whenever a replica creates a new event, it generates a unique monotonically
 increasing identifier and assigns it to *two fields*: `localEventId` and
@@ -239,12 +240,12 @@ concrete event) would have `localEventId` and `originEventId` for that
 event set to the same value.
 
 Because every event has a unique `originEventId`, it makes it easy to
-synchronize events across devices. In case of a poor connection we can
+synchronize events across devices. In case of a poor connection, we can
 retry sending events without the risk of applying the same update several
 times.
 
-We can use `localEventId`s to retreive only those events that we haven't
-seen yet. For example if `ReplicaA` hasn't received any events from
+We can use `localEventId`s to retrieve only those events that we haven't
+seen yet. For example, if `ReplicaA` hasn't received any events from
 `ReplicaB`, it will query *all the events* and add them to its log. But if
 `ReplicaA` has received some events from `ReplicaB`, with the last
 `localEventId (on ReplicaB) === 'event-5'`. `ReplicaA` can now query
@@ -316,7 +317,7 @@ requirements change. As long as events contain all the necessary metadata
 for the new reducer to work – we can painlessly fit it in.
 
 At the same time, if reducers are pure functions with no side-effects,
-we can reuse them across the backend / frontend parts of the application.
+we can reuse them across the backend/frontend parts of the application.
 
 Here's an example of the app with several different reducers:
 
@@ -331,13 +332,13 @@ We can now reduce events and get the actual value, how do we filter and
 query data that is scattered across hundreds of tiny events?
 
 This is where snapshots come in. Snapshot is a versioned value-object
-saved in an indexable storage. Here's how to generate a snapshot from
+saved in indexable storage. Here's how to generate a snapshot from
 scratch:
 
 1. List all the local events related to an object using `objectId`;
 2. Run those events through a reducer to get the value-object;
 3. The most recent (largest) `localEventId` among those events is the `version` of the snapshot;
-4. Save the snapshot alongside its version in an indexable storage.
+4. Save the snapshot alongside its version in indexable storage.
 
 Now let's say the app receives new events related to an object that
 already has an older snapshot. In this case:
@@ -346,7 +347,7 @@ already has an older snapshot. In this case:
 2. List all the local events related to that object starting from the `localEventId` equal to the `version` of the most recent snapshot;
 3. Run those events through a reducer using the snapshot as the initial state;
 4. The most recent (largest) `localEventId` among those events is the `version` of the snapshot;
-5. Save the snapshot alongside its version in an indexable storage.
+5. Save the snapshot alongside its version in indexable storage.
 
 Snapshots are expendable, we can delete and recreated them whenever we
 need. The typical usecase for Snapshots is feeding list views, tables and
@@ -355,10 +356,10 @@ search features in an app.
 We can store snapshots on all replicas or not use them at all. That
 depends on the experience we want to achieve.
 
-For example if we want to let users be able to search through their social
+For example, if we want to let users be able to search through their social
 media feed offline, we'd have to store a significant amount of snapshot
 data locally. If that's not required, we can use the server for such
-queries. Third option is to do something in between – my apps typically
+queries. The third option is to do something in between – my apps typically
 store snapshots of at least 1 page worth of content locally and load
 everything else from the server if required.
 
@@ -373,10 +374,10 @@ in the system that use event-sourcing. Events storage would normally have
 unique indexes on `localEventId`, `originEventId` and `objectId` fields.
 
 Snapshots storage would have an index on `[ objectId, version ]` pair and
-any other fields we want to query or search. For example a `User` object
+any other fields we want to query or search. For example, a `User` object
 might have a full-text index on the `fullName` field.
 
-As to the concrete storage engines. In the web browser IndexedDB fits
+As to the concrete storage engines. In the web browser, IndexedDB fits
 perfectly, on a mobile device SQLite does the job. I've had some
 experience with MongoDB, MSSql Server, MySQL.  All work fine.
 
@@ -403,8 +404,8 @@ The approach would be *exactly the same*. It could work in a web-browser
 too, through [WebRTC][webrtc], although not without quirks and problems
 intrinsic to that protocol.
 
-We can combine approaches. Normally in an app I would use both REST or
-GraphQL and a Websocket. For example REST for sending events to the
+We can combine approaches. Normally in an app, I would use both REST or
+GraphQL and a Websocket. For example, REST for sending events to the
 server, querying snapshots and receiving initial event log for an object,
 Websocket for receiving updates related to that object in real-time.
 
@@ -426,26 +427,26 @@ Events happen in order. At least they do so on a single replica. Order is import
 `[ (set 1), (set 2) ]` will yield a different final value than `[ (set 2), (set 1) ]`;
 
 **Monotonically increasing (globally)**<br/>
-This is the trickiest condition. In an ideal world all the events
+This is the trickiest condition. In an ideal world, all the events
 happening on all the replicas would have an absolute and precise order.
-That is possible *in theory*. *In theory* if all the physical clocks on
+That is possible *in theory*. *In theory*, if all the physical clocks on
 all the computers in the system would be perfectly synchronized, we could
-use timestamps as identifiers. *In practice* synchronizing clocks
+use timestamps as identifiers. *In practice*, synchronizing clocks
 precisely across several machines is impossible.
 
-Physical clocks can not do the job, so people inveted
+Physical clocks can not do the job, so people invented
 [logical][logicalClock] and [hybrid][hybridClock] clocks. The goal of
 those is to get us as close as possible to the ideal scenario without
 relying too much on communication between replicas.
 
-Clocks is a large subject in itself and frankly I don't know enough to
+Clocks is a large subject in itself and frankly, I don't know enough to
 talk about it. Here's the approach I'm using in my projects that I picked
 up from [Victor Grischenko's][victor] work on [RON][ron]:
 
 * Each replica (server process, a tab in the browser, a mobile app) has an instance of a hybrid clock;
 * Whenever a new event is created on a replica, we use that clock to generate an id for that event. That id is a combination of a replica's name, a timestamp and a sequence number. The clock "remembers" the last id it generated to guarantee that the next id would be larger than the previous one;
 * Whenever we receive an event from another replica, we check it's `localEventId` against the last value remembered by our local clock. If it is larger, we override the remembered value;
-* On app startup we initialize the local clock instance with the largest `localEventId` from the local storage.
+* On app startup, we initialize the local clock instance with the largest `localEventId` from the local storage.
 
 ### Pros of event-sourcing
 
@@ -464,7 +465,7 @@ up from [Victor Grischenko's][victor] work on [RON][ron]:
 
 Compared to CRUD here are the things we have to be aware of:
 
-* The amount of data we need to store on devices and *especially* on the server grows significantly. That issue is still an area of active research. If you're curious about the subject check out Victor's work on [RON][ron].
+* The amount of data we need to store on devices and *especially* on the server grows significantly. That issue is still an area of active research. If you're curious about the subject, check out Victor's work on [RON][ron].
 * It's a new paradigm for many developers. It takes time and effort to get a hang of it and there's not much information out there;
 
 It doesn't seem like much if we look at sheer numbers, but these two
@@ -481,10 +482,9 @@ updated offline or by several users at a time. I use event-sourcing for
 everything that needs offline and real-time functionality: chat,
 collaborative editing, local-first applications.
 
-It's astonishing how powerful and underutilized our users' devices are and
+It's astonishing how powerful and underutilized our users' devices are.
 I believe if we want to improve UX and performance of our apps we have to
-step away from CRUD as the dominant paradigm for data synchronization and
-try new approaches.
+step away from CRUD and try new approaches.
 
 ---
 
@@ -496,18 +496,17 @@ other articles on the subject.
 
 
 [crud]: https://en.wikipedia.org/wiki/Create%2C_read%2C_update_and_delete
-[rest]: https://todo
-[couchdb]: https://todo
-[indexeddb]: https://todo
-[sqlite]: https://todo
-[scuttlebutt]: https://todo
-[graphql]: https://todo
-[websocket]: https://todo
-[rest]: https://todo
-[webrtc]: https://todo
-[libp2p]: https://todo
-[dat]: https://todo
-[logicalClock]: https://todo
-[hybridClock]: https://todo
+[rest]: https://en.wikipedia.org/wiki/Representational_state_transfer
+[couchdb]: https://docs.couchdb.org/en/stable/api/document/common.html#updating-an-existing-document
+[indexeddb]: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+[sqlite]: https://www.sqlite.org/index.html
+[scuttlebutt]: https://www.scuttlebutt.nz/
+[graphql]: https://graphql.org/
+[websocket]: https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
+[webrtc]: https://developer.mozilla.org/en-US/docs/Glossary/WebRTC
+[libp2p]: https://github.com/libp2p
+[dat]: https://dat.foundation/
+[logicalClock]: https://en.wikipedia.org/wiki/Logical_clock
+[hybridClock]: http://sergeiturukin.com/2017/06/26/hybrid-logical-clocks.html
 [victor]: https://twitter.com/gritzko
 [ron]: http://replicated.cc
