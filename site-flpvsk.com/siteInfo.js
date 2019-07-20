@@ -9,9 +9,9 @@ export default {
   host: 'https://flpvsk.com',
   posts: [
     {
-      title: `Building offline-first web & mobile apps using event-sourcing`,
-      heading: `Building offline-first web & mobile apps using event-sourcing`,
-      path: `/blog/2019-07-30-offline-first-apps-event-sourcing`,
+      title: `Building offline-first web and mobile apps using event-sourcing`,
+      heading: `Building offline-first web and mobile apps using event-sourcing`,
+      path: `/blog/2019-07-20-offline-first-apps-event-sourcing`,
       publishDate: '2019-07-20',
       author: 'Andrey Salomatin',
       description: (
