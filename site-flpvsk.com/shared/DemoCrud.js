@@ -49,7 +49,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'stretch',
     whiteSpace: 'nowrap',
-    minWidth: 32,
+    minWidth: 54,
     minHeight: 32,
     paddingTop: 8,
   },
@@ -241,7 +241,7 @@ export default function DemoCrud({ header, hasRandomDelay }) {
         <input
           type='range'
           id='delay'
-          min={1}
+          min={0}
           max={10}
           step={1}
           value={delay}

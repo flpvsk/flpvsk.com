@@ -6,49 +6,58 @@ import DemoEventSourcing from '~/shared/DemoEventSourcing';
 export const meta = {
   title: `Building offline-first web and mobile apps using event-sourcing`,
   heading: `Building offline-first web and mobile apps using event-sourcing`,
-  publishDate: '2019-07-30',
+  publishDate: '2019-07-20',
   author: 'Andrey Salomatin',
-  image: null,
-  description: ``,
+  image: '/static/blog/eventsourcing/serverroom.png',
+  description: (
+    `An interactive practical guide to building local-first ` +
+    `and real-time applications using event-sourcing.`
+  ),
 };
 
 export default makeBlogPost(meta);
 
-Today [CRUD][crud] is *the default* paradigm for managing
-data in a user-facing app. It works fine if the user's device has
-a stable internet connection, but makes the app unusable in the case of
-absent or poor connection. Even when online using CRUD eventually leads to loss of data and ordering issues due to the concurrent nature of network communication.
+Today [CRUD][crud] is *the default* paradigm for managing data in a
+user-facing application. It works fine if the user's device has a stable
+internet connection, but makes the app unusable in the case of absent or
+poor connection. Even when online using CRUD eventually leads to loss of
+data and ordering issues due to the concurrent nature of network
+communication.
 
-In this post I'll share how I use event-sourcing to overcome limitations
-of CRUD and some of the new problems that come with this approach.
+This post is a detailed description of how I use event-sourcing to
+overcome limitations of CRUD and some of the problems that come with this
+approach.
+
+![Inside the server](/static/blog/eventsourcing/serverroom.png)
 
 ## The problem
 
-When we use CRUD, we basically tether our frontend application to the
-server. The server's database becomes the ultimate source of truth. The
-app becomes a view of the server's database. Keeping that view up to date
-is hard. Adding layers of caching and processing in between the interface
-and the database makes it even harder.
+When we use CRUD, we tether our frontend application to the server. The
+server's database becomes the ultimate source of truth. The UI becomes a
+view of the server's database. Keeping that view up to date is hard.
+Adding layers of caching and processing in between the frontend and the
+database makes it even harder.
 
-Here's a quick demo, let's say we have a single number, that we want to
+Here's a quick demo. Let's say we have a single number that we want to
 synchronize between 3 instances of the app:
 
-* App on the user's laptop;
-* App on the user's smartphone;
-* Database.
+* App on user's laptop;
+* App on user's smartphone;
+* Server.
 
-Let's say each instance loads the value from the database on app start. To
-make user experience better, each app updates the UI as soon as the user
-clicks on a button and makes the update call to the database immediatly
-after. To simulate network conditions, we'll add a delay to
-app-to-database communication.
+Let's say each instance loads the value from the server upon startup. To
+make user experience better, each frontend updates the UI as soon as the
+user clicks on a button and makes the update call to the server
+immediatly after. To simulate network conditions, we'll add a delay in
+frontend-to-server communication. "Reload all" button sets the value on
+each of the frontends to the current value on the server.
 
 <DemoCrud header='Fixed delay' />
 
 Try clicking on the User's buttons and "Reload all" and you'll notice how
-unpredictable the final state of the system can be. One of the users might
-see a value that is different from the one in the database and on the
-other user's screen.
+unpredictable the final state of the system can be. We might end up in a
+state where each instance has a different value or we might end up in a
+consistent state.
 
 Let's bring the system even closer to real conditions and randomize the
 time it takes for an update to reach the database:
@@ -58,38 +67,37 @@ time it takes for an update to reach the database:
   hasRandomDelay
 />
 
-Any process within that system can be in any of the two states
-*independently* of all other processes.
+The state of the system becomes less and less predictable.
 
-Things get even worse if we add offline/poor connection to the picture. Do we allow users to edit the value while offline?
+Things get even more complex if we add offline/poor connection to the
+picture. Do we allow users to edit the value while offline?
 
-* If yes, how do we sync that value to the database once the device is back online? How do we know that the value wasn't changed during the "offline time";
-* If no, how do we detect if the device is truly offline? It's possible that we have got no or very slow internet, even if the sensors on device tell us we're connected.
+* If yes, how do we sync that value to the database once the device is back online? How do we know that the value wasn't changed by a different process during the "offline time";
+* If no, how do we detect if the device is truly offline? It's possible that we have got no or very slow internet even if the sensors on device tell us we're connected.
 
 
 ### Workarounds
 
-There are tricks we could employ to improve the situation, without getting
-rid of CRUD. For example:
+There are tricks we could employ to improve the situation, without having
+to get rid of CRUD. For example:
 
-* Poll data from the server at regular intervals to make sure UI is up to date with the database;
+* Poll data from the server at regular intervals to make sure UI is up to date with the server;
 * Restrict offline edits, using regular ping-style checks to the API host to determine wheather we're offline;
 * Use a versioning system similar to the one in [CouchDB][couchdb]. Only allow those updates that have the up-to-date version number of the object attached.
 
-These tricks might make the system a bit more reliable, but never
-unbreakable. In addition, those practices *definitely worsen* user
-experience.
+These tricks might make the system a bit more reliable, but they will
+*definitely worsen* user experience.
 
 ## Local-first
 
-A better way is to untether the app from the server. The app needs to be able to:
+A better way is to untether the frontend from the server. The client app needs to be able to:
 
-* The app should work when online, offline or on a slow or unreliable connection;
-* It should be complete and non-restrictive when offline;
-* Once two instances of the app had a chance to exchange messages (via a server or directly), they need to be able to come to the same "truth", to converge to the same value;
+* Work online, offline or on a slow or unreliable connection;
+* It should provide full, unrestricted experience when offline;
+* Once two instances of the app had a chance to exchange messages (via a server or directly), they need to be able to come to the same "truth", to converge on the same value;
 
-To do that we need to move the app logic to the client. Make the app
-behave more like Winamp less like Soundcloud.
+To do that we need to move the app logic to the client. Make the
+user-facing app behave more like Winamp less like Soundcloud.
 
 In the client-server model the server is the ultimate authority and hence
 the ultimate bottleneck. We need to move towards a *peer-to-peer* or
@@ -117,12 +125,11 @@ the fact that *Ron doesn't have a rat*. Outside of it being weird to
 mention that last point, it would be a very inefficient way to
 tell Harry what's been going on with his friend.
 
-It would probably go a bit different though. Ginny would ask Harry when
-was the last time he'd heard of Ron and then describe him events that
+In real world it would go a bit different though. Ginny would ask Harry
+when was the last time he'd heard of Ron and then describe him events that
 happened to his friend after that moment.
 
-Their communication would be similar to how event-sourcing works.
-
+Their communication model gives us a good idea of how event-sourcing works.
 
 ## Event-sourcing
 
@@ -148,15 +155,16 @@ that object.
 
 This is similar to how in banking software we don't write code that
 manipulates the balance of client's account directly. Instead, we add
-transactions to an append-only log and calculate the balance based on that
-log.
+transactions to an append-only log and calculate the final balance based
+on that log.
 
 ```js
 // User profile events
 
 [
   {
-    originEventId: "update-profile-1",
+    localEventId: "update-profile-1@laptop",
+    originEventId: "update-profile-1@phone",
     eventType: "setFirstName",
     objectId: "user-profile-a1",
     data: {
@@ -164,7 +172,8 @@ log.
     }
   },
   {
-    originEventId: "update-profile-2",
+    localEventId: "update-profile-1@laptop",
+    originEventId: "update-profile-2@laptop",
     eventType: "setLastName",
     objectId: "user-profile-a1",
     data: {
@@ -174,20 +183,23 @@ log.
 ]
 ```
 
-Events are atomic, that means that we never need to update an event once
-it's created. Upon creation events get assigned a globally unique locally
-monotonically increasing identifier `originEventId`. How to generate these
-ids is a big subject in itself, I'll talk about it more later in the
-article.
+Events represent atomic operations. They must contain all the necessary
+data for us to later be able to reconstruct the object. They *can* also
+contain additional info.  For example for audit purposes each event might
+have a `userId` and a `timestamp` set.
 
-Events must contain all the necessary data for us to later be able to
-reconstruct the object. They also can contain additional info. For example
-for audit purposes each event might have a `userId` and a `timestamp` set.
+Each event has an `originEventId` that never changes and a `localEventId`
+that is assigned by the replica at the moment it observes that event.
 
-Because `originEventId` is monotonically increasing, we can sort events
-before reducing if our reducer is order-dependant:
+`objectId` field is the globally unique identifier of the object the event
+is related to. In the example above that object is my user's profile.
+
+To reconstruct an actual value-object from a log of events, we can use a
+reducer:
 
 ```js
+// User profile reducer
+
 function userProfileReducer(state, event) {
   return {
     ...state,
@@ -196,15 +208,13 @@ function userProfileReducer(state, event) {
   };
 }
 
-const userProfile = events
-  .sort(byOriginEventId)
-  .reduce(userProfileReducer, {});
+const userProfile = events.reduce(userProfileReducer, {});
 ```
 
 ### Synchronizing events
 
-I'll call an instance of the app **a replica.**  It could be a
-user's device or a server.
+I'll call an instance of the app **a replica.**  It could be a client app
+or a server.
 
 Each replica has its *append-only* log of events. Another way to think
 about it is that each replica records all the events in order it observes
@@ -224,25 +234,23 @@ its `localEventId` before adding it to its log.  That way we know the
 relative order of events on any replica. `originEventId` always stays the
 same.
 
-Only the origin replica (the replica that created the event) would have
-`localEventId` and `originEventId` set to the same identifier.
+Only the event's origin replica (the replica that has created that
+concrete event) would have `localEventId` and `originEventId` for that
+event set to the same value.
 
 Because every event has a unique `originEventId`, it makes it easy to
 synchronize events across devices. In case of a poor connection we can
 retry sending events without the risk of applying the same update several
 times.
 
-We use `localEventId`s to retreive only those events that we haven't seen
-yet.
-
-Example 1: `ReplicaA` hasn't received any events from `ReplicaB`, it will
-query all events and add them to its log.
-
-Example 2: `ReplicaA` has received some events from `ReplicaB`, with the
-last `localEventId (on ReplicaB) === 'event-5'`. `ReplicaA` can now query
+We can use `localEventId`s to retreive only those events that we haven't
+seen yet. For example if `ReplicaA` hasn't received any events from
+`ReplicaB`, it will query *all the events* and add them to its log. But if
+`ReplicaA` has received some events from `ReplicaB`, with the last
+`localEventId (on ReplicaB) === 'event-5'`. `ReplicaA` can now query
 events that `ReplicaB` *observed after* `event-5`.
 
-> It's not easy to explain the sync process with just text and pictures,
+> It's not easy to explain the sync process with just text,
 > so please do play around with the demo above.
 >
 > The demo shows how we can detect conflicts: one replica changing its
@@ -307,8 +315,8 @@ What's great is that we can swap the reducer as the app and the business
 requirements change. As long as events contain all the necessary metadata
 for the new reducer to work – we can painlessly fit it in.
 
-At the same time, if the reducers are pure functions with no side-effects,
-we can reuse them across the backend / frontend divide.
+At the same time, if reducers are pure functions with no side-effects,
+we can reuse them across the backend / frontend parts of the application.
 
 Here's an example of the app with several different reducers:
 
@@ -327,7 +335,7 @@ saved in an indexable storage. Here's how to generate a snapshot from
 scratch:
 
 1. List all the local events related to an object using `objectId`;
-2. Run those events through the reducer to get the value-object;
+2. Run those events through a reducer to get the value-object;
 3. The most recent (largest) `localEventId` among those events is the `version` of the snapshot;
 4. Save the snapshot alongside its version in an indexable storage.
 
@@ -336,21 +344,23 @@ already has an older snapshot. In this case:
 
 1. Get the most recent snapshot of the object by its `objectId`;
 2. List all the local events related to that object starting from the `localEventId` equal to the `version` of the most recent snapshot;
-3. Run those events through the reducer using the snapshot as the initial state;
+3. Run those events through a reducer using the snapshot as the initial state;
 4. The most recent (largest) `localEventId` among those events is the `version` of the snapshot;
 5. Save the snapshot alongside its version in an indexable storage.
 
-Snapshots are expandable, we can delete and recreated them whenever we
+Snapshots are expendable, we can delete and recreated them whenever we
 need. The typical usecase for Snapshots is feeding list views, tables and
-search in the app.
+search features in an app.
 
-We can store snapshots on every replica, depending on the experience we
-want to achieve. For example if we want to let users be able to search
-through their social media feed offline, we'd have to store a significant
-amount of snapshot data locally. If that's not required, we can use the
-server for such queries. Third option is to do something in between – my
-apps typically store snapshots of at least 1 page worth of content
-locally and load everything else from the server if required.
+We can store snapshots on all replicas or not use them at all. That
+depends on the experience we want to achieve.
+
+For example if we want to let users be able to search through their social
+media feed offline, we'd have to store a significant amount of snapshot
+data locally. If that's not required, we can use the server for such
+queries. Third option is to do something in between – my apps typically
+store snapshots of at least 1 page worth of content locally and load
+everything else from the server if required.
 
 
 ### Storage
@@ -366,11 +376,11 @@ Snapshots storage would have an index on `[ objectId, version ]` pair and
 any other fields we want to query or search. For example a `User` object
 might have a full-text index on the `fullName` field.
 
-In the web browser IndexedDB fits perfectly, on a mobile device SQLite
-does the job. I've had some experience with MongoDB, MSSql Server, MySQL.
-All work fine.
+As to the concrete storage engines. In the web browser IndexedDB fits
+perfectly, on a mobile device SQLite does the job. I've had some
+experience with MongoDB, MSSql Server, MySQL.  All work fine.
 
-When using SQL storage I tend to store indexable fields in separate
+When using an SQL storage I tend to store indexable fields in separate
 columns and the rest of the data as a JSON string in a column named
 `rawData` or somesuch.
 
@@ -426,14 +436,14 @@ precisely across several machines is impossible.
 Physical clocks can not do the job, so people inveted
 [logical][logicalClock] and [hybrid][hybridClock] clocks. The goal of
 those is to get us as close as possible to the ideal scenario without
-relying on too much communication between replicas.
+relying too much on communication between replicas.
 
 Clocks is a large subject in itself and frankly I don't know enough to
 talk about it. Here's the approach I'm using in my projects that I picked
-up from [Victor Grischenko's][victor] work on [RON][ron].
+up from [Victor Grischenko's][victor] work on [RON][ron]:
 
 * Each replica (server process, a tab in the browser, a mobile app) has an instance of a hybrid clock;
-* Whenever a new event is created on a replica, we use that clock to generate an id for that event. That id is a combination of a replica name, a timestamp and a sequence number. The clock "remembers" the last id it generated to guarantee that the next id would be larger than the previous one;
+* Whenever a new event is created on a replica, we use that clock to generate an id for that event. That id is a combination of a replica's name, a timestamp and a sequence number. The clock "remembers" the last id it generated to guarantee that the next id would be larger than the previous one;
 * Whenever we receive an event from another replica, we check it's `localEventId` against the last value remembered by our local clock. If it is larger, we override the remembered value;
 * On app startup we initialize the local clock instance with the largest `localEventId` from the local storage.
 
@@ -447,15 +457,15 @@ up from [Victor Grischenko's][victor] work on [RON][ron].
 * We can vary depending on a feature or even user preferences how much data we want to store for offline use;
 * Client devices can sync with each other without relying on the server;
 * We can change business logic retroactively by changing reducers, as long as events contain all the necessary data for the new reducer to work;
-* We can store additional metadata with the event. Things like the user that made the edit and the timestamp. That's useful for implementing audit features.
+* We can store additional metadata with the event. Things like the user that made the edit and the timestamp.
 
 
 ### Cons of event-sourcing
 
 Compared to CRUD here are the things we have to be aware of:
 
-* The amount of data we need to store on devices and *especially* on the server grows significantly;
-* It's a new paradigm for many developers. It takes time and effort to get used to it;
+* The amount of data we need to store on devices and *especially* on the server grows significantly. That issue is still an area of active research. If you're curious about the subject check out Victor's work on [RON][ron].
+* It's a new paradigm for many developers. It takes time and effort to get a hang of it and there's not much information out there;
 
 It doesn't seem like much if we look at sheer numbers, but these two
 points are *very significant* and can overshadow the benefits of
@@ -464,9 +474,10 @@ event-sourcing.
 
 ## Finale
 
+
 I've built several applications using a combination of event-sourcing and
 CRUD. I use CRUD for the data that rarely changes, doesn't need to be
-updated offline or by several users at a time. Event-sourcing for
+updated offline or by several users at a time. I use event-sourcing for
 everything that needs offline and real-time functionality: chat,
 collaborative editing, local-first applications.
 
@@ -474,6 +485,14 @@ It's astonishing how powerful and underutilized our users' devices are and
 I believe if we want to improve UX and performance of our apps we have to
 step away from CRUD as the dominant paradigm for data synchronization and
 try new approaches.
+
+---
+
+I've tried to make this article as practical and hands-on as possible and
+leave history and philosophy for [some other time.](codepodcast.com)
+Please reach out and share your experience using event-sourcing in
+building web and mobile apps, or send in questions and suggestions for
+other articles on the subject.
 
 
 [crud]: https://en.wikipedia.org/wiki/Create%2C_read%2C_update_and_delete
