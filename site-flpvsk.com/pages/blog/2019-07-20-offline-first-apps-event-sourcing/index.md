@@ -465,10 +465,11 @@ up from [Victor Grischenko's][victor] work on [RON][ron]:
 
 Compared to CRUD here are the things we have to be aware of:
 
-* The amount of data we need to store on devices and *especially* on the server grows significantly. That issue is still an area of active research. If you're curious about the subject, check out Victor's work on [RON][ron].
-* It's a new paradigm for many developers. It takes time and effort to get a hang of it and there's not much information out there;
+* The amount of data we need to store on devices and *especially* on the server grows significantly. That issue is still an area of active research. If you're curious about the subject, check out Victor's work on [RON][ron];
+* We're bringing business logic to the client, that might be a security or an intellectual property concern;
+* It's a new paradigm for many developers. It takes time and effort to get a hang of it and there's not much information out there.
 
-It doesn't seem like much if we look at sheer numbers, but these two
+It doesn't seem like much if we look at sheer numbers, but these three
 points are *very significant* and can overshadow the benefits of
 event-sourcing.
 
