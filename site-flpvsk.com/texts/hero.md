@@ -16,12 +16,13 @@ I organize meetups and conferences. I was involved in
 and
 [Frontend&nbsp;Union&nbsp;Conf](http://frontend-union-conf.github.io/func2016/).
 
-Currently, I’m in the process of starting a product research and
-development agency called [Mean&nbsp;Computer](https://mean.computer).
+Currently, I’m running an audio-effect pedal shop in Berlin called
+[Pedal Markt](https://pedalmarkt.com) and do freelance consultancy work.
 
-I
+I also
 [write](/blog),
 [speak](/talks)
 and
 [podcast](https://codepodcast.com)
-about things I’m interested in.
+about things.
+
