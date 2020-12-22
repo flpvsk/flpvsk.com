@@ -490,7 +490,7 @@ step away from CRUD and try new approaches.
 ---
 
 I've tried to make this article as practical and hands-on as possible and
-leave history and philosophy for [some other time.](codepodcast.com)
+leave history and philosophy for some other time.
 Please reach out and share your experience using event-sourcing in
 building web and mobile apps, or send in questions and suggestions for
 other articles on the subject.
