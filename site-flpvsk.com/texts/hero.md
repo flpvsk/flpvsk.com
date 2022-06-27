@@ -11,8 +11,8 @@ and
 [Mindojo](#Mindojo).
 
 I organize meetups and conferences. I was involved in
-[MoscowJS](https://moscowjs.ru),
-[Kaizen&nbsp;Berlin](https://www.meetup.com/Kaizen-Berlin/)
+[MoscowJS](https://moscowjs.org),
+Kaizen&nbsp;Berlin
 and
 [Frontend&nbsp;Union&nbsp;Conf](http://frontend-union-conf.github.io/func2016/).
 
