@@ -210,15 +210,16 @@ const lastIdByReplica = {};
 function genId(replica) {
   const d = new Date();
   const newTime = (
-    `${d.getMinutes()}:` +
-    `${d.getSeconds()}`
+    `${String(d.getMinutes()).padStart(2, '0')}:` +
+    `${String(d.getSeconds()).padStart(2, '0')}`
   );
   let newSeq = 0;
   const last = lastIdByReplica[replica];
   if (last && getTime(last) === newTime) {
     newSeq = getSeq(last) + 1;
   }
-  const newId = `${newTime}.${newSeq}@${replica}`;
+  const newSeqStr = String(newSeq).padStart(2, '0');
+  const newId = `${newTime}.${newSeqStr}@${replica}`;
   lastIdByReplica[replica] = newId;
   return newId;
 }
