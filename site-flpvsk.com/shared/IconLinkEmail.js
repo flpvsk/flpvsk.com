@@ -4,7 +4,7 @@ import Svg from './Svg';
 
 import siteInfo from '../siteInfo';
 
-export default function IconLinkTwitter(props) {
+export default function IconLinkEmail(props) {
   return (
     <IconLink {...props} title='Email' href={siteInfo.emailLink}>
       <Svg

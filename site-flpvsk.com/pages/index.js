@@ -30,7 +30,6 @@ import LinkExternalNoDecoration from '~/shared/LinkExternalNoDecoration';
 import LinkText from '~/shared/LinkText';
 import Separator from '~/shared/Separator';
 
-import IconLinkTwitter from '~/shared/IconLinkTwitter';
 import IconLinkGithub from '~/shared/IconLinkGithub';
 import IconLinkEmail from '~/shared/IconLinkEmail';
 
@@ -44,7 +43,6 @@ import Menu from '~/shared/Menu';
 import Footer from '~/shared/Footer';
 
 import HeroText from '~/texts/hero.md';
-import Polychops from '~/texts/polychops.md';
 import Matterway from '~/texts/matterway.md';
 import Mindojo from '~/texts/mindojo.md';
 import InfluencesContent from '~/texts/influences.md';
@@ -127,8 +125,7 @@ function Hero() {
         <HeroText mb={5} />
 
         <Box mb={3}>
-          <IconLinkTwitter height={24} />
-          <IconLinkGithub height={24} ml={3} />
+          <IconLinkGithub height={24} />
           <IconLinkEmail height={24} ml={3} />
         </Box>
       </Box>
@@ -298,7 +295,6 @@ function Work() {
       gridTemplateRows={'auto'}
     >
       <TextSectionHeader>Work</TextSectionHeader>
-      <Polychops mb={4} />
       <Matterway mb={4} />
       <Mindojo mb={4} />
       <Box mb={4}>
